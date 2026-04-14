@@ -1,6 +1,5 @@
 
 
-```markdown
 # 👟 Basau Sneakers - Website Cửa Hàng Giày Trực Tuyến
 
 **Basau Sneakers** là một dự án website thương mại điện tử giao diện Front-end hiện đại, được tối ưu hóa cho trải nghiệm mua sắm sneaker chuyên nghiệp. Dự án mô phỏng luồng trải nghiệm thực tế từ việc xem danh sách sản phẩm, đăng nhập phân quyền cho đến xem chi tiết sản phẩm động.
