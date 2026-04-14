@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tất cả sản phẩm - Basau Sneakers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesMain.css">
+    <link rel="stylesheet" href="brandCatalog.css">
+</head>
+<body>
+
+<!-- HEADER (copy từ homePage.html của bạn) -->
+<div class="container-fluid">
+    <div class="rowHeader bg-light py-1 border-bottom">
+        <div class="container-fluid px-4 d-flex justify-content-end align-items-center gap-4">
+            <div class="tienich"><a href="login.html" class="text-secondary text-decoration-none">Thêm sản phẩm</a></div>
+            <div class="tienich"><a href="login.html" class="text-secondary text-decoration-none">Điều chỉnh</a></div>
+            <div class="tienich"><a href="#" class="text-secondary text-decoration-none">Giỏ hàng (0)</a></div>
+            <div class="tienich">
+                <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink">
+                    <span id="userAccountText">Đăng nhập</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid rowMenu bg-white sticky-top shadow-sm py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="logo"><a href="homePage.html"><img src="hinhAnh/logo.jpg" alt="Logo" style="height:55px;"></a></div>
+            <div class="searchBar d-none d-lg-flex" style="justify-content:flex-end;">
+                <input type="text" class="form-control rounded-pill custom-search" placeholder="Tìm kiếm sản phẩm...">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container-fluid px-4 px-md-5 mt-4 pb-5">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar mb-3">
+            <a href="homePage.html">Trang chủ</a> &nbsp;/&nbsp;
+            <span id="breadcrumbCurrent">Tất cả thương hiệu</span>
+        </div>
+
+        <!-- Page Title + Brand Tabs -->
+        <div class="d-flex flex-wrap align-items-baseline gap-3 mb-3">
+            <h1 class="catalog-title mb-0" id="pageTitle">Tất cả sản phẩm</h1>
+            <span class="result-count" id="resultCount"></span>
+        </div>
+
+        <!-- Brand Tabs -->
+        <div class="brand-tabs" id="brandTabs">
+            <div class="brand-tab active" data-brand="all" onclick="selectBrand(this)">Tất cả</div>
+            <div class="brand-tab" data-brand="Nike" onclick="selectBrand(this)">Nike</div>
+            <div class="brand-tab" data-brand="Adidas" onclick="selectBrand(this)">Adidas</div>
+            <div class="brand-tab" data-brand="New Balance" onclick="selectBrand(this)">New Balance</div>
+            <div class="brand-tab" data-brand="Puma" onclick="selectBrand(this)">Puma</div>
+            <div class="brand-tab" data-brand="Birkenstock" onclick="selectBrand(this)">Birkenstock</div>
+            <div class="brand-tab" data-brand="Onitsuka Tiger" onclick="selectBrand(this)">Onitsuka Tiger</div>
+            <div class="brand-tab" data-brand="Converse" onclick="selectBrand(this)">Converse</div>
+        </div>
+
+        <div class="row g-4">
+            <!-- FILTER SIDEBAR -->
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center justify-content-between mb-3 d-lg-none">
+                    <button class="filter-toggle-btn" onclick="toggleFilter()">&#9776; Bộ lọc</button>
+                    <select class="sort-select" id="sortSelectMobile" onchange="applySort()">
+                        <option value="featured">Nổi bật</option>
+                        <option value="price-asc">Giá: Thấp → Cao</option>
+                        <option value="price-desc">Giá: Cao → Thấp</option>
+                        <option value="newest">Mới nhất</option>
+                    </select>
+                </div>
+
+                <div class="filter-sidebar" id="filterSidebar">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span style="font-size:14px; font-weight:700;">Bộ lọc</span>
+                        <button class="clear-btn" onclick="clearAllFilters()">Xóa tất cả</button>
+                    </div>
+
+                    <!-- Giới tính -->
+                    <div class="filter-group">
+                        <button class="filter-title" onclick="toggleGroup(this)">
+                            Giới tính <span class="arrow">▾</span>
+                        </button>
+                        <div class="filter-options">
+                            <label class="filter-check"><input type="checkbox" value="Nam" onchange="applyFilters()"> <span>Nam</span></label>
+                            <label class="filter-check"><input type="checkbox" value="Nữ" onchange="applyFilters()"> <span>Nữ</span></label>
+                            <label class="filter-check"><input type="checkbox" value="Unisex" onchange="applyFilters()"> <span>Unisex</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Loại giày -->
+                    <div class="filter-group">
+                        <button class="filter-title" onclick="toggleGroup(this)">
+                            Loại giày <span class="arrow">▾</span>
+                        </button>
+                        <div class="filter-options">
+                            <label class="filter-check"><input type="checkbox" value="Sneakers" onchange="applyFilters()"> <span>Sneakers</span></label>
+                            <label class="filter-check"><input type="checkbox" value="Running" onchange="applyFilters()"> <span>Giày chạy bộ</span></label>
+                            <label class="filter-check"><input type="checkbox" value="Classic" onchange="applyFilters()"> <span>Giày cổ điển</span></label>
+                            <label class="filter-check"><input type="checkbox" value="Sandal" onchange="applyFilters()"> <span>Dép / Sandal</span></label>
+                            <label class="filter-check"><input type="checkbox" value="Lifestyle" onchange="applyFilters()"> <span>Lifestyle</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Khoảng giá -->
+                    <div class="filter-group">
+                        <button class="filter-title" onclick="toggleGroup(this)">
+                            Khoảng giá <span class="arrow">▾</span>
+                        </button>
+                        <div class="filter-options">
+                            <label class="filter-check"><input type="checkbox" value="under1m" onchange="applyFilters()"> <span>Dưới 1.000.000₫</span></label>
+                            <label class="filter-check"><input type="checkbox" value="1m-2m" onchange="applyFilters()"> <span>1.000.000₫ – 2.000.000₫</span></label>
+                            <label class="filter-check"><input type="checkbox" value="2m-3m" onchange="applyFilters()"> <span>2.000.001₫ – 3.000.000₫</span></label>
+                            <label class="filter-check"><input type="checkbox" value="3m-5m" onchange="applyFilters()"> <span>3.000.001₫ – 5.000.000₫</span></label>
+                            <label class="filter-check"><input type="checkbox" value="over5m" onchange="applyFilters()"> <span>Trên 5.000.000₫</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Màu sắc -->
+                    <div class="filter-group">
+                        <button class="filter-title" onclick="toggleGroup(this)">
+                            Màu sắc <span class="arrow">▾</span>
+                        </button>
+                        <div class="color-grid">
+                            <div class="color-swatch" style="background:#000" title="Đen" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#fff" title="Trắng" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#C0392B" title="Đỏ" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#2980B9" title="Xanh dương" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#27AE60" title="Xanh lá" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#F39C12" title="Vàng" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#8E44AD" title="Tím" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#E8DAAF" title="Kem" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#7F8C8D" title="Xám" onclick="toggleColor(this)"></div>
+                            <div class="color-swatch" style="background:#E8B4B8" title="Hồng" onclick="toggleColor(this)"></div>
+                        </div>
+                    </div>
+
+                    <!-- Sale & Offers -->
+                    <div class="filter-group">
+                        <button class="filter-title" onclick="toggleGroup(this)">
+                            Ưu đãi <span class="arrow">▾</span>
+                        </button>
+                        <div class="filter-options">
+                            <label class="filter-check"><input type="checkbox" value="sale" onchange="applyFilters()"> <span>Đang giảm giá</span></label>
+                            <label class="filter-check"><input type="checkbox" value="new" onchange="applyFilters()"> <span>Mới về</span></label>
+                            <label class="filter-check"><input type="checkbox" value="bestseller" onchange="applyFilters()"> <span>Bán chạy nhất</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT AREA -->
+            <div class="col-lg-9">
+                <!-- Sort bar (desktop) -->
+                <div class="sort-bar d-none d-lg-flex">
+                    <div class="active-filters" id="activeFilters"></div>
+                    <select class="sort-select" id="sortSelect" onchange="applySort()">
+                        <option value="featured">Sắp xếp: Nổi bật</option>
+                        <option value="price-asc">Giá: Thấp → Cao</option>
+                        <option value="price-desc">Giá: Cao → Thấp</option>
+                        <option value="newest">Mới nhất</option>
+                    </select>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid" id="productGrid"></div>
+                <div class="no-results d-none" id="noResults">
+                    <h5>Không tìm thấy sản phẩm phù hợp</h5>
+                    <p>Hãy thử điều chỉnh bộ lọc của bạn.</p>
+                    <button class="btn btn-dark mt-2" onclick="clearAllFilters()">Xóa bộ lọc</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer container-fluid bg-secondary text-white py-4">
+        <p class="oswald-font fw-bold mb-1 footer_name">BASAU.</p>
+        <p class="small mb-0 text-center">© 2026 BASAU SNEAKERS. All rights reserved.</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ============================================================
+// DATABASE SẢN PHẨM - 7 THƯƠNG HIỆU
+// ============================================================
+const allProducts = [
+    // === NIKE ===
+    { id: 1, brand: "Nike", name: "Air Max Plus VII 'Kylian Mbappé'", category: "Sneakers", gender: "Nam", price: 5279000, badge: "new", img: "hinhAnh/airMaxKM.png", colors: ["Đen","Vàng"] },
+    { id: 2, brand: "Nike", name: "Air Max Plus", category: "Sneakers", gender: "Nam", price: 2169000, badge: "bestseller", img: "hinhAnh/airMaxPlus.png", colors: ["Trắng","Đen"] },
+    { id: 3, brand: "Nike", name: "Astrograbber SE", category: "Classic", gender: "Nam", price: 3829000, badge: null, img: "hinhAnh/astrograbber.png", colors: ["Xanh dương"] },
+    { id: 4, brand: "Nike", name: "Killshot 2", category: "Classic", gender: "Nam", price: 2779000, badge: "bestseller", img: "hinhAnh/killshot2.png", colors: ["Trắng"] },
+    { id: 5, brand: "Nike", name: "Dép Lightshift", category: "Sandal", gender: "Unisex", price: 750000, badge: "sale", oldPrice: 950000, img: "hinhAnh/lightshift.png", colors: ["Đen"] },
+
+    // === ADIDAS ===
+    { id: 6, brand: "Adidas", name: "Adizero EVO SL", category: "Running", gender: "Nam", price: 4000000, badge: "new", img: "hinhAnh/zerosl.png", colors: ["Trắng","Xanh dương"] },
+    { id: 7, brand: "Adidas", name: "Ultraboost 5.0", category: "Running", gender: "Nam", price: 4500000, badge: "bestseller", img: "hinhAnh/airMaxPlus.png", colors: ["Trắng"] },
+    { id: 8, brand: "Adidas", name: "Stan Smith", category: "Classic", gender: "Unisex", price: 2200000, badge: null, img: "hinhAnh/killshot2.png", colors: ["Trắng","Xanh lá"] },
+    { id: 9, brand: "Adidas", name: "Samba OG", category: "Lifestyle", gender: "Unisex", price: 2800000, badge: "bestseller", img: "hinhAnh/astrograbber.png", colors: ["Đen","Trắng"] },
+
+    // === NEW BALANCE ===
+    { id: 10, brand: "New Balance", name: "990v6 Made in USA", category: "Running", gender: "Nam", price: 5800000, badge: "new", img: "hinhAnh/airMaxKM.png", colors: ["Xám"] },
+    { id: 11, brand: "New Balance", name: "574 Core", category: "Lifestyle", gender: "Unisex", price: 2400000, badge: null, img: "hinhAnh/airMaxPlus.png", colors: ["Trắng","Xanh dương"] },
+    { id: 12, brand: "New Balance", name: "Fresh Foam X 1080v13", category: "Running", gender: "Nam", price: 4200000, badge: "bestseller", img: "hinhAnh/zerosl.png", colors: ["Đen"] },
+
+    // === PUMA ===
+    { id: 13, brand: "Puma", name: "Serrano Classic", category: "Lifestyle", gender: "Unisex", price: 2945000, badge: null, img: "hinhAnh/otSerrano.png", colors: ["Trắng","Kem"] },
+    { id: 14, brand: "Puma", name: "Suede Classic XXI", category: "Classic", gender: "Unisex", price: 1950000, badge: "sale", oldPrice: 2500000, img: "hinhAnh/killshot2.png", colors: ["Đen"] },
+    { id: 15, brand: "Puma", name: "RS-X Efekt", category: "Sneakers", gender: "Nam", price: 2700000, badge: "new", img: "hinhAnh/airMaxPlus.png", colors: ["Trắng","Đỏ"] },
+
+    // === BIRKENSTOCK ===
+    { id: 16, brand: "Birkenstock", name: "Arizona Classic", category: "Sandal", gender: "Unisex", price: 3390000, badge: "bestseller", img: "hinhAnh/arizona.png", colors: ["Kem","Đen"] },
+    { id: 17, brand: "Birkenstock", name: "Boston Clog Suede", category: "Lifestyle", gender: "Unisex", price: 4100000, badge: null, img: "hinhAnh/astrograbber.png", colors: ["Xám"] },
+    { id: 18, brand: "Birkenstock", name: "Gizeh Sandal", category: "Sandal", gender: "Nữ", price: 2900000, badge: "sale", oldPrice: 3500000, img: "hinhAnh/lightshift.png", colors: ["Hồng","Kem"] },
+
+    // === ONITSUKA TIGER ===
+    { id: 19, brand: "Onitsuka Tiger", name: "Mexico 66", category: "Classic", gender: "Unisex", price: 3100000, badge: "bestseller", img: "hinhAnh/killshot2.png", colors: ["Trắng","Đỏ"] },
+    { id: 20, brand: "Onitsuka Tiger", name: "Serrano Retro", category: "Sneakers", gender: "Unisex", price: 2800000, badge: null, img: "hinhAnh/otSerrano.png", colors: ["Trắng","Xanh dương"] },
+    { id: 21, brand: "Onitsuka Tiger", name: "Ultimate 81", category: "Classic", gender: "Nam", price: 3500000, badge: "new", img: "hinhAnh/astrograbber.png", colors: ["Xanh dương","Trắng"] },
+
+    // === CONVERSE ===
+    { id: 22, brand: "Converse", name: "Chuck Taylor All Star '70 Hi", category: "Classic", gender: "Unisex", price: 2100000, badge: "bestseller", img: "hinhAnh/airMaxPlus.png", colors: ["Đen","Trắng"] },
+    { id: 23, brand: "Converse", name: "Chuck 70 Low Top Canvas", category: "Classic", gender: "Unisex", price: 1900000, badge: null, img: "hinhAnh/killshot2.png", colors: ["Trắng"] },
+    { id: 24, brand: "Converse", name: "Run Star Motion Ox", category: "Sneakers", gender: "Nữ", price: 2350000, badge: "sale", oldPrice: 2800000, img: "hinhAnh/astrograbber.png", colors: ["Trắng","Đen"] },
+];
+
+// State
+let currentBrand = 'all';
+let currentSort = 'featured';
+let selectedColors = [];
+let displayedProducts = [...allProducts];
+
+// ============================================================
+// FILTER LOGIC
+// ============================================================
+function getCheckedValues(name) {
+    return [...document.querySelectorAll(`.filter-check input[value]:checked`)]
+        .filter(cb => {
+            const val = cb.value;
+            // Determine which group this belongs to
+            const group = cb.closest('.filter-group');
+            return group !== null;
+        })
+        .map(cb => cb.value);
+}
+
+function getCheckedByValues(values) {
+    return [...document.querySelectorAll('.filter-check input[type="checkbox"]:checked')].map(cb => cb.value);
+}
+
+function applyFilters() {
+    const checked = [...document.querySelectorAll('.filter-check input[type="checkbox"]:checked')].map(cb => cb.value);
+    const genders = checked.filter(v => ['Nam','Nữ','Unisex'].includes(v));
+    const categories = checked.filter(v => ['Sneakers','Running','Classic','Sandal','Lifestyle'].includes(v));
+    const prices = checked.filter(v => ['under1m','1m-2m','2m-3m','3m-5m','over5m'].includes(v));
+    const offers = checked.filter(v => ['sale','new','bestseller'].includes(v));
+
+    let filtered = allProducts.filter(p => {
+        if (currentBrand !== 'all' && p.brand !== currentBrand) return false;
+        if (genders.length && !genders.includes(p.gender)) return false;
+        if (categories.length && !categories.includes(p.category)) return false;
+        if (prices.length) {
+            const inRange = prices.some(range => {
+                if (range === 'under1m') return p.price < 1000000;
+                if (range === '1m-2m') return p.price >= 1000000 && p.price <= 2000000;
+                if (range === '2m-3m') return p.price > 2000000 && p.price <= 3000000;
+                if (range === '3m-5m') return p.price > 3000000 && p.price <= 5000000;
+                if (range === 'over5m') return p.price > 5000000;
+                return false;
+            });
+            if (!inRange) return false;
+        }
+        if (offers.length) {
+            const matchOffer = offers.some(o => {
+                if (o === 'sale') return p.badge === 'sale';
+                if (o === 'new') return p.badge === 'new';
+                if (o === 'bestseller') return p.badge === 'bestseller';
+                return false;
+            });
+            if (!matchOffer) return false;
+        }
+        if (selectedColors.length) {
+            const match = selectedColors.some(c => p.colors && p.colors.includes(c));
+            if (!match) return false;
+        }
+        return true;
+    });
+
+    displayedProducts = filtered;
+    applySort(false);
+    renderActiveFilters(genders, categories, prices, offers);
+}
+
+function applySort(reFilter = false) {
+    if (reFilter) applyFilters();
+
+    const sortVal = document.getElementById('sortSelect')?.value || document.getElementById('sortSelectMobile')?.value || 'featured';
+    currentSort = sortVal;
+
+    let sorted = [...displayedProducts];
+    if (sortVal === 'price-asc') sorted.sort((a,b) => a.price - b.price);
+    else if (sortVal === 'price-desc') sorted.sort((a,b) => b.price - a.price);
+    else if (sortVal === 'newest') sorted.sort((a,b) => (b.badge === 'new' ? 1 : 0) - (a.badge === 'new' ? 1 : 0));
+
+    renderProducts(sorted);
+}
+
+function renderActiveFilters(genders, categories, prices, offers) {
+    const container = document.getElementById('activeFilters');
+    if (!container) return;
+    container.innerHTML = '';
+    const allActive = [...genders, ...categories, ...prices, ...offers, ...selectedColors];
+    const labelMap = { 'under1m': 'Dưới 1tr', '1m-2m': '1tr–2tr', '2m-3m': '2tr–3tr', '3m-5m': '3tr–5tr', 'over5m': 'Trên 5tr', 'sale': 'Giảm giá', 'new': 'Mới về', 'bestseller': 'Bán chạy' };
+    allActive.forEach(val => {
+        const pill = document.createElement('div');
+        pill.className = 'filter-pill';
+        pill.innerHTML = `${labelMap[val] || val} <span class="remove" onclick="removeFilter('${val}')">×</span>`;
+        container.appendChild(pill);
+    });
+}
+
+function removeFilter(val) {
+    const checkbox = document.querySelector(`.filter-check input[value="${val}"]`);
+    if (checkbox) { checkbox.checked = false; applyFilters(); return; }
+    const idx = selectedColors.indexOf(val);
+    if (idx > -1) {
+        selectedColors.splice(idx, 1);
+        document.querySelectorAll('.color-swatch').forEach(s => { if (s.title === val) s.classList.remove('active'); });
+        applyFilters();
+    }
+}
+
+function clearAllFilters() {
+    document.querySelectorAll('.filter-check input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    selectedColors = [];
+    applyFilters();
+}
+
+function toggleColor(el) {
+    el.classList.toggle('active');
+    const color = el.title;
+    const idx = selectedColors.indexOf(color);
+    if (idx > -1) selectedColors.splice(idx, 1); else selectedColors.push(color);
+    applyFilters();
+}
+
+function selectBrand(el) {
+    document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    currentBrand = el.dataset.brand;
+
+    const titleEl = document.getElementById('pageTitle');
+    const breadEl = document.getElementById('breadcrumbCurrent');
+    titleEl.textContent = currentBrand === 'all' ? 'Tất cả sản phẩm' : `Giày ${currentBrand}`;
+    breadEl.textContent = currentBrand === 'all' ? 'Tất cả thương hiệu' : currentBrand;
+
+    applyFilters();
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function formatPrice(p) {
+    return p.toLocaleString('vi-VN') + '₫';
+}
+
+function renderProducts(products) {
+    const grid = document.getElementById('productGrid');
+    const noResults = document.getElementById('noResults');
+    const count = document.getElementById('resultCount');
+
+    count.textContent = `(${products.length} sản phẩm)`;
+
+    if (products.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('d-none');
+        return;
+    }
+    noResults.classList.add('d-none');
+
+    grid.innerHTML = products.map(p => {
+        const badgeHtml = p.badge
+            ? `<div class="card-badge badge-${p.badge}">${p.badge === 'bestseller' ? 'Bán chạy' : p.badge === 'new' ? 'Mới về' : 'SALE'}</div>`
+            : '';
+        const priceHtml = p.oldPrice
+            ? `<span class="card-price sale-price">${formatPrice(p.price)}</span><span class="card-price-old">${formatPrice(p.oldPrice)}</span>`
+            : `<span class="card-price">${formatPrice(p.price)}</span>`;
+        const catLabel = { 'Running': 'Giày chạy bộ', 'Classic': 'Giày cổ điển', 'Sneakers': 'Sneakers', 'Sandal': 'Dép / Sandal', 'Lifestyle': 'Lifestyle' }[p.category] || p.category;
+
+        return `
+        <a href="productDetail.html?id=${p.id}" class="text-decoration-none">
+            <div class="product-card-cat">
+                ${badgeHtml}
+                <button class="wishlist-btn" onclick="event.preventDefault(); this.textContent='♥'; this.style.color='#f25722';" title="Yêu thích">♡</button>
+                <div class="img-wrap">
+                    <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300/f5f5f5/ccc?text=${encodeURIComponent(p.brand)}'">
+                </div>
+                <div class="card-info">
+                    <div class="card-brand">${p.brand}</div>
+                    <div class="card-name">${p.name}</div>
+                    <div class="card-cat">${catLabel} · ${p.gender}</div>
+                    <div class="d-flex align-items-baseline">${priceHtml}</div>
+                </div>
+            </div>
+        </a>`;
+    }).join('');
+}
+
+// ============================================================
+// UI HELPERS
+// ============================================================
+function toggleGroup(btn) {
+    btn.classList.toggle('collapsed');
+    const opts = btn.nextElementSibling;
+    opts.style.display = btn.classList.contains('collapsed') ? 'none' : '';
+}
+
+function toggleFilter() {
+    const sidebar = document.getElementById('filterSidebar');
+    sidebar.classList.toggle('show');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    applyFilters();
+
+    // Check URL params for brand
+    const params = new URLSearchParams(window.location.search);
+    const brandParam = params.get('brand');
+    if (brandParam) {
+        const tab = document.querySelector(`.brand-tab[data-brand="${brandParam}"]`);
+        if (tab) selectBrand(tab);
+    }
+
+    // Login state
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (currentUser) {
+        const el = document.getElementById('userAccountText');
+        if (el) el.textContent = currentUser.username;
+    }
+});
+</script>
+</body>
+</html>

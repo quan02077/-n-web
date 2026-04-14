@@ -1,0 +1,147 @@
+/* ===== CATALOG PAGE STYLES ===== */
+body { font-family: 'Josefin Sans', sans-serif; background: #fcfcfc; }
+
+/* --- BREADCRUMB --- */
+.breadcrumb-bar { font-size: 13px; color: #888; padding: 14px 0; }
+.breadcrumb-bar a { color: #888; text-decoration: none; }
+.breadcrumb-bar a:hover { color: #000; text-decoration: underline; }
+.breadcrumb-bar span { color: #000; }
+
+/* --- PAGE TITLE --- */
+.catalog-title { font-family: "Oswald", sans-serif; font-size: 30px; font-weight: 700; }
+.result-count { font-size: 14px; color: #888; }
+
+/* --- BRAND TABS --- */
+.brand-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.brand-tab {
+    padding: 8px 18px; border: 1.5px solid #e0e0e0; border-radius: 50px;
+    font-size: 13px; font-weight: 600; cursor: pointer; background: #fff;
+    transition: all 0.2s; letter-spacing: 0.5px; white-space: nowrap;
+}
+.brand-tab:hover { border-color: #000; }
+.brand-tab.active { background: #000; color: #fff; border-color: #000; }
+
+/* --- FILTER SIDEBAR --- */
+.filter-sidebar { position: sticky; top: 80px; }
+.filter-group { border-bottom: 1px solid #e8e8e8; padding: 16px 0; }
+.filter-group:last-child { border-bottom: none; }
+.filter-title {
+    font-size: 13px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    background: none; border: none; width: 100%; padding: 0; color: #1a1a1a;
+}
+.filter-title .arrow { font-size: 11px; transition: transform 0.2s; }
+.filter-title.collapsed .arrow { transform: rotate(-90deg); }
+.filter-options { padding-top: 12px; }
+.filter-check { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; cursor: pointer; }
+.filter-check input[type="checkbox"] {
+    width: 16px; height: 16px; border-radius: 3px; cursor: pointer;
+    accent-color: #000;
+}
+.filter-check label { font-size: 14px; cursor: pointer; color: #333; }
+.filter-check label:hover { color: #000; }
+
+/* Color swatches */
+.color-grid { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 12px; }
+.color-swatch {
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent; transition: all 0.2s;
+    position: relative;
+}
+.color-swatch:hover, .color-swatch.active { border-color: #000; }
+.color-swatch[title="Trắng"] { border-color: #ccc; }
+.color-swatch[title="Trắng"]:hover, .color-swatch[title="Trắng"].active { border-color: #000; }
+
+/* Price range */
+.price-input-group { display: flex; align-items: center; gap: 8px; padding-top: 12px; }
+.price-input {
+    flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 8px 10px;
+    font-size: 13px; font-family: 'Josefin Sans', sans-serif;
+}
+.price-input:focus { outline: none; border-color: #000; }
+
+/* Clear filters */
+.clear-btn { font-size: 13px; color: #555; text-decoration: underline; cursor: pointer; background: none; border: none; padding: 0; }
+.clear-btn:hover { color: #000; }
+
+/* --- SORT BAR --- */
+.sort-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.sort-select {
+    border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px;
+    font-size: 14px; font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer; background: #fff;
+}
+.sort-select:focus { outline: none; border-color: #000; }
+
+/* Active filters display */
+.active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.filter-pill {
+    display: flex; align-items: center; gap: 6px; padding: 5px 12px;
+    background: #f0f0f0; border-radius: 20px; font-size: 12px; font-weight: 600;
+}
+.filter-pill .remove { cursor: pointer; font-size: 14px; line-height: 1; }
+.filter-pill .remove:hover { color: #f25722; }
+
+/* --- PRODUCT GRID --- */
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+@media (max-width: 991px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575px) { .product-grid { grid-template-columns: repeat(1, 1fr); } }
+
+.product-card-cat {
+    position: relative; cursor: pointer; border-radius: 12px;
+    overflow: hidden; background: #fff; transition: transform 0.25s;
+}
+.product-card-cat:hover { transform: translateY(-4px); }
+
+.product-card-cat .img-wrap {
+    background: #f5f5f5; aspect-ratio: 1/1; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.product-card-cat .img-wrap img {
+    width: 100%; height: 100%; object-fit: contain; padding: 20px;
+    transition: transform 0.3s;
+}
+.product-card-cat:hover .img-wrap img { transform: scale(1.07); }
+
+.product-card-cat .card-badge {
+    position: absolute; top: 10px; left: 10px;
+    padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+}
+.badge-bestseller { background: #000; color: #fff; }
+.badge-new { background: #007AFF; color: #fff; }
+.badge-sale { background: #f25722; color: #fff; }
+.badge-soldout { background: #ccc; color: #666; }
+
+.product-card-cat .wishlist-btn {
+    position: absolute; top: 10px; right: 10px; width: 34px; height: 34px;
+    background: rgba(255,255,255,0.85); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 16px; border: none; opacity: 0;
+    transition: opacity 0.2s;
+}
+.product-card-cat:hover .wishlist-btn { opacity: 1; }
+
+.product-card-cat .card-info { padding: 12px 4px 16px; }
+.card-brand { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #888; text-transform: uppercase; margin-bottom: 3px; }
+.card-name { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; line-height: 1.3; }
+.card-cat { font-size: 12px; color: #999; margin-bottom: 8px; }
+.card-price { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+.card-price-old { font-size: 12px; color: #aaa; text-decoration: line-through; margin-left: 6px; }
+.card-price.sale-price { color: #f25722; }
+
+/* No results */
+.no-results { text-align: center; padding: 60px 20px; color: #888; }
+.no-results h5 { font-size: 18px; margin-bottom: 8px; color: #333; }
+
+/* Mobile filter toggle */
+.filter-toggle-btn {
+    display: none; border: 1.5px solid #000; border-radius: 8px; padding: 9px 18px;
+    font-size: 13px; font-weight: 700; background: #fff; cursor: pointer;
+}
+@media (max-width: 991px) {
+    .filter-toggle-btn { display: block; }
+    .filter-sidebar { display: none; }
+    .filter-sidebar.show { display: block; }
+}
