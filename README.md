@@ -1,47 +1,57 @@
-# 👟 SneakerHub - Website Bán Giày Trực Tuyến
+👟 Basau Sneakers - Website Cửa Hàng Giày Trực Tuyến
+Basau Sneakers là một dự án website thương mại điện tử giao diện Front-end hiện đại, tập trung vào trải nghiệm người dùng trong việc tìm kiếm và mua sắm các dòng giày sneaker từ các thương hiệu lớn như Nike, Adidas, New Balance, v.v. Dự án tích hợp đầy đủ các tính năng xác thực người dùng cơ bản sử dụng LocalStorage.
 
-![Banner dự án](https://via.placeholder.com/1200x400?text=Banner+Website+Ban+Giay)
-*Hình ảnh minh họa trang chủ của website*
+✨ Tính Năng Nổi Bật
+🔐 Hệ Thống Xác Thực (Authentication)
+Đăng nhập/Đăng ký: Hỗ trợ phân quyền người dùng (Nhân viên và Khách hàng).
 
-## 📖 Giới thiệu (About the Project)
+Quên mật khẩu: Quy trình khôi phục mật khẩu qua 2 bước (Kiểm tra tài khoản -> Cập nhật mật khẩu mới).
 
-**SneakerHub** là một dự án website thương mại điện tử chuyên cung cấp các sản phẩm giày thể thao, giày thời trang với giao diện hiện đại và trải nghiệm người dùng mượt mà. Dự án được phát triển nhằm mục đích xây dựng một quy trình mua sắm trực tuyến hoàn chỉnh, từ việc duyệt sản phẩm, thêm vào giỏ hàng đến quản lý đơn hàng.
+Hiển thị mật khẩu: Tính năng ẩn/hiện mật khẩu giúp người dùng kiểm tra độ chính xác khi nhập.
 
-## ✨ Tính năng nổi bật (Features)
+Lưu trữ LocalStorage: Dữ liệu tài khoản được lưu trữ cục bộ, cho phép duy trì trạng thái đăng nhập khi tải lại trang.
 
-### Dành cho Khách hàng (User)
-* **Khám phá sản phẩm:** Xem danh sách giày với hình ảnh sắc nét, giá cả và thông tin chi tiết.
-* **Tìm kiếm & Lọc:** Lọc sản phẩm theo thương hiệu (Nike, Adidas, Vans...), kích cỡ, mức giá và màu sắc.
-* **Giỏ hàng (Cart):** Thêm, sửa, xóa sản phẩm trong giỏ hàng dễ dàng.
-* **Thanh toán (Checkout):** Quy trình đặt hàng đơn giản, hỗ trợ điền thông tin giao hàng.
-* **Tài khoản cá nhân:** Đăng ký, đăng nhập và xem lịch sử đơn hàng.
+🎨 Giao Diện Người Dùng (UI/UX)
+Mega Menu: Menu điều hướng thông minh, hiển thị danh mục sản phẩm trực quan với hình ảnh minh họa.
 
-### Dành cho Quản trị viên (Admin)
-* **Dashboard:** Thống kê doanh thu, số lượng đơn hàng và người dùng.
-* **Quản lý sản phẩm (CRUD):** Thêm giày mới, cập nhật giá, hình ảnh, số lượng kho và chuẩn hóa dữ liệu.
-* **Quản lý đơn hàng:** Xử lý trạng thái đơn hàng (Chờ xác nhận, Đang giao, Đã hoàn thành).
+Hero Slider: Banner chuyển động mượt mà (Carousel) giới thiệu các bộ sưu tập mới nhất theo phong cách Nike/Adidas.
 
-## 🛠️ Công nghệ sử dụng (Tech Stack)
+Flash Sale: Banner đếm ngược tạo cảm giác cấp bách cho các chương trình khuyến mãi.
 
-*(Hãy thay đổi phần này dựa trên công nghệ thực tế bạn đã dùng)*
+Thiết kế Responsive: Tương thích hoàn toàn với các thiết bị di động (Mobile) thông qua hệ thống Grid của Bootstrap và Menu 3 gạch (Hamburger menu).
 
-* **Frontend:** HTML5, CSS3, JavaScript, React.js (hoặc Vue/Angular)
-* **Backend:** Node.js (Express) / Python (Django/Flask) / Java (Spring Boot)
-* **Cơ sở dữ liệu:** MySQL / PostgreSQL / MongoDB
-* **Công cụ khác:** Git, Postman, Cloudinary (lưu trữ ảnh)
+🛠 Công Nghệ Sử Dụng
+HTML5 & CSS3: Cấu trúc và định dạng giao diện nghệ thuật với font chữ Josefin Sans và Oswald.
 
-## 🚀 Hướng dẫn cài đặt (Getting Started)
+Bootstrap 5: Thư viện framework giúp xây dựng giao diện nhanh và hỗ trợ Responsive.
 
-Để chạy dự án này trên máy tính của bạn, hãy làm theo các bước sau:
+JavaScript (Vanilla JS): Xử lý logic đăng nhập, đăng ký, điều khiển DOM và quản lý LocalStorage.
 
-### Yêu cầu hệ thống (Prerequisites)
-* Đảm bảo máy tính của bạn đã cài đặt [Node.js](https://nodejs.org/) (nếu dùng JS) hoặc môi trường phù hợp với Backend của bạn.
-* [Git](https://git-scm.com/)
+📂 Cấu Trúc Thư Mục
+Plaintext
+├── hinhAnh/           # Thư mục chứa hình ảnh sản phẩm, banner, icons
+├── stylesMain.css     # CSS chính cho trang chủ và các thành phần chung
+├── stylesLogin.css    # CSS riêng biệt cho trang đăng nhập/đăng ký
+├── script.js          # Logic JavaScript xử lý toàn bộ website
+├── homePage.html      # Trang chủ chính của dự án
+└── login.html         # Trang đăng nhập, đăng ký và quên mật khẩu
+🚀 Hướng Dẫn Cài Đặt
+Tải dự án:
 
-### Các bước cài đặt (Installation)
+Bash
+git clone https://github.com/your-username/basau-sneakers.git
+Chuẩn bị hình ảnh: Đảm bảo các tệp hình ảnh trong thư mục hinhAnh/ đúng tên theo mã nguồn để hiển thị chính xác.
 
-1. **Clone repository này về máy:**
-   ```bash
-   git clone [https://github.com/username-cua-ban/ten-repository.git](https://github.com/username-cua-ban/ten-repository.git)
-   Trang Chủ,Trang Chi Tiết Sản Phẩm,Giỏ Hàng
-,,
+Khởi chạy: Mở tệp homePage.html bằng trình duyệt web bất kỳ hoặc sử dụng extension Live Server trên VS Code.
+
+📝 Tài Khoản Mẫu (Mặc định)
+Khi chạy lần đầu, hệ thống sẽ tự động khởi tạo dữ liệu mẫu trong LocalStorage:
+Email	              Mật khẩu	Quyền
+quan02077@gmail.com	123456	Nhân viên
+A123@gmail.com	      123456	Khách hàng
+📌 Lưu Ý
+Dự án hiện tại là bản Front-end duy nhất, toàn bộ dữ liệu người dùng được lưu trong bộ nhớ trình duyệt (LocalStorage). Nếu bạn xóa cache trình duyệt, dữ liệu đăng ký mới sẽ biến mất.
+
+Các nút "Thêm vào giỏ" và "Tìm kiếm" hiện đang đóng vai trò làm mẫu giao diện (Mockup).
+
+© 2026 BASAU SNEAKERS. All rights reserved.
