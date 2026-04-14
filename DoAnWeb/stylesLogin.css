@@ -28,10 +28,9 @@ body {
 .form-control, .form-select { border-left: none; box-shadow: none !important; }
 
 /* Hiệu ứng focus cơ bản, dễ hiểu */
-.form-control:focus, .form-select:focus {
+.input_group:hover .input-group-text, .input_group:hover .form-control, .input_group:hover .form-select {
     border-color: #000 !important;
 }
-
 .form-check { padding-left: 2.8em; }
 .form-check-input.custom-switch:checked { background-color: #000; border-color: #000; }
 .form-check-input.custom-switch:focus { box-shadow: none; border-color: #000; }
