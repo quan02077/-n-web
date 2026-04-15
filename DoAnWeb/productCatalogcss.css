@@ -185,7 +185,7 @@ body {
 
 /* Giá tiền */
 .card-price { 
-    font-size: 25px; /* Chữ giá tiền cũng cho to lên xíu cho cân đối */
+    font-size: 16px; /* Chữ giá tiền cũng cho to lên xíu cho cân đối */
     font-weight: 600; 
     color: #dc3545; 
     margin-bottom: 0;
