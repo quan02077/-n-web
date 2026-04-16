@@ -553,15 +553,24 @@ body {
     text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.9);
     margin: 0 !important;
 }
-.footer_name{
-    font-family: "Oswald", sans-serif;
-    font-size: 100px;
-    font-weight: bold;
-    text-align: center;
-    cursor: default;
+.footer-logo-link {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    text-decoration: none;
 }
-.footer_name:hover {
-    color: #f25722;
-    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.9);
-    transition: all 0.3s ease;
+
+.footer-logo-text {
+    color: white;
+    font-size: 5rem;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+/* Khi di chuột vào: Đổi màu, tạo hiệu ứng đổ bóng phát sáng và phóng to */
+.footer-logo-link:hover .footer-logo-text {
+    color: #ff416c;
+    /* Màu đỏ nổi bật giống phong cách Flash Sale */
+    text-shadow: 0 0 20px rgba(255, 65, 108, 0.8), 0 0 40px rgba(255, 65, 108, 0.4);
+    transform: scale(1.08);
 }

@@ -12,17 +12,16 @@ function selectBrand(element) {
     element.classList.add('active');
 
     currentBrand = element.getAttribute('data-brand');
+
+    window.history.replaceState(null, null, "?brand=" + currentBrand);
+
     let pageTitle = document.getElementById('pageTitle');
-    let breadcrumbCurrent = document.getElementById('breadcrumbCurrent'); 
     
     if (currentBrand === 'all') {
         pageTitle.innerText = "Tất cả sản phẩm";
-        breadcrumbCurrent.innerText = "Tất cả thương hiệu"; 
     } else {
-        pageTitle.innerText = currentBrand;
-        breadcrumbCurrent.innerText = currentBrand; 
+        pageTitle.innerText = "Giày " + currentBrand;
     }
-    
     applyFilters();
 }
 
@@ -187,22 +186,30 @@ function changePage(pageNumber) {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Mượt mà trượt màn hình lên trên cùng
 }   
 
+// Chạy lần đầu tiên khi trang vừa tải xong
 window.onload = function() {
-    // 1. Đọc đường dẫn URL xem có chứa chữ "?brand=..." không
-    const urlParams = new URLSearchParams(window.location.search);
-    const brandFromUrl = urlParams.get('brand');
+    // 1. Lấy chữ trên thanh địa chỉ (Ví dụ: ?brand=Adidas)
+    let urlParams = new URLSearchParams(window.location.search);
+    let brandFromUrl = urlParams.get('brand');
 
-    if (brandFromUrl) {
-        // 2. Nếu có, tìm cái nút (tab) có tên hãng tương ứng và "bấm" vào nó
-        let targetTab = document.querySelector('.brand-tab[data-brand="' + brandFromUrl + '"]');
-        
-        if (targetTab) {
-            selectBrand(targetTab); // Tự động chọn hãng và lọc sản phẩm
-        } else {
-            applyFilters(); // Nếu đường dẫn bậy bạ thì cứ lọc mặc định
+    // 2. Nếu trên URL có tên hãng
+    if (brandFromUrl !== null) {
+        let tabs = document.querySelectorAll('.brand-tab');
+        let found = false;
+
+        // Dùng vòng lặp tìm xem cái tab nào trùng tên với URL thì tự động bấm vào tab đó
+        for (let i = 0; i < tabs.length; i++) {
+            if (tabs[i].getAttribute('data-brand') === brandFromUrl) {
+                selectBrand(tabs[i]); 
+                found = true;
+                break;
+            }
         }
-    } else {
-        // 3. Nếu không có gì trên URL (bấm trực tiếp từ menu) thì hiện tất cả
-        applyFilters();
+        
+        // Nếu tìm thấy tab rồi thì thoát hàm
+        if (found === true) return;
     }
+
+    // 3. Nếu không có URL hoặc không tìm thấy hãng thì cứ hiện "Tất cả" bình thường
+    applyFilters();
 };

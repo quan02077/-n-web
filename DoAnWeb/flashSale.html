@@ -1,32 +1,128 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flash Sale - Basau Sneakers</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Oswald:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="stylesMain.css">
     <link rel="stylesheet" href="flashSale.css">
 </head>
+
 <body>
     <div class="container-fluid p-0">
         <div class="rowHeader bg-light py-1 border-bottom">
             <div class="container-fluid px-4 d-flex justify-content-end align-items-center gap-4">
-                <div class="tienich"><a href="#" class="text-secondary text-decoration-none"><img src="hinhAnh/cartIcon.png" width="16" class="me-1 opacity-75">Giỏ hàng (0)</a></div>
-                <div class="tienich"><a href="login.html" class="text-secondary text-decoration-none"><img src="hinhAnh/userHomeIcon.png" width="16" class="me-1 opacity-75">Đăng nhập</a></div>
+                <div class="tienich">
+                    <a href="login.html" class="text-secondary text-decoration-none"><img src="hinhAnh/addIcon.png"
+                            width="16" class="me-1 opacity-75">Thêm sản phẩm</a>
+                </div>
+                <div class="tienich">
+                    <a href="login.html" class="text-secondary text-decoration-none"><img src="hinhAnh/editIcon.png"
+                            width="16" class="me-1 opacity-75">Điều chỉnh</a>
+                </div>
+                <div class="tienich">
+                    <a href="login.html" class="text-secondary text-decoration-none"><img src="hinhAnh/removeIcon.png"
+                            width="16" class="me-1 opacity-75">Xóa sản phẩm</a>
+                </div>
+                <div class="tienich">
+                    <a href="#" class="text-secondary text-decoration-none"><img src="hinhAnh/cartIcon.png" width="16"
+                            class="me-1 opacity-75">Giỏ hàng (0)</a>
+                </div>
+                <div class="tienich">
+                    <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink">
+                        <img src="hinhAnh/userHomeIcon.png" id="userIconImg" width="16" class="me-1 opacity-75">
+                        <span id="userAccountText">Đăng nhập</span>
+                    </a>
+                </div>
             </div>
         </div>
-
         <div class="container-fluid rowMenu bg-white sticky-top shadow-sm py-3">
             <div class="container d-flex align-items-center justify-content-between">
+
                 <div class="logo d-flex justify-content-start" style="flex: 1;">
-                    <a href="homePage.html"><img src="hinhAnh/logo.jpg" alt="Logo" style="height: 100px; width: 200px;"></a>
+                    <a href="homePage.html"><img src="hinhAnh/logo.jpg" alt="Logo" id="logoHome"
+                            style="height: 100px; width: 200px;"></a>
                 </div>
-                <nav class="menu d-none d-lg-flex justify-content-center mt-4" style="flex: 2;">
-                    <a href="productCatalog.html" class="text-dark text-decoration-none fw-bold mx-3">TẤT CẢ SẢN PHẨM</a>
-                    <a href="#" class="text-danger text-decoration-none fw-bold mx-3">🔥 FLASH SALE</a>
+
+                <div class="menu-toggle d-lg-none" style="cursor: pointer;">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <nav class="menu d-none d-lg-flex justify-content-center mt-4" id="nav-menu" style="flex: 2;">
+
+                    <div class="dropdown">
+                        <a href="#" class="text-dark text-decoration-none menu-link">SẢN PHẨM <small>▾</small></a>
+                        <div class="mega-menu p-5">
+                            <div class="container image-grid text-center">
+                                <div class="mega-item"><img src="hinhAnh/forMen.png" class="img-fluid mb-2">
+                                    <p>CHO NAM</p>
+                                </div>
+                                <div class="mega-item"><img src="hinhAnh/forWoman.png" class="img-fluid mb-2">
+                                    <p>CHO NỮ</p>
+                                </div>
+                                <div class="mega-item"><img src="hinhAnh/outletSale.png" class="img-fluid mb-2">
+                                    <p>OUTLET SALE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#" class="text-dark text-decoration-none menu-link">NAM <small>▾</small></a>
+                        <div class="mega-menu p-5 text-start">
+                            <div class="container text-columns">
+                                <div class="column">
+                                    <h3>NỔI BẬT</h3>
+                                    <a href="#">Best Seller</a>
+                                    <a href="#">New Arrival</a>
+                                    <a href="#">Sale off</a>
+                                </div>
+                                <div class="column dashed-border">
+                                    <h3>GIÀY NAM</h3>
+                                    <p class="sub-heading">Dòng sản phẩm</p>
+                                    <a href="#">Sneakers</a>
+                                    <a href="#">Dép</a>
+                                    <a href="#">Giày chạy bộ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#" class="text-dark text-decoration-none menu-link">NỮ <small>▾</small></a>
+                        <div class="mega-menu p-5 text-start">
+                            <div class="container text-columns">
+                                <div class="column">
+                                    <h3>NỔI BẬT</h3>
+                                    <a href="#">Best Seller</a>
+                                    <a href="#">New Arrival</a>
+                                    <a href="#">Sale off</a>
+                                </div>
+                                <div class="column dashed-border">
+                                    <h3>GIÀY NỮ</h3>
+                                    <p class="sub-heading">Dòng sản phẩm</p>
+                                    <a href="#">Sneakers</a>
+                                    <a href="#">Dép</a>
+                                    <a href="#">Giày chạy bộ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-dark text-decoration-none menu-link">SALE OFF</a>
                 </nav>
+
+                <div class="searchBar d-none d-lg-flex mt-4" style="flex: 1; justify-content: flex-end;">
+                    <input type="text" class="form-control rounded-pill custom-search"
+                        placeholder="Tìm kiếm sản phẩm...">
+                </div>
+
             </div>
         </div>
 
@@ -68,210 +164,210 @@
         </div>
 
         <div class="container my-5 bg-light p-4 rounded-4 shadow-sm">
-    <h3 class="fw-bold mb-4 oswald-font border-start border-danger border-5 ps-3">DEAL CHỚP NHOÁNG</h3>
-    
-    <div class="row g-4">
-        <div class="col-6 col-md-3">
-            <a href="productDetail.html?id=2" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-40%</div>
-                    <div class="img-wrap"><img src="hinhAnh/giayNam/airMaxPlus.png" alt="Giày"></div>
-                    <p class="category-text mb-1">Sneakers - Nam</p>
-                    <h5 class="card-name">Nike Air Max Plus</h5>
-                    <div class="price-container">
-                        <span class="price-original">3,615,000 đ</span>
-                        <span class="price-sale">2,169,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 85%;"></div>
-                        <span class="stock-text">Đã bán 85%</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
-                </div>
-            </a>
-        </div>
+            <h3 class="fw-bold mb-4 oswald-font border-start border-danger border-5 ps-3">DEAL CHỚP NHOÁNG</h3>
 
-        <div class="col-6 col-md-3">
-            <a href="productDetail.html?id=9" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-30%</div>
-                    <div class="img-wrap"><img src="hinhAnh/nike.jpg" alt="Giày"></div>
-                    <p class="category-text mb-1">Sneakers - Nam</p>
-                    <h5 class="card-name">Nike Dunk Low</h5>
-                    <div class="price-container">
-                        <span class="price-original">3,500,000 đ</span>
-                        <span class="price-sale">2,450,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 60%;"></div>
-                        <span class="stock-text">Đã bán 60%</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <a href="productDetail.html?id=2" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-40%</div>
+                            <div class="img-wrap"><img src="hinhAnh/giayNam/airMaxPlus.png" alt="Giày"></div>
+                            <p class="category-text mb-1">Sneakers - Nam</p>
+                            <h5 class="card-name">Nike Air Max Plus</h5>
+                            <div class="price-container">
+                                <span class="price-original">3,615,000 đ</span>
+                                <span class="price-sale">2,169,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 85%;"></div>
+                                <span class="stock-text">Đã bán 85%</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-3">
-            <a href="productDetail.html?id=10" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-25%</div>
-                    <div class="img-wrap"><img src="hinhAnh/adi.jpg" alt="Giày"></div>
-                    <p class="category-text mb-1">Sneakers - Nữ</p>
-                    <h5 class="card-name">Adidas Forum Low</h5>
-                    <div class="price-container">
-                        <span class="price-original">2,600,000 đ</span>
-                        <span class="price-sale">1,950,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 90%;"></div>
-                        <span class="stock-text">Sắp cháy hàng</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-3">
+                    <a href="productDetail.html?id=9" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-30%</div>
+                            <div class="img-wrap"><img src="hinhAnh/nike.jpg" alt="Giày"></div>
+                            <p class="category-text mb-1">Sneakers - Nam</p>
+                            <h5 class="card-name">Nike Dunk Low</h5>
+                            <div class="price-container">
+                                <span class="price-original">3,500,000 đ</span>
+                                <span class="price-sale">2,450,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 60%;"></div>
+                                <span class="stock-text">Đã bán 60%</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-3">
-            <a href="productDetail.html?id=11" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-15%</div>
-                    <div class="img-wrap"><img src="hinhAnh/nb.jpg" alt="Giày"></div>
-                    <p class="category-text mb-1">Sneakers - Unisex</p>
-                    <h5 class="card-name">New Balance 550</h5>
-                    <div class="price-container">
-                        <span class="price-original">3,200,000 đ</span>
-                        <span class="price-sale">2,720,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 40%;"></div>
-                        <span class="stock-text">Đã bán 40%</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-3">
+                    <a href="productDetail.html?id=10" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-25%</div>
+                            <div class="img-wrap"><img src="hinhAnh/adi.jpg" alt="Giày"></div>
+                            <p class="category-text mb-1">Sneakers - Nữ</p>
+                            <h5 class="card-name">Adidas Forum Low</h5>
+                            <div class="price-container">
+                                <span class="price-original">2,600,000 đ</span>
+                                <span class="price-sale">1,950,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 90%;"></div>
+                                <span class="stock-text">Sắp cháy hàng</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-4">
-            <a href="productDetail.html?id=12" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-50%</div>
-                    <div class="img-wrap"><img src="hinhAnh/banner1.jpg" alt="Giày"></div>
-                    <p class="category-text mb-1">Running - Nam</p>
-                    <h5 class="card-name">Nike Pegasus 42</h5>
-                    <div class="price-container">
-                        <span class="price-original">4,000,000 đ</span>
-                        <span class="price-sale">2,000,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 95%;"></div>
-                        <span class="stock-text">Sắp cháy hàng</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-3">
+                    <a href="productDetail.html?id=11" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-15%</div>
+                            <div class="img-wrap"><img src="hinhAnh/nb.jpg" alt="Giày"></div>
+                            <p class="category-text mb-1">Sneakers - Unisex</p>
+                            <h5 class="card-name">New Balance 550</h5>
+                            <div class="price-container">
+                                <span class="price-original">3,200,000 đ</span>
+                                <span class="price-sale">2,720,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 40%;"></div>
+                                <span class="stock-text">Đã bán 40%</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-4">
-            <a href="productDetail.html?id=7" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-20%</div>
-                    <div class="img-wrap"><img src="hinhAnh/giayUnisex/zerosl.png" alt="Giày"></div>
-                    <p class="category-text mb-1">Running - Unisex</p>
-                    <h5 class="card-name">Adidas Adizero EVO SL</h5>
-                    <div class="price-container">
-                        <span class="price-original">5,000,000 đ</span>
-                        <span class="price-sale">4,000,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 30%;"></div>
-                        <span class="stock-text">Đã bán 30%</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-4">
+                    <a href="productDetail.html?id=12" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-50%</div>
+                            <div class="img-wrap"><img src="hinhAnh/banner1.jpg" alt="Giày"></div>
+                            <p class="category-text mb-1">Running - Nam</p>
+                            <h5 class="card-name">Nike Pegasus 42</h5>
+                            <div class="price-container">
+                                <span class="price-original">4,000,000 đ</span>
+                                <span class="price-sale">2,000,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 95%;"></div>
+                                <span class="stock-text">Sắp cháy hàng</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-4">
-            <a href="productDetail.html?id=13" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-35%</div>
-                    <div class="img-wrap"><img src="hinhAnh/banner2.jpg" alt="Giày"></div>
-                    <p class="category-text mb-1">Running - Nữ</p>
-                    <h5 class="card-name">Adidas Hyperboost Edge</h5>
-                    <div class="price-container">
-                        <span class="price-original">4,500,000 đ</span>
-                        <span class="price-sale">2,925,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 75%;"></div>
-                        <span class="stock-text">Đã bán 75%</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-4">
+                    <a href="productDetail.html?id=7" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-20%</div>
+                            <div class="img-wrap"><img src="hinhAnh/giayUnisex/zerosl.png" alt="Giày"></div>
+                            <p class="category-text mb-1">Running - Unisex</p>
+                            <h5 class="card-name">Adidas Adizero EVO SL</h5>
+                            <div class="price-container">
+                                <span class="price-original">5,000,000 đ</span>
+                                <span class="price-sale">4,000,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 30%;"></div>
+                                <span class="stock-text">Đã bán 30%</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-4">
-            <a href="productDetail.html?id=4" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-10%</div>
-                    <div class="img-wrap"><img src="hinhAnh/giayNam/killshot2.png" alt="Giày"></div>
-                    <p class="category-text mb-1">Classic - Nam</p>
-                    <h5 class="card-name">Nike Killshot 2</h5>
-                    <div class="price-container">
-                        <span class="price-original">3,087,000 đ</span>
-                        <span class="price-sale">2,779,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 50%;"></div>
-                        <span class="stock-text">Đã bán 50%</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-4">
+                    <a href="productDetail.html?id=13" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-35%</div>
+                            <div class="img-wrap"><img src="hinhAnh/banner2.jpg" alt="Giày"></div>
+                            <p class="category-text mb-1">Running - Nữ</p>
+                            <h5 class="card-name">Adidas Hyperboost Edge</h5>
+                            <div class="price-container">
+                                <span class="price-original">4,500,000 đ</span>
+                                <span class="price-sale">2,925,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 75%;"></div>
+                                <span class="stock-text">Đã bán 75%</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-4">
-            <a href="productDetail.html?id=5" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-45%</div>
-                    <div class="img-wrap"><img src="hinhAnh/onit.jpg" alt="Giày"></div>
-                    <p class="category-text mb-1">Classic - Nữ</p>
-                    <h5 class="card-name">Onitsuka Tiger Serrano</h5>
-                    <div class="price-container">
-                        <span class="price-original">3,500,000 đ</span>
-                        <span class="price-sale">1,925,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 98%;"></div>
-                        <span class="stock-text">Chỉ còn 2 đôi</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-4">
+                    <a href="productDetail.html?id=4" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-10%</div>
+                            <div class="img-wrap"><img src="hinhAnh/giayNam/killshot2.png" alt="Giày"></div>
+                            <p class="category-text mb-1">Classic - Nam</p>
+                            <h5 class="card-name">Nike Killshot 2</h5>
+                            <div class="price-container">
+                                <span class="price-original">3,087,000 đ</span>
+                                <span class="price-sale">2,779,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 50%;"></div>
+                                <span class="stock-text">Đã bán 50%</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-6 col-md-4">
-            <a href="productDetail.html?id=14" class="text-decoration-none text-dark">
-                <div class="flash-sale-card">
-                    <div class="sale-badge">-20%</div>
-                    <div class="img-wrap"><img src="hinhAnh/banner3.jpg" alt="Giày"></div>
-                    <p class="category-text mb-1">Classic - Unisex</p>
-                    <h5 class="card-name">Mexico 66</h5>
-                    <div class="price-container">
-                        <span class="price-original">3,600,000 đ</span>
-                        <span class="price-sale">2,880,000 đ</span>
-                    </div>
-                    <div class="stock-bar-container">
-                        <div class="stock-bar-fill" style="width: 65%;"></div>
-                        <span class="stock-text">Đã bán 65%</span>
-                    </div>
-                    <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                <div class="col-6 col-md-4">
+                    <a href="productDetail.html?id=5" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-45%</div>
+                            <div class="img-wrap"><img src="hinhAnh/onit.jpg" alt="Giày"></div>
+                            <p class="category-text mb-1">Classic - Nữ</p>
+                            <h5 class="card-name">Onitsuka Tiger Serrano</h5>
+                            <div class="price-container">
+                                <span class="price-original">3,500,000 đ</span>
+                                <span class="price-sale">1,925,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 98%;"></div>
+                                <span class="stock-text">Chỉ còn 2 đôi</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
                 </div>
-            </a>
+
+                <div class="col-6 col-md-4">
+                    <a href="productDetail.html?id=14" class="text-decoration-none text-dark">
+                        <div class="flash-sale-card">
+                            <div class="sale-badge">-20%</div>
+                            <div class="img-wrap"><img src="hinhAnh/banner3.jpg" alt="Giày"></div>
+                            <p class="category-text mb-1">Classic - Unisex</p>
+                            <h5 class="card-name">Mexico 66</h5>
+                            <div class="price-container">
+                                <span class="price-original">3,600,000 đ</span>
+                                <span class="price-sale">2,880,000 đ</span>
+                            </div>
+                            <div class="stock-bar-container">
+                                <div class="stock-bar-fill" style="width: 65%;"></div>
+                                <span class="stock-text">Đã bán 65%</span>
+                            </div>
+                            <button class="btn btn-dark w-100 fw-bold">CHỐT DEAL</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
         <div class="footer container-fluid bg-secondary text-white py-4 mt-5">
             <p class="oswald-font fw-bold mb-1 footer_name text-center">BASAU.</p>
@@ -280,4 +376,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
