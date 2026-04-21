@@ -1,0 +1,322 @@
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #f4f6f8;
+    /* Nền xám nhạt cho trang admin */
+    margin: 0;
+    padding: 40px 15px;
+}
+
+.adm-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.adm-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.adm-header {
+    background-color: #111;
+    color: #fff;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adm-header-title {
+    font-size: 24px;
+    margin: 0;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 1px;
+}
+
+.adm-header-sub {
+    margin: 5px 0 0 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.adm-home-btn {
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.adm-home-btn:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.adm-tabs {
+    display: flex;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+.adm-tab {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+}
+
+.adm-tab.active {
+    color: #000;
+    background-color: #fff;
+    border-bottom: 3px solid #000;
+}
+
+.adm-panel {
+    padding: 30px;
+    display: none;
+}
+
+.adm-panel.active {
+    display: block;
+}
+
+.adm-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.adm-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.adm-field {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+.adm-field.full {
+    width: 100%;
+}
+
+.adm-label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.adm-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.adm-badge-row,
+.adm-size-grid,
+.adm-size-quick,
+.adm-color-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.adm-badge-opt,
+.adm-size-chip {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.adm-badge-opt.selected,
+.adm-size-chip.on {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.adm-size-quick-btn {
+    padding: 5px 10px;
+    font-size: 13px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* CSS Màu Sắc */
+.adm-color-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.adm-color-picker {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.adm-color-name {
+    flex: 1;
+}
+
+.adm-add-color-btn {
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.adm-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.adm-swatch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #eee;
+    padding: 5px 10px;
+    border-radius: 50px;
+    background: #fdfdfd;
+}
+
+.adm-swatch-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.adm-swatch-del {
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Scroll list */
+.adm-search-wrap {
+    margin-bottom: 15px;
+}
+
+.adm-search-wrap input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.adm-scroll-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.adm-product-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.adm-product-row:hover {
+    background-color: #fafafa;
+}
+
+.adm-product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.adm-row-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.adm-row-sub {
+    color: #888;
+    font-size: 13px;
+    margin: 3px 0;
+}
+
+.adm-row-price {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.adm-del-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.adm-submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.adm-submit-btn:hover {
+    background-color: #333;
+}
+
+.adm-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: none;
+}
+
+.adm-toast.show {
+    display: block;
+    opacity: 1;
+}
