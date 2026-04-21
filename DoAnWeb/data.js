@@ -7,10 +7,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 5279000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/airMaxKM.png",
-        thumbnails: ["hinhAnh/giayNam/airMaxKM.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/airMaxKM.png"]
     },
     {
         id: 2,
@@ -20,10 +19,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2169000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/airMaxPlus.png",
-        thumbnails: ["hinhAnh/giayNam/airMaxPlus.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/airMaxPlus.png"]
     },
     {
         id: 3,
@@ -33,10 +31,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3829000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/astrograbber.png",
-        thumbnails: ["hinhAnh/giayNam/astrograbber.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/astrograbber.png"]
     },
     {
         id: 4,
@@ -46,10 +43,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2779000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/killshot2.png",
-        thumbnails: ["hinhAnh/giayNam/killshot2.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/killshot2.png"]
     },
     {
         id: 5,
@@ -59,10 +55,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2945000,
         oldPrice: 0,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/otSerrano.png",
-        thumbnails: ["hinhAnh/giayNu/otSerrano.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/otSerrano.png"]
     },
     {
         id: 6,
@@ -72,10 +67,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 750000,
         oldPrice: 950000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/lightshift.png",
-        thumbnails: ["hinhAnh/giayNu/lightshift.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/lightshift.png"]
     },
     {
         id: 7,
@@ -85,10 +79,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 4000000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/zerosl.png",
-        thumbnails: ["hinhAnh/giayNam/zerosl.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/zerosl.png"]
     },
     {
         id: 8,
@@ -98,10 +91,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3390000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/arizona.png",
-        thumbnails: ["hinhAnh/giayNam/arizona.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/arizona.png"]
     },
     {
         id: 9,
@@ -111,10 +103,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2499000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/cotez-w.png",
-        thumbnails: ["hinhAnh/giayNu/cotez-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cotez-w.png"]
     },
     {
         id: 10,
@@ -124,10 +115,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2499000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/af1-w.png",
-        thumbnails: ["hinhAnh/giayNu/af1-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/af1-w.png"]
     },
     {
         id: 11,
@@ -137,10 +127,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2999000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/aj1-w.png",
-        thumbnails: ["hinhAnh/giayNu/aj1-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/aj1-w.png"]
     },
     {
         id: 12,
@@ -150,10 +139,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2890000,
         oldPrice: 0,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/asto-w.png",
-        thumbnails: ["hinhAnh/giayNu/asto-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/asto-w.png"]
     },
     {
         id: 13,
@@ -163,10 +151,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3290000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/p-6k-w.png",
-        thumbnails: ["hinhAnh/giayNu/p-6k-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/p-6k-w.png"]
     },
     {
         id: 14,
@@ -176,10 +163,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3890000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/pega42-w.png",
-        thumbnails: ["hinhAnh/giayNu/pega42-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/pega42-w.png"]
     },
     {
         id: 15,
@@ -189,10 +175,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3499000,
         oldPrice: 0,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/sb-w.png",
-        thumbnails: ["hinhAnh/giayNu/sb-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/sb-w.png"]
     },
     {
         id: 16,
@@ -202,10 +187,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 4100000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/voremo18-w.png",
-        thumbnails: ["hinhAnh/giayNu/voremo18-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/voremo18-w.png"]
     },
     {
         id: 17,
@@ -215,10 +199,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2690000,
         oldPrice: 0,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/winflo-w.png",
-        thumbnails: ["hinhAnh/giayNu/winflo-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/winflo-w.png"]
     },
     {
         id: 18,
@@ -228,10 +211,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3690000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/wnba 30th - w.png",
-        thumbnails: ["hinhAnh/giayNu/wnba 30th - w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/wnba 30th - w.png"]
     },
     {
         id: 19,
@@ -241,10 +223,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3590000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/aj1.png",
-        thumbnails: ["hinhAnh/giayNam/aj1.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/aj1.png"]
     },
     {
         id: 20,
@@ -254,10 +235,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2990000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/amishod.png",
-        thumbnails: ["hinhAnh/giayNam/amishod.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/amishod.png"]
     },
     {
         id: 21,
@@ -267,10 +247,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3290000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/lv8.png",
-        thumbnails: ["hinhAnh/giayNam/lv8.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/lv8.png"]
     },
     {
         id: 22,
@@ -280,10 +259,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3890000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/pega42.png",
-        thumbnails: ["hinhAnh/giayNam/pega42.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pega42.png"]
     },
     {
         id: 23,
@@ -293,10 +271,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2590000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/rfly.png",
-        thumbnails: ["hinhAnh/giayNam/rfly.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/rfly.png"]
     },
     {
         id: 24,
@@ -306,10 +283,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2890000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/winflo12.png",
-        thumbnails: ["hinhAnh/giayNam/winflo12.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/winflo12.png"]
     },
     {
         id: 25,
@@ -319,10 +295,9 @@ let productsDatabase = [
         gender: "Unisex",
         price: 950000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/cirro-ux.png",
-        thumbnails: ["hinhAnh/giayNam/cirro-ux.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cirro-ux.png"]
     },
     {
         id: 26,
@@ -332,10 +307,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 850000,
         oldPrice: 0,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNam/marina.png",
-        thumbnails: ["hinhAnh/giayNam/marina.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/marina.png"]
     },
     {
         id: 27,
@@ -345,10 +319,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 5290000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/mind001.png",
-        thumbnails: ["hinhAnh/giayNam/mind001.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/mind001.png"]
     },
     {
         id: 28,
@@ -358,10 +331,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 1690000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/calm-w.png",
-        thumbnails: ["hinhAnh/giayNu/calm-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/calm-w.png"]
     },
     {
         id: 29,
@@ -373,8 +345,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/modero-w.png",
-        thumbnails: ["hinhAnh/giayNu/modero-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/modero-w.png"]
     },
     {
         id: 30,
@@ -384,10 +355,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2990000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/riftbreathe-w.png",
-        thumbnails: ["hinhAnh/giayNu/riftbreathe-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/riftbreathe-w.png"]
     },
     {
         id: 31,
@@ -397,10 +367,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2600000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/adi2-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi2-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi2-w.png"]
     },
     {
         id: 32,
@@ -412,8 +381,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/adi4-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi4-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi4-w.png"]
     },
     {
         id: 33,
@@ -423,10 +391,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2900000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/adi8-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi8-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi8-w.png"]
     },
     {
         id: 34,
@@ -438,8 +405,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/adi9-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi9-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi9-w.png"]
     },
     {
         id: 35,
@@ -449,10 +415,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3500000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/adi5-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi5-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi5-w.png"]
     },
     {
         id: 36,
@@ -462,10 +427,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 4200000,
         oldPrice: 4800000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/adi6-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi6-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi6-w.png"]
     },
     {
         id: 37,
@@ -477,8 +441,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/adi7-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi7-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi7-w.png"]
     },
     {
         id: 38,
@@ -488,10 +451,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3200000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/adi3-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi3-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi3-w.png"]
     },
     {
         id: 39,
@@ -503,8 +465,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/adi10-w.png",
-        thumbnails: ["hinhAnh/giayNu/adi10-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/adi10-w.png"]
     },
     {
         id: 40,
@@ -514,10 +475,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2600000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/adi1.png",
-        thumbnails: ["hinhAnh/giayNam/adi1.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi1.png"]
     },
     {
         id: 41,
@@ -529,8 +489,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/adi3.png",
-        thumbnails: ["hinhAnh/giayNam/adi3.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi3.png"]
     },
     {
         id: 42,
@@ -540,10 +499,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2900000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/adi6.png",
-        thumbnails: ["hinhAnh/giayNam/adi6.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi6.png"]
     },
     {
         id: 43,
@@ -555,8 +513,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/adi8.png",
-        thumbnails: ["hinhAnh/giayNam/adi8.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi8.png"]
     },
     {
         id: 44,
@@ -566,10 +523,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3800000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/adi4.png",
-        thumbnails: ["hinhAnh/giayNam/adi4.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi4.png"]
     },
     {
         id: 45,
@@ -581,8 +537,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/adi5.png",
-        thumbnails: ["hinhAnh/giayNam/adi5.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi5.png"]
     },
     {
         id: 46,
@@ -592,10 +547,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 1500000,
         oldPrice: 1800000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNam/adi9.png",
-        thumbnails: ["hinhAnh/giayNam/adi9.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi9.png"]
     },
     {
         id: 47,
@@ -605,10 +559,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2500000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/adi2.png",
-        thumbnails: ["hinhAnh/giayNam/adi2.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi2.png"]
     },
     {
         id: 48,
@@ -620,8 +573,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/adi7.png",
-        thumbnails: ["hinhAnh/giayNam/adi7.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/adi7.png"]
     },
     {
         id: 49,
@@ -633,8 +585,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/slide1.png",
-        thumbnails: ["hinhAnh/giayNam/slide1.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/slide1.png"]
     },
     {
         id: 50,
@@ -644,10 +595,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 950000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/slide2.png",
-        thumbnails: ["hinhAnh/giayNam/slide2.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/slide2.png"]
     },
     {
         id: 51,
@@ -659,8 +609,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/slide3.png",
-        thumbnails: ["hinhAnh/giayNam/slide3.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/slide3.png"]
     },
     {
         id: 52,
@@ -670,10 +619,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 950000,
         oldPrice: 1200000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNam/slide4.png",
-        thumbnails: ["hinhAnh/giayNam/slide4.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/slide4.png"]
     },
     {
         id: 53,
@@ -683,10 +631,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 1600000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/slide5.png",
-        thumbnails: ["hinhAnh/giayNam/slide5.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/slide5.png"]
     },
     {
         id: 54,
@@ -698,8 +645,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/slide1-w.png",
-        thumbnails: ["hinhAnh/giayNu/slide1-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/slide1-w.png"]
     },
     {
         id: 55,
@@ -709,10 +655,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2500000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/slide2-w.png",
-        thumbnails: ["hinhAnh/giayNu/slide2-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/slide2-w.png"]
     },
     {
         id: 56,
@@ -724,8 +669,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/slide3-w.png",
-        thumbnails: ["hinhAnh/giayNu/slide3-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/slide3-w.png"]
     },
     {
         id: 57,
@@ -735,10 +679,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2500000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/slide4-w.png",
-        thumbnails: ["hinhAnh/giayNu/slide4-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/slide4-w.png"]
     },
     {
         id: 58,
@@ -748,10 +691,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3500000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/pm1-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/pm1-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/pm1-w.jpg"]
     },
     {
         id: 59,
@@ -761,10 +703,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2200000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/pm2-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/pm2-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/pm2-w.jpg"]
     },
     {
         id: 60,
@@ -776,8 +717,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/pm3-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/pm3-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/pm3-w.jpg"]
     },
     {
         id: 61,
@@ -787,10 +727,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3800000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/pm4-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/pm4-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/pm4-w.jpg"]
     },
     {
         id: 62,
@@ -802,8 +741,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/pm5-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/pm5-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/pm5-w.jpg"]
     },
     {
         id: 63,
@@ -813,10 +751,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3600000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/pm1.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm1.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm1.jpg"]
     },
     {
         id: 64,
@@ -828,8 +765,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/pm2.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm2.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm2.jpg"]
     },
     {
         id: 65,
@@ -839,10 +775,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3500000,
         oldPrice: 3800000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNam/pm4.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm4.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm4.jpg"]
     },
     {
         id: 66,
@@ -852,10 +787,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2800000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/pm3.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm3.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm3.jpg"]
     },
     {
         id: 67,
@@ -867,8 +801,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/pm5.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm5.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm5.jpg"]
     },
     {
         id: 68,
@@ -878,10 +811,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2400000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/pm7.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm7.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm7.jpg"]
     },
     {
         id: 69,
@@ -893,8 +825,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/pm8.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm8.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm8.jpg"]
     },
     {
         id: 70,
@@ -904,10 +835,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 1800000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/pm6.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm6.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm6.jpg"]
     },
     {
         id: 71,
@@ -919,8 +849,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/pm9.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm9.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm9.jpg"]
     },
     {
         id: 72,
@@ -932,8 +861,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/pm10.jpg",
-        thumbnails: ["hinhAnh/giayNam/pm10.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/pm10.jpg"]
     },
     {
         id: 73,
@@ -943,10 +871,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3500000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/nb1-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nb1-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nb1-w.jpg"]
     },
     {
         id: 74,
@@ -958,8 +885,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/nb2-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nb2-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nb2-w.jpg"]
     },
     {
         id: 75,
@@ -969,10 +895,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2500000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/nb3-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nb3-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nb3-w.jpg"]
     },
     {
         id: 76,
@@ -984,8 +909,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/nb4-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nb4-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nb4-w.jpg"]
     },
     {
         id: 77,
@@ -995,10 +919,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2900000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/nb5-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nb5-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nb5-w.jpg"]
     },
     {
         id: 78,
@@ -1010,8 +933,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/nbs1-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nbs1-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nbs1-w.jpg"]
     },
     {
         id: 79,
@@ -1023,8 +945,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/nbs2-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nbs2-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nbs2-w.jpg"]
     },
     {
         id: 80,
@@ -1034,10 +955,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 1200000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/nbs3-w.jpg",
-        thumbnails: ["hinhAnh/giayNu/nbs3-w.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/nbs3-w.jpg"]
     },
     {
         id: 81,
@@ -1047,10 +967,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3600000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/nb1.jpg",
-        thumbnails: ["hinhAnh/giayNam/nb1.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/nb1.jpg"]
     },
     {
         id: 82,
@@ -1062,8 +981,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/nb2.jpg",
-        thumbnails: ["hinhAnh/giayNam/nb2.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/nb2.jpg"]
     },
     {
         id: 83,
@@ -1075,8 +993,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/nb3.jpg",
-        thumbnails: ["hinhAnh/giayNam/nb3.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/nb3.jpg"]
     },
     {
         id: 84,
@@ -1086,10 +1003,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 4200000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/nb4.jpg",
-        thumbnails: ["hinhAnh/giayNam/nb4.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/nb4.jpg"]
     },
     {
         id: 85,
@@ -1101,8 +1017,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/nb5.jpg",
-        thumbnails: ["hinhAnh/giayNam/nb5.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/nb5.jpg"]
     },
     {
         id: 86,
@@ -1112,10 +1027,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 1200000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/nbs1.jpg",
-        thumbnails: ["hinhAnh/giayNam/nbs1.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/nbs1.jpg"]
     },
     {
         id: 87,
@@ -1127,8 +1041,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/nbs2.jpg",
-        thumbnails: ["hinhAnh/giayNam/nbs2.jpg"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/nbs2.jpg"]
     },
     {
         id: 88,
@@ -1138,10 +1051,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2900000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/Screenshot 2026-04-18 140220.png",
-        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140220.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140220.png"]
     },
     {
         id: 89,
@@ -1153,8 +1065,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/Screenshot 2026-04-18 140243.png",
-        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140243.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140243.png"]
     },
     {
         id: 90,
@@ -1166,8 +1077,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/Screenshot 2026-04-18 140305.png",
-        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140305.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140305.png"]
     },
     {
         id: 91,
@@ -1177,10 +1087,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2900000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/Screenshot 2026-04-18 140340.png",
-        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140340.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140340.png"]
     },
     {
         id: 92,
@@ -1190,10 +1099,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2900000,
         oldPrice: 3200000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/Screenshot 2026-04-18 140411.png",
-        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140411.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/Screenshot 2026-04-18 140411.png"]
     },
     {
         id: 93,
@@ -1203,10 +1111,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2500000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/Screenshot 2026-04-18 135942.png",
-        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 135942.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 135942.png"]
     },
     {
         id: 94,
@@ -1218,8 +1125,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/Screenshot 2026-04-18 140014.png",
-        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140014.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140014.png"]
     },
     {
         id: 95,
@@ -1231,8 +1137,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/Screenshot 2026-04-18 140034.png",
-        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140034.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140034.png"]
     },
     {
         id: 96,
@@ -1242,10 +1147,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2900000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/Screenshot 2026-04-18 140129.png",
-        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140129.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140129.png"]
     },
     {
         id: 97,
@@ -1255,10 +1159,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2900000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/Screenshot 2026-04-18 140152.png",
-        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140152.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/Screenshot 2026-04-18 140152.png"]
     },
     {
         id: 98,
@@ -1268,10 +1171,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3600000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/bk1.png",
-        thumbnails: ["hinhAnh/giayNam/bk1.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk1.png"]
     },
     {
         id: 99,
@@ -1283,8 +1185,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/bk2.png",
-        thumbnails: ["hinhAnh/giayNam/bk2.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk2.png"]
     },
     {
         id: 100,
@@ -1294,10 +1195,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3400000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/bk3.png",
-        thumbnails: ["hinhAnh/giayNam/bk3.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk3.png"]
     },
     {
         id: 101,
@@ -1307,10 +1207,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3800000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/bk4.png",
-        thumbnails: ["hinhAnh/giayNam/bk4.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk4.png"]
     },
     {
         id: 102,
@@ -1322,8 +1221,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/bk5.png",
-        thumbnails: ["hinhAnh/giayNam/bk5.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk5.png"]
     },
     {
         id: 103,
@@ -1335,8 +1233,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/bk6.png",
-        thumbnails: ["hinhAnh/giayNam/bk6.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk6.png"]
     },
     {
         id: 104,
@@ -1346,10 +1243,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 3600000,
         oldPrice: 4000000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNam/bk7.png",
-        thumbnails: ["hinhAnh/giayNam/bk7.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk7.png"]
     },
     {
         id: 105,
@@ -1361,8 +1257,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/bk8.png",
-        thumbnails: ["hinhAnh/giayNam/bk8.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk8.png"]
     },
     {
         id: 106,
@@ -1372,10 +1267,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2500000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/bk9.png",
-        thumbnails: ["hinhAnh/giayNam/bk9.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk9.png"]
     },
     {
         id: 107,
@@ -1387,8 +1281,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/bk10.png",
-        thumbnails: ["hinhAnh/giayNam/bk10.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/bk10.png"]
     },
     {
         id: 108,
@@ -1398,10 +1291,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3600000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/bk1-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk1-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk1-w.png"]
     },
     {
         id: 109,
@@ -1411,10 +1303,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 4200000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/bk2-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk2-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk2-w.png"]
     },
     {
         id: 110,
@@ -1426,8 +1317,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/bk3-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk3-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk3-w.png"]
     },
     {
         id: 111,
@@ -1437,10 +1327,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3600000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/bk4-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk4-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk4-w.png"]
     },
     {
         id: 112,
@@ -1450,10 +1339,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3900000,
         oldPrice: 4500000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/bk5-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk5-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk5-w.png"]
     },
     {
         id: 113,
@@ -1465,8 +1353,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/bk6-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk6-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk6-w.png"]
     },
     {
         id: 114,
@@ -1478,8 +1365,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/bk7-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk7-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk7-w.png"]
     },
     {
         id: 115,
@@ -1489,10 +1375,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 3800000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/bk8-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk8-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk8-w.png"]
     },
     {
         id: 116,
@@ -1504,8 +1389,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/bk9-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk9-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk9-w.png"]
     },
     {
         id: 117,
@@ -1517,8 +1401,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/bk10-w.png",
-        thumbnails: ["hinhAnh/giayNu/bk10-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/bk10-w.png"]
     },
     {
         id: 118,
@@ -1528,10 +1411,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2200000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/cv1.png",
-        thumbnails: ["hinhAnh/giayNam/cv1.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv1.png"]
     },
     {
         id: 119,
@@ -1543,8 +1425,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/cv2.png",
-        thumbnails: ["hinhAnh/giayNam/cv2.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv2.png"]
     },
     {
         id: 120,
@@ -1554,10 +1435,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2300000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/cv3.png",
-        thumbnails: ["hinhAnh/giayNam/cv3.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv3.png"]
     },
     {
         id: 121,
@@ -1567,10 +1447,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 1700000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNam/cv4.png",
-        thumbnails: ["hinhAnh/giayNam/cv4.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv4.png"]
     },
     {
         id: 122,
@@ -1580,10 +1459,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2000000,
         oldPrice: 2400000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNam/cv5.png",
-        thumbnails: ["hinhAnh/giayNam/cv5.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv5.png"]
     },
     {
         id: 123,
@@ -1595,8 +1473,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/cv6.png",
-        thumbnails: ["hinhAnh/giayNam/cv6.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv6.png"]
     },
     {
         id: 124,
@@ -1606,10 +1483,9 @@ let productsDatabase = [
         gender: "Nam",
         price: 2300000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNam/cv7.png",
-        thumbnails: ["hinhAnh/giayNam/cv7.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv7.png"]
     },
     {
         id: 125,
@@ -1621,8 +1497,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/cv8.png",
-        thumbnails: ["hinhAnh/giayNam/cv8.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv8.png"]
     },
     {
         id: 126,
@@ -1634,8 +1509,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/cv9.png",
-        thumbnails: ["hinhAnh/giayNam/cv9.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv9.png"]
     },
     {
         id: 127,
@@ -1647,8 +1521,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNam/cv10.png",
-        thumbnails: ["hinhAnh/giayNam/cv10.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNam/cv10.png"]
     },
     {
         id: 128,
@@ -1658,10 +1531,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2800000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/cv1-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv1-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv1-w.png"]
     },
     {
         id: 129,
@@ -1673,8 +1545,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/cv2-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv2-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv2-w.png"]
     },
     {
         id: 130,
@@ -1684,10 +1555,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2300000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/cv3-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv3-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv3-w.png"]
     },
     {
         id: 131,
@@ -1697,10 +1567,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 1700000,
         oldPrice: 0,
-        badge: "bestseller",
+        badge: "Best Seller",
         img: "hinhAnh/giayNu/cv4-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv4-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv4-w.png"]
     },
     {
         id: 132,
@@ -1712,8 +1581,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/cv5-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv5-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv5-w.png"]
     },
     {
         id: 133,
@@ -1723,10 +1591,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2000000,
         oldPrice: 2400000,
-        badge: "sale",
+        badge: "Sale Off",
         img: "hinhAnh/giayNu/cv6-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv6-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv6-w.png"]
     },
     {
         id: 134,
@@ -1738,8 +1605,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/cv7-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv7-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv7-w.png"]
     },
     {
         id: 135,
@@ -1749,10 +1615,9 @@ let productsDatabase = [
         gender: "Nữ",
         price: 1900000,
         oldPrice: 0,
-        badge: "new",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/cv8-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv8-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv8-w.png"]
     },
     {
         id: 136,
@@ -1764,8 +1629,7 @@ let productsDatabase = [
         oldPrice: 0,
         badge: "",
         img: "hinhAnh/giayNu/cv9-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv9-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv9-w.png"]
     },
     {
         id: 137,
@@ -1775,9 +1639,8 @@ let productsDatabase = [
         gender: "Nữ",
         price: 2400000,
         oldPrice: 0,
-        badge: "",
+        badge: "New Arrival",
         img: "hinhAnh/giayNu/cv10-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv10-w.png"],
-        colors: []
+        thumbnails: ["hinhAnh/giayNu/cv10-w.png"]
     }
 ];

@@ -115,35 +115,38 @@ function renderProducts() {
 
     if (displayedProducts.length === 0) {
         grid.innerHTML = "";
-        paginationContainer.innerHTML = ""; // Không có giày thì giấu luôn nút bấm
+        if (paginationContainer) paginationContainer.innerHTML = ""; 
         noResults.classList.remove('d-none');
         return;
     } else {
         noResults.classList.add('d-none');
     }
 
-    // --- TÍNH TOÁN TOÁN HỌC CHO PHÂN TRANG ---
-    // 1. Tính tổng số trang (Ví dụ: 9 giày / 4 = 2.25, làm tròn lên là 3 trang)
     let totalPages = Math.ceil(displayedProducts.length / itemsPerPage);
-
-    // 2. Tính vị trí bắt đầu và kết thúc của vòng lặp
     let startIndex = (currentPage - 1) * itemsPerPage;
     let endIndex = startIndex + itemsPerPage;
 
-    // Chặn lỗi nếu trang cuối không đủ 4 đôi giày
     if (endIndex > displayedProducts.length) {
         endIndex = displayedProducts.length;
     }
 
-    // --- BẮT ĐẦU VẼ GIÀY ---
     let htmlContent = "";
     for (let i = startIndex; i < endIndex; i++) {
         let p = displayedProducts[i];
-
         let priceFormat = p.price.toLocaleString('vi-VN') + "₫";
+        let badgeHtml = "";
+        if (p.badge && p.badge !== "") {
+            let badgeClass = "";
+            if (p.badge === "New Arrival") badgeClass = "badge-new";
+            else if (p.badge === "Sale Off") badgeClass = "badge-sale";
+            else if (p.badge === "Best Seller") badgeClass = "badge-bestseller";
+            badgeHtml = '<span class="product-badge ' + badgeClass + '">' + p.badge + '</span>';
+        }
 
         htmlContent += '<a href="productDetail.html?id=' + p.id + '" class="text-decoration-none text-dark">';
-        htmlContent += '  <div class="product-card-cat">';
+        htmlContent += '  <div class="product-card-cat" style="position: relative;">'; 
+        
+        htmlContent += badgeHtml; 
         
         htmlContent += '      <div class="img-wrap">';
         htmlContent += '          <img src="' + p.img + '" alt="Giày">';
@@ -159,21 +162,17 @@ function renderProducts() {
         htmlContent += '</a>';
     }
     grid.innerHTML = htmlContent;
-
-    // --- VẼ CÁC NÚT BẤM CHUYỂN TRANG ---
     let paginationHTML = "";
-    if (totalPages > 1) { // Chỉ hiện nút nếu có từ 2 trang trở lên
+    if (totalPages > 1) { 
         for (let i = 1; i <= totalPages; i++) {
             if (i === currentPage) {
-                // Nút của trang hiện tại (Màu đen đậm)
                 paginationHTML += '<button class="btn btn-dark px-3 fw-bold" onclick="changePage(' + i + ')">' + i + '</button>';
             } else {
-                // Nút của các trang khác (Viền đen)
                 paginationHTML += '<button class="btn btn-outline-dark px-3 fw-bold" onclick="changePage(' + i + ')">' + i + '</button>';
             }
         }
     }
-    paginationContainer.innerHTML = paginationHTML;
+    if (paginationContainer) paginationContainer.innerHTML = paginationHTML;
 }
 
 // Hàm này được gọi khi người dùng bấm vào các nút 1, 2, 3...

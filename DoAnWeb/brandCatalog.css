@@ -167,6 +167,35 @@ body {
     transform: scale(1.05);
 }
 
+.product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 4px;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.badge-new {
+    background-color: #198754;
+    color: white;
+}
+
+.badge-sale {
+    background-color: #dc3545; 
+    color: white;
+}
+
+.badge-bestseller {
+    background-color: #111111; 
+    color: white;
+}
+
 /* Tên giày */
 .card-name { 
     font-size: 25px; 

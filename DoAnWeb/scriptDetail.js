@@ -1,19 +1,40 @@
-// --- LOGIC CHO TRANG CHI TIẾT SẢN PHẨM ---
+// --- HÀM RANDOM 3 SẢN PHẨM GỢI Ý ---
+function renderRandomProducts(currentProductId) {
+    let container = document.getElementById('relatedProducts');
+    if (!container || typeof productsDatabase === 'undefined') return;
 
-function changeImage(element) {
-    let mainImg = document.getElementById('mainProductImg');
-    mainImg.src = element.src;
-    
-    let thumbs = document.querySelectorAll('.thumbnail-list img');
-    for(let i = 0; i < thumbs.length; i++){
-        thumbs[i].classList.remove('active-thumb');
+    let availableProducts = [];
+    for (let i = 0; i < productsDatabase.length; i++) {
+        if (productsDatabase[i].id !== currentProductId) {
+            availableProducts.push(productsDatabase[i]);
+        }
     }
-    element.classList.add('active-thumb');
+
+    availableProducts.sort(function() { return 0.5 - Math.random() });
+    let randomProducts = availableProducts.slice(0, 3);
+
+    let htmlContent = "";
+    for (let i = 0; i < randomProducts.length; i++) {
+        let p = randomProducts[i];
+        let priceFormat = p.price.toLocaleString('vi-VN') + '₫';
+        
+        htmlContent += '<div class="col-10 col-md-4 flex-shrink-0">';
+        htmlContent += '  <a href="productDetail.html?id=' + p.id + '" class="text-decoration-none text-dark related-card">';
+        htmlContent += '      <div class="border-0">';
+        htmlContent += '          <div class="mb-3 bg-light rounded d-flex align-items-center justify-content-center" style="aspect-ratio: 1/1; overflow: hidden;">';
+        htmlContent += '              <img src="' + p.img + '" class="img-fluid w-100 h-100 object-fit-contain p-3" style="transition: transform 0.3s ease;">';
+        htmlContent += '          </div>';
+        htmlContent += '          <h6 class="fw-bold mb-1">' + p.name + '</h6>';
+        htmlContent += '          <p class="text-secondary mb-1 small">' + p.category + ' - ' + p.gender + '</p>';
+        htmlContent += '          <p class="fw-bold mt-2">' + priceFormat + '</p>';
+        htmlContent += '      </div>';
+        htmlContent += '  </a>';
+        htmlContent += '</div>';
+    }
+    container.innerHTML = htmlContent;
 }
 
-// Đã xóa hàm selectColor() dư thừa
-
-// Hàm Thêm vào giỏ hàng kết nối trực tiếp với cart.js
+// --- HÀM THÊM VÀO GIỎ HÀNG ---
 function addToCart() {
     let selectedSizeBtn = document.querySelector('.size-btn.active-size');
     
@@ -24,21 +45,21 @@ function addToCart() {
     
     let size = selectedSizeBtn.innerText;
     
-    // Lấy ID sản phẩm từ URL (vd: ?id=2)
     let urlParams = new URLSearchParams(window.location.search);
     let productId = parseInt(urlParams.get('id'));
     
-    // Gọi hàm từ file cart.js để lưu dữ liệu
     if (typeof addToCartItem === 'function') {
         addToCartItem(productId, size);
-        openCartPanel(); // Thêm xong thì trượt bảng Giỏ hàng ra
+        openCartPanel();
     } else {
-        alert("Lỗi: Không tìm thấy file cart.js. Vui lòng kiểm tra lại thẻ <script>.");
+        alert("Lỗi: Không tìm thấy file cart.js.");
     }
 }
 
+// --- KHỞI CHẠY KHI MỞ TRANG ---
 window.onload = function() {
-    // 1. TẢI DỮ LIỆU SẢN PHẨM DỰA TRÊN ID
+    
+    // 1. TẢI DỮ LIỆU SẢN PHẨM LÊN MÀN HÌNH
     let urlParams = new URLSearchParams(window.location.search);
     let productId = parseInt(urlParams.get('id'));
 
@@ -53,30 +74,21 @@ window.onload = function() {
         
         if (product) {
             document.getElementById('productName').innerText = product.name;
-            document.getElementById('productCategory').innerText = product.category;
-            // Đã đổi thành giá dạng số, nên phải format lại thành tiền Việt
+            document.getElementById('productCategory').innerText = product.category + " - " + product.gender;
             document.getElementById('productPrice').innerText = product.price.toLocaleString('vi-VN') + " đ";
             document.getElementById('mainProductImg').src = product.img;
             document.title = product.name + " - Basau Sneakers";
 
-            // Cập nhật Ảnh nhỏ (Thumbnails)
-            let thumbContainer = document.getElementById('thumbnailContainer');
-            thumbContainer.innerHTML = '';
-            // Sẽ tự động lấy duy nhất 1 ảnh gốc trong mảng thumbnails để thu nhỏ lại
-            for (let i = 0; i < product.thumbnails.length; i++) {
-                let thumb = product.thumbnails[i];
-                let activeClass = (i === 0) ? 'active-thumb' : '';
-                thumbContainer.innerHTML += '<img src="' + thumb + '" class="img-thumbnail ' + activeClass + '" onclick="changeImage(this)">';
-            }
-
-            // Đã xóa phần render màu sắc rườm rà
-
+            // Gọi hàm random sản phẩm bên dưới
+            renderRandomProducts(productId);
+            
+            // Đã xóa hoàn toàn phần Render Thumbnail và Color dư thừa ở đây
         } else {
             document.getElementById('productName').innerText = "Sản phẩm không tồn tại";
         }
     }
 
-    // 2. CHỌN SIZE (Tô viền đen khi bấm vào)
+    // 2. LOGIC CHỌN SIZE (Đổi màu nút)
     let sizeButtons = document.querySelectorAll('.size-btn');
     for (let i = 0; i < sizeButtons.length; i++) {
         sizeButtons[i].addEventListener('click', function() {
@@ -87,7 +99,7 @@ window.onload = function() {
         });
     }
 
-    // 3. LOGIC ĐĂNG NHẬP TRÊN HEADER
+    // 3. LOGIC HIỂN THỊ TÊN ĐĂNG NHẬP
     let currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
         let currentUser = JSON.parse(currentUserData);
@@ -108,7 +120,7 @@ window.onload = function() {
         }
     }
 
-    // 4. MENU 3 GẠCH BÊN TRÁI MÀN HÌNH (Mobile)
+    // 4. MENU MOBILE
     let menuToggle = document.querySelector('.menu-toggle');
     let menu = document.querySelector('.menu');
     if (menuToggle && menu) {
