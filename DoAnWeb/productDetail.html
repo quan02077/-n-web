@@ -31,6 +31,9 @@
                             class="me-1 opacity-75">Giỏ hàng (0)</a>
                 </div>
                 <div class="tienich">
+                    <a href="#" class="text-secondary text-decoration-none">♡ Yêu thích</a>
+                </div>
+                <div class="tienich">
                     <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink">
                         <img src="hinhAnh/userHomeIcon.png" id="userIconImg" width="16" class="me-1 opacity-75">
                         <span id="userAccountText">Đăng nhập</span>
@@ -58,12 +61,16 @@
                         <a href="#" class="text-dark text-decoration-none menu-link">SẢN PHẨM <small>▾</small></a>
                         <div class="mega-menu p-5">
                             <div class="container image-grid text-center">
-                                <div class="mega-item"><img src="hinhAnh/forMen.png" class="img-fluid mb-2">
-                                    <p>CHO NAM</p>
-                                </div>
-                                <div class="mega-item"><img src="hinhAnh/forWoman.png" class="img-fluid mb-2">
-                                    <p>CHO NỮ</p>
-                                </div>
+                                 <a href="productCatalog.html?gender=Nam" class="text-decoration-none text-white">
+                                    <div class="mega-item"><img src="hinhAnh/forMen.png" class="img-fluid mb-2">
+                                        <p>CHO NAM</p>
+                                    </div>
+                                </a>
+                                <a href="productCatalog.html?gender=Nữ" class="text-decoration-none text-white">
+                                    <div class="mega-item"><img src="hinhAnh/forWoman.png" class="img-fluid mb-2">
+                                        <p>CHO NỮ</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -74,16 +81,17 @@
                             <div class="container text-columns">
                                 <div class="column">
                                     <h3>NỔI BẬT</h3>
-                                    <a href="#">Best Seller</a>
-                                    <a href="#">New Arrival</a>
-                                    <a href="#">Sale off</a>
+                                    <a href="productCatalog.html?gender=Nam&badge=Best Seller">Best Seller</a>
+                                    <a href="productCatalog.html?gender=Nam&badge=New Arrival">New Arrival</a>
+                                    <a href="productCatalog.html?gender=Nam&badge=Sale Off">Sale off</a>
                                 </div>
                                 <div class="column dashed-border">
                                     <h3>GIÀY NAM</h3>
                                     <p class="sub-heading">Dòng sản phẩm</p>
-                                    <a href="#">Sneakers</a>
-                                    <a href="#">Dép</a>
-                                    <a href="#">Giày Giày chạy bộ</a>
+                                    <a href="productCatalog.html?gender=Nam&category=Sneakers">Sneakers</a>
+                                    <a href="productCatalog.html?gender=Nam&category=Running">Giày chạy bộ</a>
+                                    <a href="productCatalog.html?gender=Nam&category=Classic">Giày cổ điển</a>
+                                    <a href="productCatalog.html?gender=Nam&category=Dép">Dép</a>
                                 </div>
                             </div>
                         </div>
@@ -95,22 +103,23 @@
                             <div class="container text-columns">
                                 <div class="column">
                                     <h3>NỔI BẬT</h3>
-                                    <a href="#">Best Seller</a>
-                                    <a href="#">New Arrival</a>
-                                    <a href="#">Sale off</a>
+                                    <a href="productCatalog.html?gender=Nữ&badge=Best Seller">Best Seller</a>
+                                    <a href="productCatalog.html?gender=Nữ&badge=New Arrival">New Arrival</a>
+                                    <a href="productCatalog.html?gender=Nữ&badge=Sale Off">Sale off</a>
                                 </div>
                                 <div class="column dashed-border">
                                     <h3>GIÀY NỮ</h3>
                                     <p class="sub-heading">Dòng sản phẩm</p>
-                                    <a href="#">Sneakers</a>
-                                    <a href="#">Dép</a>
-                                    <a href="#">Giày chạy bộ</a>
+                                    <a href="productCatalog.html?gender=Nữ&category=Sneakers">Sneakers</a>
+                                    <a href="productCatalog.html?gender=Nữ&category=Running">Giày chạy bộ</a>
+                                    <a href="productCatalog.html?gender=Nữ&category=Classic">Giày cổ điển</a>
+                                    <a href="productCatalog.html?gender=Nữ&category=Dép">Dép</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <a href="#" class="text-dark text-decoration-none menu-link">SALE OFF</a>
+                    <a href="productCatalog.html?badge=Sale Off" class="text-dark text-decoration-none menu-link">SALE OFF</a>
                 </nav>
 
                 <div class="searchBar d-none d-lg-flex mt-4" style="flex: 1; justify-content: flex-end;">
@@ -124,6 +133,7 @@
         <div class="container-fluid px-4 px-md-5">
 
             <div class="row mt-5 mx-0">
+
                 <div class="col-md-6 text-center">
                     <div class="main-img-container bg-light rounded">
                         <img src="" id="mainProductImg" class="img-fluid p-5">
@@ -152,7 +162,7 @@
                         <div class="mt-5 d-grid gap-2">
                             <button class="btn btn-dark btn-lg rounded-pill py-3 fw-bold" onclick="addToCart()">Thêm vào
                                 giỏ hàng</button>
-                            <button class="btn btn-outline-dark btn-lg rounded-pill py-3 fw-bold">Yêu thích ♡</button>
+                            <button class="btn btn-outline-dark rounded-pill py-3 fw-bold" onclick="toggleCurrentFavorite()">Yêu thích ♡</button>
                         </div>
                     </div>
                 </div>
@@ -179,6 +189,7 @@
     <script src="data.js"></script>
     <script src="admin.js"></script>
     <script src="cart.js"></script>
+    <script src="favourite.js"></script>
     <script src="scriptDetail.js"></script>
 </body>
 

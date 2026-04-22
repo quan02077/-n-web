@@ -210,7 +210,6 @@ window.onload = function() {
         let tabs = document.querySelectorAll('.brand-tab');
         let found = false;
 
-        // Dùng vòng lặp tìm xem cái tab nào trùng tên với URL thì tự động bấm vào tab đó
         for (let i = 0; i < tabs.length; i++) {
             if (tabs[i].getAttribute('data-brand') === brandFromUrl) {
                 selectBrand(tabs[i]); 

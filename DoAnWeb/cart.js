@@ -1,7 +1,3 @@
-// ============================================================
-//  CART.JS – Xử lý logic Giỏ hàng (Bản Tự động nhúng HTML)
-// ============================================================
-
 // 1. HÀM TỰ ĐỘNG TẠO GIAO DIỆN GIỎ HÀNG (Không cần viết bên HTML nữa)
 function injectCartHTML() {
     if (document.getElementById('cartPanel')) return; // Nếu có rồi thì bỏ qua
@@ -45,48 +41,82 @@ function updateCartCount() {
     for (let i = 0; i < cart.length; i++) totalQuantity += cart[i].quantity;
 
     let links = document.querySelectorAll('.tienich a');
-    for (let i = 0; i < links.length; i++) {
-        let img = links[i].querySelector('img');
-        if (img && img.getAttribute('src').includes('cartIcon')) {
-            links[i].innerHTML = '<img src="' + img.getAttribute('src') + '" width="16" class="me-1 opacity-75">Giỏ hàng (' + totalQuantity + ')';
+    links.forEach(link => {
+        if (link.innerHTML.includes('cartIcon') || link.innerText.includes('Giỏ hàng')) {
+            link.innerHTML = `<img src="hinhAnh/cartIcon.png" width="16" class="me-1 opacity-75">Giỏ hàng (${totalQuantity})`;
         }
-    }
+    });
 }
 
-// 3. THÊM VÀO GIỎ & THÔNG BÁO POPUP
+document.addEventListener('DOMContentLoaded', function () {
+    injectCartHTML();
+    updateCartCount(); 
+
+    // Gắn sự kiện mở giỏ hàng cho các nút
+    let links = document.querySelectorAll('.tienich a');
+    links.forEach(link => {
+        if (link.innerHTML.includes('cartIcon')) {
+            link.onclick = function (e) {
+                e.preventDefault();
+                openCartPanel();
+            };
+        }
+    });
+});
+
 function addToCartItem(productId, size) {
-    let products = (typeof getAllProducts === 'function') ? getAllProducts() : (typeof productsDatabase !== 'undefined' ? productsDatabase : []);
+    // 1. Lấy giỏ hàng cũ ra (nếu có)
+    let cartData = localStorage.getItem('basau_cart');
+    let cart = cartData ? JSON.parse(cartData) : [];
 
+    // 2. Tìm đôi giày trong kho data.js
     let product = null;
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id === productId) { product = products[i]; break; }
+    for (let i = 0; i < productsDatabase.length; i++) {
+        if (productsDatabase[i].id === productId) {
+            product = productsDatabase[i];
+            break;
+        }
     }
+    if (!product) return;
 
-    if (!product) { alert('Không tìm thấy sản phẩm!'); return; }
-
-    let cart = getCart();
+    // 3. Kiểm tra xem giày + size này đã có trong giỏ chưa
     let existingItem = null;
     for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === productId && cart[i].size === size) { existingItem = cart[i]; break; }
+        if (cart[i].id === productId && cart[i].size === size) {
+            existingItem = cart[i];
+            break;
+        }
     }
 
+    // 4. Nếu có rồi thì tăng số lượng, chưa có thì thêm mới
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
         cart.push({
-            id: productId, name: product.name, brand: product.brand,
-            price: product.price, img: product.img, size: size, quantity: 1
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            size: size,
+            quantity: 1
         });
     }
 
-    saveCart(cart);
-    showCartToast(product.name, size);
+    // 5. Lưu ngược lại vào bộ nhớ và hiện thông báo
+    localStorage.setItem('basau_cart', JSON.stringify(cart));
+    
+    // Gọi hàm hiện thông báo (nếu có)
+    if (typeof showCartToast === 'function') {
+        showCartToast(product.name, size);
+    }
 }
 
 function showCartToast(name, size) {
     let toast = document.createElement('div');
     toast.style.cssText = 'position:fixed;bottom:28px;right:28px;background:#111;color:#fff;padding:16px 24px;border-radius:14px;font-family:"Josefin Sans",sans-serif;font-size:14px;z-index:99999;box-shadow:0 10px 40px rgba(0,0,0,.35);opacity:0;transform:translateY(12px);transition:all .3s ease;max-width:320px;';
-    toast.innerHTML = '<span style="color:#4ade80;font-size:18px;margin-right:8px;">✓</span>Đã thêm <strong>' + item.name + '</strong><br><span style="color:#aaa;font-size:12px;">Size ' + size + '</span>';
+    
+    // Đã sửa chữ item.name thành chữ name ở dòng dưới
+    toast.innerHTML = '<span style="color:#4ade80;font-size:18px;margin-right:8px;">✓</span>Đã thêm <strong>' + name + '</strong><br><span style="color:#aaa;font-size:12px;">Size ' + size + '</span>';
 
     document.body.appendChild(toast);
     setTimeout(function () { toast.style.opacity = '1'; toast.style.transform = 'translateY(0)'; }, 30);
@@ -157,7 +187,7 @@ function renderCartPanel() {
         htmlContent += '    </div></div></div>';
     }
     container.innerHTML = htmlContent;
-    footer.innerHTML = '<div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;"><span style="font-size:14px; color:#888;">Tổng cộng</span><span style="font-size:22px; font-weight:800; color:#dc3545;">' + totalPrice.toLocaleString('vi-VN') + '₫</span></div><button class="cart-checkout-btn" onclick="checkout()">THANH TOÁN NGAY →</button><button class="cart-clear-btn" onclick="clearCart()">Xóa tất cả</button>';
+    footer.innerHTML = '<div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;"><span style="font-size:14px; color:#888;">Tổng cộng</span><span style="font-size:22px; font-weight:800; color:#dc3545;">' + totalPrice.toLocaleString('vi-VN') + '₫</span></div><button class="cart-checkout-btn" onclick="window.location.href=\'checkout.html\'">TIẾN HÀNH THANH TOÁN</button><button class="cart-clear-btn" onclick="clearCart()">Xóa tất cả</button>';
 }
 
 // 5. CÁC NÚT ĐIỀU KHIỂN TRONG GIỎ
@@ -174,18 +204,6 @@ function removeCartItem(index) {
 function clearCart() {
     if (confirm('Bạn có muốn xóa toàn bộ giỏ hàng không?')) { saveCart([]); renderCartPanel(); }
 }
-function checkout() {
-    let cart = getCart();
-    if (cart.length === 0) return;
-    let totalPrice = 0; let message = '📦 ĐƠN HÀNG CỦA BẠN:\\n\\n';
-    for (let i = 0; i < cart.length; i++) {
-        totalPrice += (cart[i].price * cart[i].quantity);
-        message += '• ' + cart[i].name + ' (Size ' + cart[i].size + ') × ' + cart[i].quantity + '\\n';
-    }
-    message += '\\n💰 TỔNG CỘNG: ' + totalPrice.toLocaleString('vi-VN') + '₫\\n\\nCảm ơn bạn đã mua hàng tại BASAU! 🎉';
-    alert(message); saveCart([]); closeCartPanel();
-}
-
 // 6. KHỞI CHẠY KHI MỞ TRANG
 document.addEventListener('DOMContentLoaded', function () {
     injectCartHTML();
@@ -204,14 +222,17 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         }
     }
-});
-function checkAdminAccess() {
-    let userData = localStorage.getItem('currentUser');
-    let user = userData ? JSON.parse(userData) : null;
-
-    let adminBtn = document.getElementById('adminBtn');
-
-    if (!user || user.role !== 'Nhân viên') {
-        if (adminBtn) adminBtn.style.display = 'none';
+    let searchInputs = document.querySelectorAll('.custom-search');
+    for (let i = 0; i < searchInputs.length; i++) {
+        searchInputs[i].addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                let keyword = this.value.trim();
+                
+                if (keyword !== '') {
+                    window.location.href = 'productCatalog.html?search=' + encodeURIComponent(keyword);
+                }
+            }
+        });
     }
-}
+});

@@ -1,7 +1,3 @@
-// ============================================================
-//  ADMIN.JS – QUẢN LÝ SẢN PHẨM (BẢN TÁCH TRANG ĐỘC LẬP)
-// ============================================================
-
 // ----------------------------------------------------
 // 1. HÀM LẤY TẤT CẢ DỮ LIỆU SẢN PHẨM (Gộp data gốc + Thêm/Sửa/Xóa)
 // ----------------------------------------------------
@@ -350,38 +346,44 @@ function showAdminToast(msg, bg) {
 }
 
 // ----------------------------------------------------
-// KHỞI ĐỘNG KHI VÀO TRANG ADMIN
+// KHỞI ĐỘNG VÀ KIỂM TRA QUYỀN TRUY CẬP
 // ----------------------------------------------------
-document.addEventListener('DOMContentLoaded', function () {
+function checkAdminAccess() {
+    let qlBtn = document.getElementById('QL_btn');
+    if (!qlBtn) return; // Trang nào không có nút này thì bỏ qua
+
     let userData = localStorage.getItem('currentUser');
     let user = userData ? JSON.parse(userData) : null;
 
-    // Hiển thị tên
-    document.getElementById('adminUserLabel').textContent = '👤 ' + user.username + '  ·  ' + user.role;
-
-    // Khởi tạo
-    patchProductsDatabase();
-    buildSizeGrid('add');
-    buildSizeGrid('edit');
-    switchAdminTab('add');
-});
-
-function checkAdminAccess() {
-    // Tìm tất cả các nút trên thanh Header
-    let links = document.querySelectorAll('.tienich a');
-    
-    for (let i = 0; i < links.length; i++) {
-        if (links[i].innerHTML.includes('quanlyIcon')) {
-
-            let userData = localStorage.getItem('currentUser');
-            let user = userData ? JSON.parse(userData) : null;
-
-            if (user === null || user.role !== 'Nhân viên') {
-                links[i].parentElement.style.display = 'none'; 
-            } else {
-                links[i].parentElement.style.display = 'block';
-                links[i].href = 'admin.html';
-            }
-        }
+    // ĐIỀU KIỆN VÀNG: Chỉ khi có đăng nhập VÀ phải là "Nhân viên"
+    if (user !== null && user.role === 'Nhân viên') {
+        qlBtn.parentElement.style.setProperty('display', 'block', 'important');
+    } else {
+        // Tất cả các trường hợp: Chưa đăng nhập, Khách hàng, v.v. -> ẨN HẾT
+        qlBtn.parentElement.style.setProperty('display', 'none', 'important');
     }
 }
+
+checkAdminAccess();
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof checkAdminAccess === 'function') {
+        checkAdminAccess();
+    }
+
+    let label = document.getElementById('adminUserLabel');
+    if (label) {
+        let userData = localStorage.getItem('currentUser');
+        let user = userData ? JSON.parse(userData) : null;
+
+        if (user) {
+            label.textContent = '👤 ' + user.username + '  ·  ' + user.role;
+            patchProductsDatabase();
+            buildSizeGrid('add');
+            buildSizeGrid('edit');
+            switchAdminTab('add');
+        } else {
+            window.location.href = "login.html";
+        }
+    }
+});
