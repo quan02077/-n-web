@@ -218,14 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
             userIconImg.src = "hinhAnh/userHomeIcon.png"; 
 
             userAccountLink.href = "#"; 
-            userAccountLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                let confirmLogout = confirm("Bạn có muốn đăng xuất không?");
-                if (confirmLogout) {
-                    localStorage.removeItem('currentUser'); 
-                    window.location.reload(); 
-                }
-            });
         }
     }
 });

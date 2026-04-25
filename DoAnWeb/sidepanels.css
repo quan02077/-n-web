@@ -1,0 +1,152 @@
+/* =========================================
+   MASTER SIDE PANELS: CART, FAV & ACCOUNT
+   ========================================= */
+
+/* 1. Nền đen mờ phủ ngoài (Dùng chung cho cả 3) */
+#cartOverlay,
+#favOverlay,
+#accOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Khi mở bảng nào thì hiện nền mờ tương ứng */
+#cartOverlay.open,
+#favOverlay.open,
+#accOverlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 2. Khung Bảng trượt (Dùng chung cho cả 3) */
+#cartPanel,
+#favPanel,
+#accPanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    max-width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#cartPanel.open,
+#favPanel.open,
+#accPanel.open {
+    transform: translateX(0);
+}
+
+/* 3. Cấu trúc Header & Button (Dùng chung) */
+.panel-header {
+    background: #111;
+    color: #fff;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.panel-title {
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.panel-subtitle {
+    margin: 3px 0 0;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.panel-close-btn {
+    background: rgba(255, 255, 255, .12);
+    border: none;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 4. Cấu trúc Body (Dùng chung) */
+.panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+}
+
+.panel-footer {
+    padding: 20px;
+    border-top: 2px solid #f0f0f0;
+    flex-shrink: 0;
+}
+
+/* 5. Style riêng cho các món trong Giỏ hàng */
+.cart-item {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.cart-qty-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cart-qty-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.cart-remove-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: 0.2s;
+}
+
+.cart-remove-btn:hover {
+    color: #dc3545;
+}
