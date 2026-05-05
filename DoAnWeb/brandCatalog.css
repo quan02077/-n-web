@@ -1,113 +1,113 @@
 /* =========================================
    1. CÀI ĐẶT CHUNG TRANG DANH MỤC
    ========================================= */
-body { 
-    font-family: 'Josefin Sans', sans-serif; 
-    background-color: #fcfcfc; 
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #fcfcfc;
 }
 
 /* =========================================
    2. TIÊU ĐỀ VÀ BREADCRUMB
    ========================================= */
-.breadcrumb-bar { 
-    font-size: 16px; 
-    color: #888; 
-    padding: 15px 0; 
+.breadcrumb-bar {
+    font-size: 16px;
+    color: #888;
+    padding: 15px 0;
 }
 
-.breadcrumb-bar a { 
-    color: #888; 
-    text-decoration: none; 
+.breadcrumb-bar a {
+    color: #888;
+    text-decoration: none;
 }
 
-.breadcrumb-bar a:hover { 
-    color: #000; 
+.breadcrumb-bar a:hover {
+    color: #000;
 }
 
-.catalog-title { 
-    font-family: "Oswald", sans-serif; 
-    font-size: 35px; 
-    font-weight: 700; 
+.catalog-title {
+    font-family: "Oswald", sans-serif;
+    font-size: 35px;
+    font-weight: 700;
 }
 
-.result-count { 
-    font-size: 16px; 
-    color: #888; 
+.result-count {
+    font-size: 16px;
+    color: #888;
 }
 
 /* =========================================
    3. CÁC NÚT BẤM CHỌN HÃNG (TABS)
    ========================================= */
-.brand-tabs { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 12px; 
-    margin-bottom: 30px; 
+.brand-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
 }
 
 .brand-tab {
-    padding: 10px 20px; 
-    border: 1px solid #ccc; 
+    padding: 10px 20px;
+    border: 1px solid #ccc;
     border-radius: 50px;
-    font-size: 16px; 
-    font-weight: bold; 
+    font-size: 16px;
+    font-weight: bold;
     background-color: #fff;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 /* Khi đang chọn hoặc rê chuột vào thì thành màu đen */
-.brand-tab.active, 
-.brand-tab:hover { 
-    background-color: #000; 
-    color: #fff; 
-    border-color: #000; 
+.brand-tab.active,
+.brand-tab:hover {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
 }
 
 /* =========================================
    4. CỘT BỘ LỌC BÊN TRÁI (SIDEBAR)
    ========================================= */
-.filter-sidebar { 
+.filter-sidebar {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #eee;
     border-radius: 8px;
 }
 
-.filter-group { 
-    border-bottom: 1px solid #eee; 
-    padding: 15px 0; 
+.filter-group {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
 }
 
 .filter-title {
-    font-size: 18px; 
-    font-weight: bold; 
+    font-size: 18px;
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
-.filter-check { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    margin-bottom: 15px; 
-    cursor: pointer; 
+.filter-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 /* Phóng to ô checkbox cho dễ bấm */
 .filter-check input {
-    width: 20px; 
-    height: 20px; 
+    width: 20px;
+    height: 20px;
     cursor: pointer;
 }
 
-.filter-check span { 
-    font-size: 16px; 
+.filter-check span {
+    font-size: 16px;
 }
 
-.clear-btn { 
-    font-size: 14px; 
-    color: red; 
-    background: none; 
-    border: none; 
+.clear-btn {
+    font-size: 14px;
+    color: red;
+    background: none;
+    border: none;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -124,10 +124,10 @@ body {
 }
 
 /* Chia lưới 3 cột cho sản phẩm */
-.product-grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 25px; 
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
 /* =========================================
@@ -144,8 +144,8 @@ body {
     height: 100%;
 }
 
-.product-card-cat:hover { 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+.product-card-cat:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Khung chứa ảnh */
@@ -178,7 +178,7 @@ body {
     z-index: 10;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .badge-new {
@@ -187,37 +187,69 @@ body {
 }
 
 .badge-sale {
-    background-color: #dc3545; 
+    background-color: #dc3545;
     color: white;
 }
 
 .badge-bestseller {
-    background-color: #111111; 
+    background-color: #111111;
     color: white;
 }
 
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff !important;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: none !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+/* Định màu đặc cho từng loại nhãn */
+.badge-sale {
+    background-color: #dc3545 !important;
+}
+
+.badge-new {
+    background-color: #28a745 !important;
+}
+
+.badge-bestseller {
+    background-color: #111 !important;
+}
+
+.badge-default {
+    background-color: #6c757d !important;
+}
+
 /* Tên giày */
-.card-name { 
-    font-size: 25px; 
-    font-weight: bold; 
+.card-name {
+    font-size: 25px;
+    font-weight: bold;
     margin-bottom: 10px;
-    height: 44px; /* Giới hạn chiều cao tên 2 dòng */
+    height: 44px;
     overflow: hidden;
 }
 
-.card-cat-gender{
-    font-size: 16px; 
-    color: #888; 
+.card-cat-gender {
+    font-size: 16px;
+    color: #888;
     margin-bottom: 10px;
 }
 
-/* Giá tiền */
-.card-price { 
-    font-size: 25px; /* Chữ giá tiền cũng cho to lên xíu cho cân đối */
-    font-weight: 600; 
-    color: #dc3545; 
+.card-price {
+    font-size: 25px;
+    font-weight: 600;
+    color: #dc3545;
     margin-bottom: 0;
 }
+
 .footer-logo-text {
     color: white;
     font-size: 5rem;
@@ -233,6 +265,7 @@ body {
     text-shadow: 0 0 20px rgba(255, 65, 108, 0.8), 0 0 40px rgba(255, 65, 108, 0.4);
     transform: scale(1.08);
 }
+
 /* =========================================
    GIAO DIỆN GIỎ HÀNG (BẢN TÂN THỦ CƠ BẢN)
    ========================================= */
@@ -246,19 +279,21 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 10000;
-    display: none; /* Mặc định giấu đi */
+    display: none;
+    /* Mặc định giấu đi */
 }
 
 /* Khi có class .open thì hiện nền mờ lên */
 #cartOverlay.open {
-    display: block; 
+    display: block;
 }
 
 /* 2. Khung Giỏ hàng (Nằm bên phải) */
 #cartPanel {
     position: fixed;
     top: 0;
-    right: -450px; /* Giấu khung ra tuốt ngoài mép phải màn hình */
+    right: -450px;
+    /* Giấu khung ra tuốt ngoài mép phải màn hình */
     width: 400px;
     height: 100%;
     background-color: #fff;
@@ -266,13 +301,13 @@ body {
     display: flex;
     flex-direction: column;
     /* Hiệu ứng trượt cơ bản nhất: thay đổi thuộc tính right trong 0.3 giây */
-    transition: right 0.3s ease; 
-    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Khi có class .open thì kéo khung về sát mép phải */
 #cartPanel.open {
-    right: 0; 
+    right: 0;
 }
 
 /* 3. Các thành phần bên trong giỏ hàng */
@@ -358,8 +393,10 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 10000;
-    overflow-y: auto; /* Nếu nội dung dài thì cho phép cuộn dọc */
-    display: none; /* Mặc định giấu đi */
+    overflow-y: auto;
+    /* Nếu nội dung dài thì cho phép cuộn dọc */
+    display: none;
+    /* Mặc định giấu đi */
     padding: 30px 15px;
 }
 
@@ -367,7 +404,8 @@ body {
 .adm-card {
     background-color: #fff;
     max-width: 800px;
-    margin: 0 auto; /* Canh giữa màn hình */
+    margin: 0 auto;
+    /* Canh giữa màn hình */
     border-radius: 10px;
     overflow: hidden;
 }
@@ -425,11 +463,13 @@ body {
 /* 4. Nội dung các trang (Panels) */
 .adm-panel {
     padding: 30px;
-    display: none; /* Giấu đi */
+    display: none;
+    /* Giấu đi */
 }
 
 .adm-panel.active {
-    display: block; /* Chỉ hiện panel nào đang active */
+    display: block;
+    /* Chỉ hiện panel nào đang active */
 }
 
 /* Tiêu đề từng mục nhỏ */
@@ -450,13 +490,15 @@ body {
 }
 
 .adm-field {
-    width: 48%; /* Chiếm nửa màn hình */
+    width: 48%;
+    /* Chiếm nửa màn hình */
     display: flex;
     flex-direction: column;
 }
 
 .adm-field.full {
-    width: 100%; /* Chiếm cả hàng ngang */
+    width: 100%;
+    /* Chiếm cả hàng ngang */
 }
 
 .adm-label {
@@ -475,13 +517,16 @@ body {
 }
 
 /* 5. Cục chọn Nhãn (Badge), Size */
-.adm-badge-row, .adm-size-grid, .adm-size-quick {
+.adm-badge-row,
+.adm-size-grid,
+.adm-size-quick {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-.adm-badge-opt, .adm-size-chip {
+.adm-badge-opt,
+.adm-size-chip {
     padding: 8px 15px;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -490,7 +535,8 @@ body {
 }
 
 /* Khi được chọn thì bôi đen */
-.adm-badge-opt.selected, .adm-size-chip.on {
+.adm-badge-opt.selected,
+.adm-size-chip.on {
     background-color: #000;
     color: #fff;
     border-color: #000;

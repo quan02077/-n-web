@@ -1593,7 +1593,7 @@ let productsDatabase = [
         oldPrice: 2400000,
         badge: "Sale Off",
         img: "hinhAnh/giayNu/cv6-w.png",
-        thumbnails: ["hinhAnh/giayNu/cv6-w.png"]
+        thumbnails: ["hinhAnh/giayNu/cv6-w.png"]    
     },
     {
         id: 134,

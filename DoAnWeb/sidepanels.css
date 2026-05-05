@@ -1,7 +1,3 @@
-/* =========================================
-   MASTER SIDE PANELS: CART, FAV & ACCOUNT
-   ========================================= */
-
 /* 1. Nền đen mờ phủ ngoài (Dùng chung cho cả 3) */
 #cartOverlay,
 #favOverlay,
@@ -149,4 +145,25 @@
 
 .cart-remove-btn:hover {
     color: #dc3545;
+}
+
+.acc-section-title { 
+    font-weight: 700; 
+    border-bottom: 2px solid #eee; 
+    padding-bottom: 10px; 
+    margin-bottom: 15px; 
+    font-size: 15px; 
+    text-transform: uppercase; 
+}
+.panel-subtitle.green { color: #4ade80; }
+
+.custom-toast {
+    position: fixed; bottom: 28px; right: 28px; color: #fff;
+    padding: 16px 24px; border-radius: 14px; font-family: "Josefin Sans", sans-serif;
+    font-size: 14px; z-index: 99999; box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    opacity: 0; transform: translateY(12px); transition: all 0.3s ease; max-width: 320px;
+}
+.custom-toast.show { 
+    opacity: 1; 
+    transform: translateY(0); 
 }

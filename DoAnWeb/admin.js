@@ -1,10 +1,9 @@
-// ----------------------------------------------------
-// 1. HÀM LẤY TẤT CẢ DỮ LIỆU SẢN PHẨM (Gộp data gốc + Thêm/Sửa/Xóa)
-// ----------------------------------------------------
 function getAllProducts() {
     let base = [];
     if (typeof productsDatabase !== 'undefined') {
-        for (let i = 0; i < productsDatabase.length; i++) base.push(productsDatabase[i]);
+        for (let i = 0; i < productsDatabase.length; i++) {
+            base.push(productsDatabase[i]);
+        }
     }
 
     let addedData = localStorage.getItem('basau_addedProducts');
@@ -17,14 +16,26 @@ function getAllProducts() {
     let deleted = deletedData ? JSON.parse(deletedData) : [];
 
     let allItems = [];
-    for (let i = 0; i < base.length; i++) allItems.push(base[i]);
-    for (let i = 0; i < added.length; i++) allItems.push(added[i]);
+    for (let i = added.length - 1; i >= 0; i--) {
+        allItems.push(added[i]);
+    }
+    for (let i = 0; i < base.length; i++) {
+        let isDuplicate = false;
+        for (let j = 0; j < added.length; j++) {
+            if (base[i].id === added[j].id) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (isDuplicate === false) {
+            allItems.push(base[i]);
+        }
+    }
 
     let finalResult = [];
     for (let i = 0; i < allItems.length; i++) {
-        let item = allItems[i];
+        let item = allItems[i]; 
 
-        // Dùng indexOf thay cho includes để code cơ bản nhất
         if (deleted.indexOf(item.id) === -1) {
             if (edited[item.id]) {
                 let e = edited[item.id];
@@ -155,6 +166,9 @@ function setBadge(mode, val) {
 // ----------------------------------------------------
 // 4. XỬ LÝ LƯU DỮ LIỆU (THÊM, SỬA, XÓA)
 // ----------------------------------------------------
+// ----------------------------------------------------
+// XỬ LÝ LƯU DỮ LIỆU (THÊM MỚI SẢN PHẨM)
+// ----------------------------------------------------
 function submitAddProduct() {
     let name = document.getElementById('add_name').value.trim();
     let price = parseInt(document.getElementById('add_price').value) || 0;
@@ -165,15 +179,21 @@ function submitAddProduct() {
         showAdminToast('⚠ Vui lòng điền đầy đủ Tên, Giá và Ảnh!', '#e74c3c');
         return;
     }
-
-    let allProducts = getAllProducts();
     let maxId = 0;
-    for (let i = 0; i < allProducts.length; i++) {
-        if (allProducts[i].id > maxId) maxId = allProducts[i].id;
+    if (typeof productsDatabase !== 'undefined') {
+        for (let i = 0; i < productsDatabase.length; i++) {
+            if (productsDatabase[i].id > maxId) maxId = productsDatabase[i].id;
+        }
     }
-
+    
     let addedData = localStorage.getItem('basau_addedProducts');
     let added = addedData ? JSON.parse(addedData) : [];
+    
+    for (let i = 0; i < added.length; i++) {
+        if (added[i].id > maxId) maxId = added[i].id;
+    }
+
+    let badgeInput = document.getElementById('add_badge');
 
     let newProduct = {
         id: maxId + 1,
@@ -183,7 +203,7 @@ function submitAddProduct() {
         gender: document.getElementById('add_gender').value,
         price: price,
         oldPrice: oldPrice,
-        badge: document.getElementById('add_badge').value,
+        badge: badgeInput ? badgeInput.value : "",
         img: img,
         thumbnails: [img],
         sizes: _addSizes.slice()
@@ -387,3 +407,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+patchProductsDatabase();

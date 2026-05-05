@@ -1,9 +1,14 @@
+// ============================================================
+// HỆ THỐNG QUẢN LÝ DANH MỤC SẢN PHẨM & TÌM KIẾM
+// ============================================================
+
 // Các biến toàn cục để ghi nhớ trạng thái
 let currentBrand = "all";
 let currentSearch = ""; 
 let displayedProducts = [];
 let currentPage = 1; 
 let itemsPerPage = 6;
+let isSearchMode = false; // Cờ theo dõi xem có đang dùng thanh tìm kiếm không
 
 function selectBrand(element) {
     let tabs = document.querySelectorAll('.brand-tab');
@@ -12,14 +17,12 @@ function selectBrand(element) {
     }
     element.classList.add('active');
     currentBrand = element.getAttribute('data-brand');
-    window.history.replaceState(null, null, "?brand=" + currentBrand);
-
-    let pageTitle = document.getElementById('pageTitle');
-    if (currentBrand === 'all') {
-        pageTitle.innerText = "Tất cả sản phẩm";
-    } else {
-        pageTitle.innerText = "Giày " + currentBrand;
+    
+    // Nếu đang tìm kiếm thì không đổi link URL, giữ nguyên cờ
+    if(!isSearchMode) {
+        window.history.replaceState(null, null, "?brand=" + currentBrand);
     }
+    
     applyFilters();
 }
 
@@ -31,16 +34,34 @@ function applyFilters() {
         if (checkboxes[i].checked === true) {
             let val = checkboxes[i].value;
             if (val === "Nam" || val === "Nữ" || val === "Unisex") filterGenders.push(val);
-            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép" || val === "Lifestyle") filterCategories.push(val);
+            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép") filterCategories.push(val);
             else if (val === "New Arrival" || val === "Sale Off" || val === "Best Seller") filterBadges.push(val);
             else if (val === "under2m" || val === "2m-4m" || val === "over4m") filterPrices.push(val);
         }
     }
 
-    displayedProducts = [];
+    // YÊU CẦU 1: CẬP NHẬT TIÊU ĐỀ TRANG CỰC KỲ THÔNG MINH
+    let pageTitle = document.getElementById('pageTitle');
+    if (pageTitle && !isSearchMode) {
+        if (filterGenders.length === 1) {
+            // Nếu chỉ tick 1 giới tính -> Hiện Giày Nam / Giày Nữ
+            pageTitle.innerText = filterGenders[0];
+        } else if (filterGenders.length > 1) {
+            pageTitle.innerText = "Nam & Nữ";
+        } else if (currentBrand !== 'all') {
+            pageTitle.innerText = currentBrand;
+        } else {
+            pageTitle.innerText = "Tất cả sản phẩm";
+        }
+    }
 
-    for (let i = 0; i < productsDatabase.length; i++) {
-        let product = productsDatabase[i];
+    displayedProducts = [];
+    
+    // Lấy danh sách từ hệ thống tổng (admin.js) hoặc data gốc
+    let allProducts = (typeof getAllProducts === 'function') ? getAllProducts() : productsDatabase;
+
+    for (let i = 0; i < allProducts.length; i++) {
+        let product = allProducts[i];
         let isValid = true;
 
         if (currentBrand !== "all" && product.brand !== currentBrand) isValid = false;
@@ -60,10 +81,12 @@ function applyFilters() {
             if (matchPrice === false) isValid = false;
         }
 
+        // YÊU CẦU 2: ƯU TIÊN TÌM KIẾM
         if (currentSearch !== "") {
             let searchLower = currentSearch.toLowerCase();
             let nameLower = product.name.toLowerCase();
             let brandLower = product.brand.toLowerCase();
+            // Nếu không khớp tên hoặc hãng thì loại luôn
             if (!nameLower.includes(searchLower) && !brandLower.includes(searchLower)) {
                 isValid = false;
             }
@@ -91,9 +114,21 @@ function clearAllFilters() {
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
     }
+    
+    // Nếu bấm xóa tất cả -> Reset luôn cả tìm kiếm
     currentSearch = ""; 
-    document.getElementById('pageTitle').innerText = "Tất cả sản phẩm";
-    applyFilters();
+    isSearchMode = false;
+    
+    let searchInputs = document.querySelectorAll('.custom-search');
+    searchInputs.forEach(input => input.value = "");
+    
+    let pageTitle = document.getElementById('pageTitle');
+    if(pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
+    
+    // Bật lại tab Tất cả
+    let allTab = document.querySelector('.brand-tab[data-brand="all"]');
+    if(allTab) selectBrand(allTab);
+    else applyFilters();
 }
 
 function renderProducts() {
@@ -114,9 +149,12 @@ function renderProducts() {
     }
 
     let totalPages = Math.ceil(displayedProducts.length / itemsPerPage);
+    
+    // Tự động lùi trang nếu kết quả mới ít hơn trang hiện tại
+    if (currentPage > totalPages) currentPage = 1;
+    
     let startIndex = (currentPage - 1) * itemsPerPage;
     let endIndex = startIndex + itemsPerPage;
-
     if (endIndex > displayedProducts.length) endIndex = displayedProducts.length;
 
     let htmlContent = "";
@@ -125,11 +163,24 @@ function renderProducts() {
         let priceFormat = p.price.toLocaleString('vi-VN') + "₫";
         let badgeHtml = "";
         if (p.badge && p.badge !== "") {
-            let badgeClass = "";
-            if (p.badge === "New Arrival") badgeClass = "badge-new";
-            else if (p.badge === "Sale Off") badgeClass = "badge-sale";
-            else if (p.badge === "Best Seller") badgeClass = "badge-bestseller";
-            badgeHtml = '<span class="product-badge ' + badgeClass + '">' + p.badge + '</span>';
+            let badgeClass = "badge-default"; 
+            let badgeStr = p.badge.toLowerCase(); 
+            let displayBadge = p.badge; 
+
+            if (badgeStr.includes("new")) {
+                badgeClass = "badge-new";
+                displayBadge = "New Arrival"; 
+            } 
+            else if (badgeStr.includes("sale")) {
+                badgeClass = "badge-sale";
+                displayBadge = "Sale Off";    
+            } 
+            else if (badgeStr.includes("best")) {
+                badgeClass = "badge-bestseller";
+                displayBadge = "Best Seller";   
+            }
+            
+            badgeHtml = '<span class="product-badge ' + badgeClass + '">' + displayBadge + '</span>';
         }
 
         htmlContent += '<a href="productDetail.html?id=' + p.id + '" class="text-decoration-none text-dark">';
@@ -163,7 +214,9 @@ function changePage(pageNumber) {
     window.scrollTo({ top: 0, behavior: 'smooth' }); 
 } 
 
-// 7. KHỞI CHẠY (ĐỌC URL BẢN CÓ TÌM KIẾM)
+// ============================================================
+// KHỞI CHẠY (BẮT URL & THANH TÌM KIẾM TRỰC TIẾP)
+// ============================================================
 window.onload = function() {
     let allCheckboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     allCheckboxes.forEach(chk => chk.checked = false);
@@ -175,35 +228,35 @@ window.onload = function() {
     let categoryFromUrl = urlParams.get('category'); 
     let searchFromUrl = urlParams.get('search'); 
 
-    let titleParts = []; 
+    // Mặc định không search
+    isSearchMode = false;
+    currentSearch = "";
 
     if (genderFromUrl) {    
         let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
         checkboxes.forEach(chk => { if (chk.value === genderFromUrl) chk.checked = true; });
-        titleParts.push(genderFromUrl);
     } 
-
     if (badgeFromUrl){
         let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
         checkboxes.forEach(chk => { if (chk.value === badgeFromUrl) chk.checked = true; });
-        titleParts.push(badgeFromUrl);
     }
-
     if (categoryFromUrl){
         let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
         checkboxes.forEach(chk => { if (chk.value === categoryFromUrl) chk.checked = true; });
-        titleParts.push(categoryFromUrl);
     }
 
     let pageTitle = document.getElementById('pageTitle');
 
+    // NẾU CÓ URL SEARCH (Từ trang khác đá qua)
     if (searchFromUrl) {
         currentSearch = searchFromUrl;
-        if (pageTitle) pageTitle.innerText = "Kết quả tìm kiếm: '" + currentSearch + "'";
+        isSearchMode = true;
+        if (pageTitle) pageTitle.innerText = "Kết quả: '" + currentSearch + "'";
+        
+        // Cập nhật lại cái thanh input search cho khách dễ nhìn
+        let searchInputs = document.querySelectorAll('.custom-search');
+        searchInputs.forEach(input => input.value = currentSearch);
     } 
-    else if (pageTitle && titleParts.length > 0) {
-        pageTitle.innerText = "Giày " + titleParts.join(" ");
-    }
 
     let isBrandSelected = false;
     if (brandFromUrl) {
@@ -217,7 +270,41 @@ window.onload = function() {
         }
     } 
     
-    if (!isBrandSelected) {
-        applyFilters();
+    if (!isBrandSelected) applyFilters();
+
+    // LẮNG NGHE SỰ KIỆN GÕ TÌM KIẾM TRỰC TIẾP TẠI TRANG
+    let searchInputs = document.querySelectorAll('.custom-search');
+    for (let i = 0; i < searchInputs.length; i++) {
+        // Gõ Enter thì lọc luôn (Hoặc xóa trống rồi Enter thì reset lại)
+        searchInputs[i].addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                let keyword = this.value.trim();
+                
+                if (keyword !== '') {
+                    currentSearch = keyword;
+                    isSearchMode = true;
+                    if (pageTitle) pageTitle.innerText = "Kết quả: '" + currentSearch + "'";
+                } else {
+                    // KHÁCH XÓA HẾT CHỮ VÀ NHẤN ENTER -> TRỞ LẠI NHƯ CŨ
+                    currentSearch = "";
+                    isSearchMode = false;
+                    if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
+                }
+                
+                currentPage = 1; // Reset trang về 1
+                applyFilters();
+            }
+        });
+        
+        // Bắt luôn trường hợp khách bấm nút Xóa (dấu X) trên thanh tìm kiếm
+        searchInputs[i].addEventListener('search', function() {
+            if (this.value === '') {
+                currentSearch = "";
+                isSearchMode = false;
+                if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
+                applyFilters();
+            }
+        });
     }
 };

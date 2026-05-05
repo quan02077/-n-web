@@ -20,7 +20,7 @@ function selectBrand(element) {
     if (currentBrand === 'all') {
         pageTitle.innerText = "Tất cả sản phẩm";
     } else {
-        pageTitle.innerText = "Giày " + currentBrand;
+        pageTitle.innerText =   currentBrand;
     }
     applyFilters();
 }

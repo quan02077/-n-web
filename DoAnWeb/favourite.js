@@ -75,11 +75,11 @@ function renderFavPanel() {
 
     if (favIds.length === 0) {
         container.innerHTML = `
-            <div class="fav-empty">
+            <div style="text-align:center; padding:70px 20px; color:#bbb;">
                 <div style="font-size:64px; margin-bottom:18px; filter:grayscale(1);">🤍</div>
-                <h5 style="color:#888; margin-bottom:8px;">Chưa có sản phẩm nào</h5>
-                <p style="font-size:14px;">Hãy thả tim những đôi giày bạn thích nhé!</p>
-                <button onclick="closeFavPanel()" class="btn btn-dark rounded-pill mt-3 px-4 py-2 fw-bold">XEM SẢN PHẨM</button>
+                <h5 style="color:#888;">Chưa có sản phẩm nào</h5>
+                <p style="font-size:14px; margin-bottom:15px;">Hãy thả tim những đôi giày bạn thích nhé!</p>
+                <button onclick="closeFavPanel()" class="btn btn-dark rounded-pill px-4 py-2 fw-bold">XEM SẢN PHẨM</button>
             </div>`;
         return;
     }
@@ -91,17 +91,20 @@ function renderFavPanel() {
         let p = allProds.find(item => item.id === favIds[i]);
         if (p) {
             let priceFormat = p.price.toLocaleString('vi-VN') + '₫';
+
             htmlContent += `
-                <div class="fav-item">
-                    <a href="productDetail.html?id=${p.id}" class="fav-item-img">
-                        <img src="${p.img}" alt="Giày">
+                <div class="cart-item">
+                    <a href="productDetail.html?id=${p.id}" style="flex-shrink:0;">
+                        <img src="${p.img}" class="cart-item-img" alt="Giày">
                     </a>
-                    <div class="fav-item-info">
-                        <a href="productDetail.html?id=${p.id}" class="fav-item-name">${p.name}</a>
-                        <div class="fav-item-sub">${p.category} · ${p.gender}</div>
-                        <div class="fav-item-price">${priceFormat}</div>
+                    <div style="flex:1; min-width:0;">
+                        <div style="font-weight:700; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                            <a href="productDetail.html?id=${p.id}" style="color:#111; text-decoration:none;">${p.name}</a>
+                        </div>
+                        <div style="color:#888; font-size:12px; margin:4px 0;">${p.category} · ${p.gender}</div>
+                        <div style="color:#dc3545; font-weight:700;">${priceFormat}</div>
                     </div>
-                    <button onclick="removeFavorite(${p.id})" class="fav-remove-btn" title="Xóa">✕</button>
+                    <button onclick="removeFavorite(${p.id})" class="cart-remove-btn" title="Xóa khỏi yêu thích">✕</button>
                 </div>`;
         }
     }

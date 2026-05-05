@@ -124,11 +124,22 @@ function logoutUser() {
 
 document.addEventListener('DOMContentLoaded', function () {
     injectAccountHTML();
+    
     let accLink = document.getElementById('userAccountLink');
+    let accText = document.getElementById('userAccountText');
+
+    let userData = localStorage.getItem('currentUser');
+    if (userData && userData !== "null" && userData !== "undefined") {
+        let user = JSON.parse(userData);
+        if (accText && user.username) {
+            accText.innerText = user.username;
+        }
+    }
+
     if (accLink) {
         accLink.addEventListener('click', function(e) {
-            let userData = localStorage.getItem('currentUser');
-            if (userData && userData !== "null" && userData !== "undefined") {
+            let checkData = localStorage.getItem('currentUser');
+            if (checkData && checkData !== "null" && checkData !== "undefined") {
                 e.preventDefault(); 
                 openAccountPanel();
             }
