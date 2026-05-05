@@ -4,36 +4,34 @@
 
 // --- HÀM THÊM VÀO GIỎ HÀNG (CÓ CHỐT CHẶN) ---
 function addToCart() {
-    // BƯỚC 1: KIỂM TRA ĐĂNG NHẬP (Phải nằm trên cùng)
-    let currentUserData = localStorage.getItem('currentUser');
-    
-    // Kiểm tra kỹ: nếu ko có data HOẶC data bị lưu là chữ "null"/"undefined"
-    if (!currentUserData || currentUserData === "null" || currentUserData === "undefined") {
-        alert("Dừng lại một chút! Bạn cần đăng nhập để có thể mua sắm nhé.");
-        window.location.href = "login.html"; // Đá sang trang đăng nhập ngay
-        return; // Dừng hàm tại đây, không chạy xuống dưới nữa
+    let name = document.getElementById('productName').innerText;
+    let priceText = document.getElementById('productPrice').innerText;
+    let price = parseInt(priceText.replace(/[^0-9]/g, '')) || 0;
+    let img = document.getElementById('mainProductImg').src;
+    let activeSizeBtn = document.querySelector('.size-btn.active') || document.querySelector('.size-btn.btn-dark');
+    let firstSizeBtn = document.querySelector('.size-btn');
+    let size = activeSizeBtn ? activeSizeBtn.innerText.trim() : (firstSizeBtn ? firstSizeBtn.innerText.trim() : "Mặc định");
+
+    let cart = getCart();
+
+    let existingItem = cart.find(item => item.name === name && item.size === size);
+
+    if (existingItem) {
+        existingItem.quantity += 1; 
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            img: img,
+            size: size,
+            quantity: 1
+        });
     }
 
-    // BƯỚC 2: KIỂM TRA CHỌN SIZE
-    let selectedSizeBtn = document.querySelector('.size-btn.active-size');
-    if (!selectedSizeBtn) {
-        alert("Vui lòng chọn Size giày trước khi bỏ vào giỏ nhé!");
-        return;
-    }
+    saveCart(cart);
     
-    let size = selectedSizeBtn.innerText;
-    let urlParams = new URLSearchParams(window.location.search);
-    let productId = parseInt(urlParams.get('id'));
-    
-    // BƯỚC 3: GỌI HÀM LƯU VÀO GIỎ (Kết nối với cart.js)
-    if (typeof addToCartItem === 'function') {
-        addToCartItem(productId, size);
-        if (typeof openCartPanel === 'function') {
-            openCartPanel(); 
-        }
-    } else {
-        // Nếu hiện cái này là do em chưa nhúng cart.js vào productDetail.html
-        alert("Lỗi hệ thống: Không tìm thấy máy in giỏ hàng (cart.js).");
+    if (typeof openCartPanel === 'function') {
+        openCartPanel();
     }
 }
 

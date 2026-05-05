@@ -166,9 +166,6 @@ function setBadge(mode, val) {
 // ----------------------------------------------------
 // 4. XỬ LÝ LƯU DỮ LIỆU (THÊM, SỬA, XÓA)
 // ----------------------------------------------------
-// ----------------------------------------------------
-// XỬ LÝ LƯU DỮ LIỆU (THÊM MỚI SẢN PHẨM)
-// ----------------------------------------------------
 function submitAddProduct() {
     let name = document.getElementById('add_name').value.trim();
     let price = parseInt(document.getElementById('add_price').value) || 0;
