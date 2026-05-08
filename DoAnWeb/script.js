@@ -58,21 +58,16 @@ function login() {
     let role = document.getElementById('roleSelection').value;
     let users = getUsers();
     
-    // Kiểm tra xem tên đăng nhập có tồn tại không bằng vòng lặp for
     let userExists = false;
     for (let i = 0; i < users.length; i++) {
-        if (users[i].username === username) {
-            userExists = true;
-            break;
-        }
+        if (users[i].username === username) { userExists = true; break; }
     }
 
     if (!emailValidation.test(username) && !userExists) {
-        alert('Vui lòng nhập đúng định dạng email hoặc username.');
+        Swal.fire('Sai định dạng', 'Vui lòng nhập đúng định dạng email hoặc username.', 'warning');
         return;
     }
 
-    // Tìm user hợp lệ bằng vòng lặp for (cách cơ bản)
     let user = null;
     for (let i = 0; i < users.length; i++) {
         if ((users[i].username === username || users[i].email === username) && 
@@ -84,11 +79,18 @@ function login() {
     }
 
     if (user != null) {
-        alert('Đăng nhập thành công!');
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        window.location.href = "homePage.html";
+        Swal.fire({
+            title: 'Xin chào!',
+            text: 'Đăng nhập thành công',
+            icon: 'success',
+            timer: 1500, 
+            showConfirmButton: false
+        }).then(() => {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            window.location.href = "homePage.html";
+        });
     } else {
-        alert('Tên đăng nhập, mật khẩu hoặc quyền không đúng.');
+        Swal.fire('Thất bại', 'Tên đăng nhập, mật khẩu hoặc quyền không đúng.', 'error');
         document.getElementById('password').value = '';
     }
 }
@@ -102,7 +104,6 @@ function forgotPassword() {
     
     let users = getUsers();
     
-    // Tìm vị trí của user bằng vòng lặp for
     let index = -1;
     for (let i = 0; i < users.length; i++) {
         if (users[i].username === username || users[i].email === username) {
@@ -112,12 +113,17 @@ function forgotPassword() {
     }
 
     if (index === -1) {
-        alert('Tài khoản không tồn tại. Vui lòng kiểm tra lại.');
+        Swal.fire('Lỗi', 'Tài khoản không tồn tại. Vui lòng kiểm tra lại!', 'error');
         return; 
     }
 
     if (passBox.classList.contains('d-none')) {
-        alert('Tài khoản hợp lệ. Vui lòng nhập mật khẩu mới.');
+        Swal.fire({
+            title: 'Xác thực thành công',
+            text: 'Tài khoản hợp lệ. Vui lòng nhập mật khẩu mới bên dưới.',
+            icon: 'success',
+            confirmButtonColor: '#111'
+        });
         passBox.classList.remove('d-none');
         passBox.classList.add('d-flex');
         document.getElementById('forgotBtn').innerText = 'Xác nhận thay đổi';
@@ -125,17 +131,23 @@ function forgotPassword() {
     }
 
     if (newPass === "" || confirmPass === "") {
-        alert('Vui lòng nhập đầy đủ mật khẩu mới.');
+        Swal.fire('Thông báo', 'Vui lòng nhập đầy đủ mật khẩu mới!', 'warning');
         return;
     }
 
     if (newPass === confirmPass) {
         users[index].password = newPass; 
         saveUsers(users); 
-        alert('Mật khẩu đã được cập nhật thành công!');
-        showLoginForm(); 
+        Swal.fire({
+            title: 'Thành công',
+            text: 'Mật khẩu của em đã được cập nhật!',
+            icon: 'success',
+            confirmButtonColor: '#111'
+        }).then(() => {
+            showLoginForm(); 
+        });
     } else {
-        alert('Mật khẩu xác nhận không khớp. Vui lòng thử lại.');
+        Swal.fire('Lỗi', 'Mật khẩu xác nhận không khớp. Thử lại nhé!', 'error');
     }
 }
 
@@ -150,16 +162,15 @@ function register(){
     let users = getUsers();
 
     if (!emailValidation.test(email)) {
-        alert('Vui lòng nhập đúng định dạng email.');
+        Swal.fire('Định dạng sai', 'Vui lòng nhập đúng địa chỉ email!', 'warning');
         return;
     }
 
     if (password !== confirmPassword) {
-        alert('Mật khẩu xác nhận không khớp.');
+        Swal.fire('Lỗi', 'Mật khẩu xác nhận không khớp nhau!', 'error');
         return;
     }
 
-    // Kiểm tra trùng lặp bằng vòng lặp
     let isDuplicate = false;
     for (let i = 0; i < users.length; i++) {
         if (users[i].username === username || users[i].email === email) {
@@ -169,7 +180,7 @@ function register(){
     }
 
     if (isDuplicate) {
-        alert('Email hoặc username đã tồn tại.');
+        Swal.fire('Đã tồn tại', 'Email hoặc tên đăng nhập này đã có người dùng rồi!', 'error');
         return;
     }
 
@@ -182,8 +193,14 @@ function register(){
     users.push(newUser);
     saveUsers(users);
 
-    alert('Đăng ký thành công!');
-    showLoginForm();
+    Swal.fire({
+        title: 'Chúc mừng!',
+        text: 'Em đã đăng ký tài khoản thành công.',
+        icon: 'success',
+        confirmButtonColor: '#111'
+    }).then(() => {
+        showLoginForm();
+    });
 }
 
 // Ẩn và hiện mật khẩu
@@ -268,70 +285,38 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
-function changeImage(element) {
-    const mainImg = document.getElementById('mainProductImg');
-    mainImg.src = element.src;
-    document.querySelectorAll('.thumbnail-list img').forEach(img => img.classList.remove('active-thumb'));
-    element.classList.add('active-thumb');
-}
-
-function selectColor(element) {
-    document.querySelectorAll('.color-thumb').forEach(img => img.classList.remove('active-color'));
-    element.classList.add('active-color');
-}
-
-function addToBag() {
-    const selectedSize = document.querySelector('.size-btn.active-size');
-    const productName = document.getElementById('productName').innerText;
-
-    if (!selectedSize) {
-        alert("Vui lòng chọn Size trước khi thêm vào giỏ hàng!");
-        return;
-    }
-    alert(`Thành công! Đã thêm ${productName} - Size ${selectedSize.innerText} vào giỏ hàng.`);
-}
-
+//hiện thông báo khi thanh toán thành công
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. TẢI DỮ LIỆU SẢN PHẨM DỰA TRÊN ID
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = parseInt(urlParams.get('id'));
+    let urlParams = new URLSearchParams(window.location.search);
+    let isPaymentSuccess = urlParams.get('payment_success');
+    let orderId = urlParams.get('order_id');
 
-    if (typeof productsDatabase !== 'undefined' && productId) {
-        const product = productsDatabase.find(p => p.id === productId);
-        
-        if (product) {
-            document.getElementById('productName').innerText = product.name;
-            document.getElementById('productCategory').innerText = product.category;
-            document.getElementById('productPrice').innerText = product.price;
-            document.getElementById('mainProductImg').src = product.mainImage;
-            document.title = `${product.name} - Basau Sneakers`;
+    if (isPaymentSuccess === 'true' && orderId) {
+        let orders = JSON.parse(localStorage.getItem('basau_orders')) || [];
+        let orderFound = false;
 
-            // Cập nhật Thumbnails
-            const thumbContainer = document.getElementById('thumbnailContainer');
-            thumbContainer.innerHTML = '';
-            product.thumbnails.forEach((thumb, index) => {
-                let activeClass = index === 0 ? 'active-thumb' : '';
-                thumbContainer.innerHTML += `<img src="${thumb}" class="img-thumbnail ${activeClass}" onclick="changeImage(this)">`;
+        // Tìm đơn hàng và cập nhật trạng thái
+        for (let i = 0; i < orders.length; i++) {
+            if (orders[i].id === orderId) {
+                if(orders[i].status !== 'Đã thanh toán 🟢') {
+                    orders[i].status = 'Đã thanh toán 🟢'; 
+                    orderFound = true;
+                }
+                break;
+            }
+        }
+
+        if (orderFound) {
+            localStorage.setItem('basau_orders', JSON.stringify(orders));
+            Swal.fire({
+                title: 'Thanh toán thành công!',
+                text: 'Tuyệt vời! Đơn hàng ' + orderId + ' của bạn đã được xác nhận.',
+                icon: 'success',
+                confirmButtonColor: '#27ae60'
+            }).then(() => {
+                // Xóa rác trên thanh địa chỉ để không bị F5 hiện lại
+                window.history.replaceState(null, null, window.location.pathname);
             });
-
-            // Cập nhật Colors
-            const colorContainer = document.getElementById('colorContainer');
-            colorContainer.innerHTML = ''; 
-            product.colors.forEach((color, index) => {
-                let activeClass = index === 0 ? 'active-color' : '';
-                colorContainer.innerHTML += `<img src="${color}" class="color-thumb border ${activeClass}" onclick="selectColor(this)">`;
-            });
-        } else {
-            document.getElementById('productName').innerText = "Sản phẩm không tồn tại";
         }
     }
-
-    // 2. CHỌN SIZE
-    const sizeButtons = document.querySelectorAll('.size-btn');
-    sizeButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            sizeButtons.forEach(b => b.classList.remove('active-size'));
-            this.classList.add('active-size');
-        });
-    });
 });

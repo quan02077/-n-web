@@ -67,19 +67,23 @@ function patchProductsDatabase() {
 // 2. CHUYỂN ĐỔI TAB GIAO DIỆN (Thêm, Sửa, Xóa)
 // ----------------------------------------------------
 function switchAdminTab(tab) {
-    let tabs = ['add', 'edit', 'delete'];
+    let tabs = ['add', 'edit', 'delete', 'orders']; 
     for (let i = 0; i < tabs.length; i++) {
         let t = tabs[i];
-        document.getElementById('adm-panel-' + t).classList.remove('active');
-        document.getElementById('adm-tab-' + t).classList.remove('active');
+        let panel = document.getElementById('adm-panel-' + t);
+        let btn = document.getElementById('adm-tab-' + t);
+
+        if (panel) panel.classList.remove('active');
+        if (btn) btn.classList.remove('active');
 
         if (t === tab) {
-            document.getElementById('adm-panel-' + t).classList.add('active');
-            document.getElementById('adm-tab-' + t).classList.add('active');
+            if (panel) panel.classList.add('active');
+            if (btn) btn.classList.add('active');
         }
     }
     if (tab === 'edit') loadEditList();
     if (tab === 'delete') loadDeleteList();
+    if (tab === 'orders') loadOrdersList(); 
 }
 
 // ----------------------------------------------------
@@ -336,6 +340,45 @@ function renderProductList(containerId, products, mode) {
         }
     }
     container.innerHTML = htmlContent;
+}
+
+// ----------------------------------------------------
+// HIỂN THỊ DANH SÁCH ĐƠN HÀNG (TRONG TAB ĐƠN HÀNG)
+// ----------------------------------------------------
+function loadOrdersList() {
+    let container = document.getElementById('orderListContainer');
+    if (!container) return;
+
+    let orders = JSON.parse(localStorage.getItem('basau_orders')) || [];
+    if (orders.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:40px; color:#888; font-size: 16px;">Chưa có đơn hàng nào trên hệ thống.</div>';
+        return;
+    }
+
+    let htmlStr = '';
+    [...orders].reverse().forEach(o => { 
+        let badgeColor = o.status.includes('Đã thanh toán') ? '#27ae60' : '#f39c12';
+        htmlStr += `
+            <div style="border:1px solid #eee; padding:20px; margin-bottom:15px; border-radius:10px; background:#fafafa; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 10px;">
+                    <strong style="color:#111; font-size: 16px; font-family: 'Oswald', sans-serif;">ĐƠN HÀNG: ${o.id}</strong>
+                    <span style="background:${badgeColor}; color:#fff; padding:5px 12px; border-radius:50px; font-size:12px; font-weight:bold; letter-spacing: 0.5px;">${o.status.toUpperCase()}</span>
+                </div>
+                <div style="font-size:15px; color:#444; line-height: 1.8;">
+                    Khách hàng: <strong>${o.customer}</strong> <br>
+                    Điện thoại: <strong>${o.phone}</strong> <br>
+                    Địa chỉ: ${o.address} <br>
+                    Thời gian đặt: <span style="color:#888;">${o.date}</span> <br>
+                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ccc; display:flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: bold; color: #555;">TỔNG THANH TOÁN:</span>
+                        <strong style="color:#dc3545; font-size:20px;">${o.total.toLocaleString('vi-VN')}₫</strong>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = htmlStr;
 }
 
 function filterAdminList(mode) {

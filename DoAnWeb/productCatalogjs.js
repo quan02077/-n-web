@@ -8,7 +8,7 @@ let currentSearch = "";
 let displayedProducts = [];
 let currentPage = 1; 
 let itemsPerPage = 6;
-let isSearchMode = false; // Cờ theo dõi xem có đang dùng thanh tìm kiếm không
+let isSearchMode = false; 
 
 function selectBrand(element) {
     let tabs = document.querySelectorAll('.brand-tab');
@@ -33,60 +33,77 @@ function applyFilters() {
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
             let val = checkboxes[i].value;
-            if (val === "Nam" || val === "Nữ" || val === "Unisex") filterGenders.push(val);
-            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép") filterCategories.push(val);
-            else if (val === "New Arrival" || val === "Sale Off" || val === "Best Seller") filterBadges.push(val);
-            else if (val === "under2m" || val === "2m-4m" || val === "over4m") filterPrices.push(val);
+            if (val === "Nam" || val === "Nữ" || val === "Unisex") 
+                filterGenders.push(val);
+            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép") 
+                filterCategories.push(val);
+            else if (val === "New Arrival" || val === "Sale Off" || val === "Best Seller") 
+                filterBadges.push(val);
+            else if (val === "under2m" || val === "2m-4m" || val === "over4m") 
+                filterPrices.push(val);
         }
     }
 
-    // YÊU CẦU 1: CẬP NHẬT TIÊU ĐỀ TRANG CỰC KỲ THÔNG MINH
     let pageTitle = document.getElementById('pageTitle');
     if (pageTitle && !isSearchMode) {
-        if (filterGenders.length === 1) {
-            // Nếu chỉ tick 1 giới tính -> Hiện Giày Nam / Giày Nữ
+        if (filterGenders.length === 1) 
             pageTitle.innerText = filterGenders[0];
-        } else if (filterGenders.length > 1) {
+        else if (filterGenders.length > 1) 
             pageTitle.innerText = "Nam & Nữ";
-        } else if (currentBrand !== 'all') {
+        else if (currentBrand !== 'all') 
             pageTitle.innerText = currentBrand;
-        } else {
+        else 
             pageTitle.innerText = "Tất cả sản phẩm";
-        }
     }
 
     displayedProducts = [];
-    
-    // Lấy danh sách từ hệ thống tổng (admin.js) hoặc data gốc
     let allProducts = (typeof getAllProducts === 'function') ? getAllProducts() : productsDatabase;
 
     for (let i = 0; i < allProducts.length; i++) {
         let product = allProducts[i];
         let isValid = true;
 
-        if (currentBrand !== "all" && product.brand !== currentBrand) isValid = false;
+        if (currentBrand !== "all" && product.brand !== currentBrand) 
+            isValid = false;
+        if (filterGenders.length > 0 && !filterGenders.includes(product.gender)) 
+            isValid = false;
+        if (filterCategories.length > 0 && !filterCategories.includes(product.category)) 
+            isValid = false;
 
-        if (filterGenders.length > 0 && !filterGenders.includes(product.gender)) isValid = false;
-        if (filterCategories.length > 0 && !filterCategories.includes(product.category)) isValid = false;
-        if (filterBadges.length > 0 && !filterBadges.includes(product.badge)) isValid = false;
+        if (filterBadges.length > 0) {
+            let pBadge = (product.badge || "").toLowerCase();
+            let standardBadge = product.badge; 
+            
+            if (pBadge.includes("new")) 
+                standardBadge = "New Arrival";
+            else if (pBadge.includes("sale")) 
+                standardBadge = "Sale Off";
+            else if (pBadge.includes("best")) 
+                standardBadge = "Best Seller";
+
+            if (!filterBadges.includes(standardBadge)) 
+                isValid = false;
+        }
 
         if (filterPrices.length > 0) {
             let matchPrice = false;
             for (let j = 0; j < filterPrices.length; j++) {
                 let p = filterPrices[j];
-                if (p === "under2m" && product.price < 2000000) matchPrice = true;
-                if (p === "2m-4m" && product.price >= 2000000 && product.price <= 4000000) matchPrice = true;
-                if (p === "over4m" && product.price > 4000000) matchPrice = true;
+                if (p === "under2m" && product.price < 2000000) 
+                    matchPrice = true;
+                if (p === "2m-4m" && product.price >= 2000000 && product.price <= 4000000) 
+                    matchPrice = true;
+                if (p === "over4m" && product.price > 4000000) 
+                    matchPrice = true;
             }
-            if (matchPrice === false) isValid = false;
+            if (matchPrice === false) 
+                isValid = false;
         }
 
-        // YÊU CẦU 2: ƯU TIÊN TÌM KIẾM
         if (currentSearch !== "") {
             let searchLower = currentSearch.toLowerCase();
             let nameLower = product.name.toLowerCase();
             let brandLower = product.brand.toLowerCase();
-            // Nếu không khớp tên hoặc hãng thì loại luôn
             if (!nameLower.includes(searchLower) && !brandLower.includes(searchLower)) {
                 isValid = false;
             }

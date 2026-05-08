@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
-<body>
+<body class="fs-5">
     <div class="container my-5" style="min-height: 60vh;">
         <h2 class="fw-bold oswald-font mb-4">THÔNG TIN THANH TOÁN</h2>
 
@@ -36,9 +36,28 @@
                             placeholder="VD: emailcuaban@gmail.com">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Địa chỉ giao hàng chi tiết</label>
-                        <textarea class="form-control" id="cusAddress" rows="3" required
-                            placeholder="Số nhà, Đường, Phường/Xã, Quận/Huyện, Tỉnh/TP"></textarea>
+                        <div class="row g-2 mb-3">
+                            <div class="col-12"><label class="form-label fw-bold">Địa chỉ giao hàng</label></div>
+                            <div class="col-md-4">
+                                <select class="form-select" id="citySelect" required>
+                                    <option value="" selected disabled>Chọn Tỉnh / Thành</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select" id="districtSelect" required disabled>
+                                    <option value="" selected disabled>Chọn Quận / Huyện</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select" id="wardSelect" required disabled>
+                                    <option value="" selected disabled>Chọn Phường / Xã</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <input type="text" class="form-control" id="homeAddress" required
+                                    placeholder="Số nhà, Tên đường...">
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-dark w-100 fw-bold fs-5 mt-3 py-2" id="btnSubmitOrder">CHẤP
@@ -48,7 +67,7 @@
 
             <div class="col-md-5 mt-4 mt-md-0">
                 <div class="p-4 border rounded shadow-sm bg-light">
-                    <h5 class="fw-bold mb-3 border-bottom pb-2">Đơn hàng của bạn</h5>
+                    <h5 class="fw-bold mb-3 border-bottom pb-2 fs-5">Đơn hàng của bạn</h5>
                     <div id="checkoutItems" class="mt-3">
                     </div>
                 </div>
@@ -56,6 +75,7 @@
         </div>
     </div>
     <script src="checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

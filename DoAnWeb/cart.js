@@ -71,9 +71,9 @@ function renderCartPanel() {
             <div class="cart-item">
                 <img src="${item.img}" class="cart-item-img">
                 <div style="flex:1; min-width:0;">
-                    <div style="font-weight:700; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.name}</div>
-                    <div style="color:#888; font-size:12px; margin:4px 0;">Size: ${item.size}</div>
-                    <div style="color:#dc3545; font-weight:700;">${(item.price * item.quantity).toLocaleString('vi-VN')}₫</div>
+                    <div style="font-weight:700; font-size:20px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.name}</div>
+                    <div style="color:#888; font-size:16px; margin:4px 0;">Size: ${item.size}</div>
+                    <div style="color:#dc3545; font-weight:700; font-size:16px;">${(item.price * item.quantity).toLocaleString('vi-VN')}₫</div>
                     <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
                         <button class="cart-qty-btn" onclick="changeCartQty(${i}, -1)">−</button>
                         <span style="font-weight:700;">${item.quantity}</span>
@@ -95,13 +95,25 @@ function renderCartPanel() {
     `;
 }
 
-// CÁC HÀM XỬ LÝ DỮ LIỆU
+function getCartKey() {
+    let userData = localStorage.getItem('currentUser');
+    let user = userData ? JSON.parse(userData) : null;
+
+    if (user && user.username) {
+        return 'basau_cart_' + user.username; 
+    }
+
+    return 'basau_cart_guest'; 
+}
+
 function getCart() {
-    return JSON.parse(localStorage.getItem('basau_cart')) || [];
+    let key = getCartKey();
+    return JSON.parse(localStorage.getItem(key)) || [];
 }
 
 function saveCart(cart) {
-    localStorage.setItem('basau_cart', JSON.stringify(cart));
+    let key = getCartKey();
+    localStorage.setItem(key, JSON.stringify(cart));
     updateCartCount();
 }
 
@@ -121,10 +133,22 @@ function removeCartItem(index) {
 }
 
 function clearCart() {
-    if (confirm('Bạn có muốn xóa toàn bộ giỏ hàng không?')) { 
-        saveCart([]); 
-        renderCartPanel(); 
-    }
+    Swal.fire({
+        title: 'Xóa giỏ hàng?',
+        text: "Bạn có chắc muốn xóa toàn bộ sản phẩm không?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#111',
+        confirmButtonText: 'Xóa sạch',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            saveCart([]); 
+            renderCartPanel(); 
+            Swal.fire('Đã xóa!', 'Giỏ hàng của bạn hiện đang trống.', 'success');
+        }
+    });
 }
 
 function updateCartCount() {

@@ -85,41 +85,55 @@ function saveAccountInfo() {
     let newEmail = document.getElementById('accEditEmail').value.trim();
 
     if (newName === "" || newEmail === "") {
-        alert("Vui lòng không để trống Tên và Email nhé!"); return;
+        Swal.fire('Khoan đã', 'Vui lòng không để trống Tên và Email nhé!', 'warning'); 
+        return;
     }
     if (!newEmail.includes("@")) {
-        alert("Email không đúng định dạng!"); return;
+        Swal.fire('Lỗi định dạng', 'Email không hợp lệ!', 'error'); 
+        return;
     }
 
     let user = JSON.parse(localStorage.getItem('currentUser'));
     user.username = newName;
     user.email = newEmail; 
-
     localStorage.setItem('currentUser', JSON.stringify(user));
     
     let accText = document.getElementById('userAccountText');
     if(accText) accText.innerText = newName;
 
-    alert("✅ Đã cập nhật Tên và Email thành công!");
+    Swal.fire('Tuyệt vời', 'Đã cập nhật Tên và Email thành công!', 'success');
 }
 
 function changeAccountPassword() {
     let newPass = document.getElementById('accNewPass').value.trim();
     if (newPass.length < 3) {
-        alert("Mật khẩu mới phải từ 3 ký tự trở lên nha."); return;
+        Swal.fire('Lưu ý', 'Mật khẩu mới phải từ 3 ký tự trở lên nha.', 'info'); 
+        return;
     }
     let user = JSON.parse(localStorage.getItem('currentUser'));
     user.password = newPass;
     localStorage.setItem('currentUser', JSON.stringify(user));
     document.getElementById('accNewPass').value = "";
-    alert("✅ Đã đổi mật khẩu mới!");
+    
+    Swal.fire('Thành công', 'Đã đổi mật khẩu mới!', 'success');
 }
 
 function logoutUser() {
-    if(confirm("Xác nhận đăng xuất khỏi hệ thống?")) {
-        localStorage.removeItem('currentUser');
-        window.location.href = "homePage.html";
-    }
+    Swal.fire({
+        title: 'Đăng xuất?',
+        text: "Bạn có chắc chắn muốn thoát khỏi hệ thống?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#111',
+        confirmButtonText: 'Đăng xuất',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem('currentUser');
+            window.location.href = "homePage.html";
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {

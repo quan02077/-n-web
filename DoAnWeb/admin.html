@@ -20,9 +20,10 @@
             </div>
 
             <div class="adm-tabs">
-                <button class="adm-tab active" id="adm-tab-add" onclick="switchAdminTab('add')">＋ Thêm mới</button>
-                <button class="adm-tab" id="adm-tab-edit" onclick="switchAdminTab('edit')">✎ Điều chỉnh</button>
-                <button class="adm-tab" id="adm-tab-delete" onclick="switchAdminTab('delete')">🗑 Xóa sản phẩm</button>
+                <button class="adm-tab active" id="adm-tab-add" onclick="switchAdminTab('add')">Thêm mới</button>
+                <button class="adm-tab" id="adm-tab-edit" onclick="switchAdminTab('edit')">Điều chỉnh</button>
+                <button class="adm-tab" id="adm-tab-delete" onclick="switchAdminTab('delete')">Xóa sản phẩm</button>
+                <button class="adm-tab" id="adm-tab-orders" onclick="switchAdminTab('orders')">Đơn hàng</button>
             </div>
 
             <div class="adm-panel active" id="adm-panel-add">
@@ -113,11 +114,18 @@
                 <div class="adm-search-wrap"><input id="deleteSearch" type="text" placeholder="Tìm kiếm sản phẩm..." oninput="filterAdminList('delete')"></div>
                 <div class="adm-scroll-list" id="deleteList"></div>
             </div>
+            
+            <div class="adm-panel" id="adm-panel-orders">
+                <p class="adm-section-title">DANH SÁCH ĐƠN HÀNG TRÊN HỆ THỐNG</p>
+                <div class="adm-scroll-list" id="orderListContainer" style="max-height: 550px; background: #fff;">
+                    </div>
+            </div>
 
         </div>
     </div>
 
     <script src="data.js"></script>
     <script src="admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
