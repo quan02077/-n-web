@@ -47,6 +47,8 @@ function injectAccountHTML() {
             <button onclick="changeAccountPassword()" class="btn btn-outline-dark w-100 fw-bold mb-5">CẬP NHẬT MẬT KHẨU</button>
 
             <button onclick="logoutUser()" class="btn btn-danger w-100 fw-bold py-2 mt-auto rounded-pill">ĐĂNG XUẤT</button>
+
+            <button onclick="viewMyOrders()" class="btn btn-outline-primary w-100 fw-bold mb-4 mt-3">LỊCH SỬ MUA HÀNG</button>
         </div>
     `;
 

@@ -449,3 +449,46 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 patchProductsDatabase();
+
+function viewMyOrders() {
+    // 1. Lấy thông tin người đang đăng nhập
+    let userData = localStorage.getItem('currentUser');
+    if (!userData) return;
+    let user = JSON.parse(userData);
+
+    // 2. Lấy toàn bộ kho đơn hàng chung
+    let allOrders = JSON.parse(localStorage.getItem('basau_orders')) || [];
+
+    // 3. BỘ LỌC THẦN THÁNH: Chỉ lấy đơn nào có Email trùng với Email người dùng
+    let myOrders = allOrders.filter(o => o.email === user.email);
+
+    if (myOrders.length === 0) {
+        Swal.fire('Trống', 'Em chưa có đơn hàng nào cả. Đi mua sắm ngay thôi!', 'info');
+        return;
+    }
+
+    let htmlStr = '<div style="text-align:left; max-height:450px; overflow-y:auto; padding-right:10px;">';
+    myOrders.slice().reverse().forEach(o => { 
+        let badgeColor = o.status.includes('Đã thanh toán') ? '#27ae60' : '#f39c12';
+        htmlStr += `
+            <div style="border:1px solid #ddd; padding:15px; margin-bottom:12px; border-radius:10px; background:#fafafa; font-family: sans-serif;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                    <strong style="color:#333;">Mã: ${o.id}</strong>
+                    <span style="background:${badgeColor}; color:#fff; padding:2px 8px; border-radius:5px; font-size:12px; font-weight:bold;">${o.status}</span>
+                </div>
+                <div style="font-size:14px; color:#555;">
+                    Ngày đặt: <strong>${o.date}</strong> <br>
+                    Tổng tiền: <strong style="color:#dc3545; font-size:16px;">${o.total.toLocaleString('vi-VN')}₫</strong>
+                </div>
+            </div>`;
+    });
+    htmlStr += '</div>';
+
+    Swal.fire({
+        title: 'LỊCH SỬ MUA HÀNG',
+        html: htmlStr,
+        width: '550px',
+        showCloseButton: true,
+        showConfirmButton: false
+    });
+}
