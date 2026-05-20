@@ -30,7 +30,7 @@ function showLoginForm() {
 
     document.getElementById('forgotForm').reset();
     document.getElementById('registerForm').reset();
-    document.getElementById('passBox').classList.add('d-none'); 
+    document.getElementById('passBox').classList.add('d-none');
     document.getElementById('passBox').classList.remove('d-flex');
     document.getElementById('forgotBtn').innerText = 'Kiểm tra';
 }
@@ -45,8 +45,8 @@ function showRegisterForm() {
 // Khởi tạo CSDL mẫu nếu chưa có
 if (!localStorage.getItem('users')) {
     let initialUsers = [
-        { email: 'quan02077@gmail.com', username: 'Minh Quan', password: '123456', role: 'Nhân viên'},
-        { email: 'A123@gmail.com', username: 'Nguyen Van A', password: '123456', role: 'Khách hàng'},
+        { email: 'quan02077@gmail.com', username: 'Minh Quan', password: '123456', role: 'Nhân viên' },
+        { email: 'A123@gmail.com', username: 'Nguyen Van A', password: '123456', role: 'Khách hàng' },
     ];
     saveUsers(initialUsers);
 }
@@ -57,7 +57,7 @@ function login() {
     let password = document.getElementById('password').value;
     let role = document.getElementById('roleSelection').value;
     let users = getUsers();
-    
+
     let userExists = false;
     for (let i = 0; i < users.length; i++) {
         if (users[i].username === username) { userExists = true; break; }
@@ -70,8 +70,8 @@ function login() {
 
     let user = null;
     for (let i = 0; i < users.length; i++) {
-        if ((users[i].username === username || users[i].email === username) && 
-            users[i].password === password && 
+        if ((users[i].username === username || users[i].email === username) &&
+            users[i].password === password &&
             users[i].role === role) {
             user = users[i];
             break;
@@ -83,7 +83,7 @@ function login() {
             title: 'Xin chào!',
             text: 'Đăng nhập thành công',
             icon: 'success',
-            timer: 1500, 
+            timer: 1500,
             showConfirmButton: false
         }).then(() => {
             localStorage.setItem('currentUser', JSON.stringify(user));
@@ -101,9 +101,9 @@ function forgotPassword() {
     let newPass = document.getElementById('newPassword').value;
     let confirmPass = document.getElementById('confirmPassword').value;
     let passBox = document.getElementById('passBox');
-    
+
     let users = getUsers();
-    
+
     let index = -1;
     for (let i = 0; i < users.length; i++) {
         if (users[i].username === username || users[i].email === username) {
@@ -114,7 +114,7 @@ function forgotPassword() {
 
     if (index === -1) {
         Swal.fire('Lỗi', 'Tài khoản không tồn tại. Vui lòng kiểm tra lại!', 'error');
-        return; 
+        return;
     }
 
     if (passBox.classList.contains('d-none')) {
@@ -136,15 +136,15 @@ function forgotPassword() {
     }
 
     if (newPass === confirmPass) {
-        users[index].password = newPass; 
-        saveUsers(users); 
+        users[index].password = newPass;
+        saveUsers(users);
         Swal.fire({
             title: 'Thành công',
             text: 'Mật khẩu của em đã được cập nhật!',
             icon: 'success',
             confirmButtonColor: '#111'
         }).then(() => {
-            showLoginForm(); 
+            showLoginForm();
         });
     } else {
         Swal.fire('Lỗi', 'Mật khẩu xác nhận không khớp. Thử lại nhé!', 'error');
@@ -152,7 +152,7 @@ function forgotPassword() {
 }
 
 // Đăng ký
-function register(){
+function register() {
     let email = document.getElementById('registerEmail').value.trim();
     let username = document.getElementById('registerUsername').value.trim();
     let password = document.getElementById('registerPassword').value;
@@ -184,11 +184,11 @@ function register(){
         return;
     }
 
-    let newUser = { 
-        email: email, 
-        username: username, 
-        password: password, 
-        role: role 
+    let newUser = {
+        email: email,
+        username: username,
+        password: password,
+        role: role
     };
     users.push(newUser);
     saveUsers(users);
@@ -206,7 +206,7 @@ function register(){
 // Ẩn và hiện mật khẩu
 let checkboxes = document.querySelectorAll("input[type='checkbox'][id^='showPass']");
 for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].addEventListener("change", function() {
+    checkboxes[i].addEventListener("change", function () {
         let form = checkboxes[i].closest("form");
         let passwords = form.querySelectorAll(".password-field");
 
@@ -221,46 +221,46 @@ for (let i = 0; i < checkboxes.length; i++) {
 }
 
 // Hiển thị tài khoản khi đăng nhập thành công
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
         let currentUser = JSON.parse(currentUserData);
-        
+
         let userAccountText = document.getElementById('userAccountText');
         let userIconImg = document.getElementById('userIconImg');
         let userAccountLink = document.getElementById('userAccountLink');
 
         if (userAccountText && userIconImg && userAccountLink) {
             userAccountText.innerText = currentUser.username;
-            userIconImg.src = "hinhAnh/userHomeIcon.png"; 
+            userIconImg.src = "hinhAnh/userHomeIcon.png";
 
-            userAccountLink.href = "#"; 
+            userAccountLink.href = "#";
         }
     }
 });
 
 // Nhấn Enter
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         let loginForm = document.getElementById('loginForm');
         let registerForm = document.getElementById('registerForm');
         let forgotForm = document.getElementById('forgotForm');
 
         if (loginForm && !loginForm.classList.contains('d-none')) {
-            event.preventDefault(); 
+            event.preventDefault();
             document.getElementById('loginBtn').click();
         } else if (registerForm && !registerForm.classList.contains('d-none')) {
-            event.preventDefault(); 
+            event.preventDefault();
             document.getElementById('registerBtn').click();
         } else if (forgotForm && !forgotForm.classList.contains('d-none')) {
-            event.preventDefault(); 
+            event.preventDefault();
             document.getElementById('forgotBtn').click();
         }
     }
 });
 
 // Clear form
-window.onload = function() {
+window.onload = function () {
     let loginForm = document.getElementById('loginForm');
     let registerForm = document.getElementById('registerForm');
     let forgotForm = document.getElementById('forgotForm');
@@ -271,12 +271,12 @@ window.onload = function() {
 };
 
 // Menu 3 gạch
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let menuToggle = document.querySelector('.menu-toggle');
     let menu = document.querySelector('.menu');
 
     if (menuToggle && menu) {
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function () {
             if (menu.classList.contains('active')) {
                 menu.classList.remove('active');
             } else {
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 //hiện thông báo khi thanh toán thành công
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let urlParams = new URLSearchParams(window.location.search);
     let isPaymentSuccess = urlParams.get('payment_success');
     let orderId = urlParams.get('order_id');
@@ -298,8 +298,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Tìm đơn hàng và cập nhật trạng thái
         for (let i = 0; i < orders.length; i++) {
             if (orders[i].id === orderId) {
-                if(orders[i].status !== 'Đã thanh toán 🟢') {
-                    orders[i].status = 'Đã thanh toán 🟢'; 
+                if (orders[i].status !== 'Đã thanh toán 🟢') {
+                    orders[i].status = 'Đã thanh toán 🟢';
                     orderFound = true;
                 }
                 break;
@@ -320,3 +320,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+//Đếm ngược ở homePage
+const Days = document.getElementById('days');
+const Hours = document.getElementById('hours');
+const Minutes = document.getElementById('minutes');
+const Seconds = document.getElementById('seconds');
+
+const targetDate = new Date("Jun 13 2026 00:00:00").getTime();
+
+function timer() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / 1000 / 60 / 60 / 24);
+    const hours = Math.floor(distance / 1000 / 60 / 60) % 24;
+    const minutes = Math.floor(distance / 1000 / 60) % 60;
+    const seconds = Math.floor(distance / 1000) % 60;
+
+    Days.innerHTML = days + ' <small class="d-block fs-6 fw-normal">Ngày</small>';
+    Hours.innerHTML = hours + ' <small class="d-block fs-6 fw-normal">Giờ</small>';
+    Minutes.innerHTML = minutes + ' <small class="d-block fs-6 fw-normal">Phút</small>';
+    Seconds.innerHTML = seconds + ' <small class="d-block fs-6 fw-normal">Giây</small>';
+
+    if (distance < 0) {
+        Days.innerHTML = "00 <small class='d-block fs-6 fw-normal'>Ngày</small>";
+        Hours.innerHTML = "00 <small class='d-block fs-6 fw-normal'>Giờ</small>";
+        Minutes.innerHTML = "00 <small class='d-block fs-6 fw-normal'>Phút</small>";
+        Seconds.innerHTML = "00 <small class='d-block fs-6 fw-normal'>Giây</small>";
+    }
+}
+setInterval(timer, 1000);
+
