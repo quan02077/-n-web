@@ -320,3 +320,96 @@ body {
     display: block;
     opacity: 1;
 }
+
+/* Định dạng giao diện Thống kê - Dashboard trong Admin */
+.stats-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stats-card {
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-revenue {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+.card-orders {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+}
+
+.card-products {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+}
+
+.stats-card-val {
+    font-size: 28px;
+    font-weight: 800;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.stats-card-lbl {
+    font-size: 13px;
+    opacity: 0.9;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stats-charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.chart-container {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.chart-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.chart-box {
+    position: relative;
+    height: 280px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .stats-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stats-charts-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}

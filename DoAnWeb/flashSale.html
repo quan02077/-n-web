@@ -24,14 +24,14 @@
                             src="hinhAnh/quanlyIcon.png" width="16" class="me-1 opacity-75">Quản lý sản phẩm</a>
                 </div>
                 <div class="tienich">
-                    <a href="#" class="text-secondary text-decoration-none"><img src="hinhAnh/cartIcon.png" width="16"
+                    <a href="#" class="text-secondary text-decoration-none" onclick="handleCartLinkClick(event)"><img src="hinhAnh/cartIcon.png" width="16"
                             class="me-1 opacity-75">Giỏ hàng (0)</a>
                 </div>
                 <div class="tienich">
-                    <a href="#" class="text-secondary text-decoration-none">♡ Yêu thích</a>
+                    <a href="#" class="text-secondary text-decoration-none" onclick="handleFavLinkClick(event)">♡ Yêu thích</a>
                 </div>
                 <div class="tienich">
-                    <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink">
+                    <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink" onclick="handleAccountLinkClick(event)">
                         <img src="hinhAnh/userHomeIcon.png" id="userIconImg" width="16" class="me-1 opacity-75">
                         <span id="userAccountText">Đăng nhập</span>
                     </a>
@@ -46,7 +46,7 @@
                             style="height: 100px; width: 200px;"></a>
                 </div>
 
-                <div class="menu-toggle d-lg-none" style="cursor: pointer;">
+                <div class="menu-toggle d-lg-none" style="cursor: pointer;" onclick="toggleMenu()">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -120,7 +120,7 @@
                 </nav>
 
                 <div class="searchBar d-none d-lg-flex mt-4" style="flex: 1; justify-content: flex-end;">
-                    <input type="text" class="form-control rounded-pill custom-search"
+                    <input type="text" class="form-control rounded-pill custom-search" onkeyup="handleGeneralSearch(event, this)"
                         placeholder="Tìm kiếm sản phẩm...">
                 </div>
 

@@ -1,40 +1,40 @@
+//getcheckoutcartkey: lấy key giỏ hàng của người dùng hiện tại
 function getCheckoutCartKey() {
     let userData = localStorage.getItem('currentUser');
     let user = userData ? JSON.parse(userData) : null;
     return (user && user.username) ? 'basau_cart_' + user.username : 'basau_cart_guest';
 }
+
 let dataTinhThanh = [];
 
-// Hàm gọi API
+//fetchprovinces: tải dữ liệu tỉnh thành từ api
 function fetchProvinces() {
     fetch('https://provinces.open-api.vn/api/?depth=3')
         .then(response => response.json())
         .then(data => {
-            dataTinhThanh = data; // Cất vào tủ lạnh xài dần
-            renderCities();       // Gọi hàm vẽ danh sách Tỉnh
+            dataTinhThanh = data; 
+            renderCities();       
         })
         .catch(error => console.error("Lỗi tải Tỉnh thành:", error));
 }
 
-// Hàm vẽ danh sách Tỉnh/Thành
+//rendercities: hiển thị danh sách tỉnh thành
 function renderCities() {
     let citySelect = document.getElementById('citySelect');
     let html = '<option value="" selected disabled>Chọn Tỉnh / Thành</option>';
     
-    // Lặp qua mảng dataTinhThanh để tạo thẻ <option>
     for (let i = 0; i < dataTinhThanh.length; i++) {
         html += `<option value="${dataTinhThanh[i].code}">${dataTinhThanh[i].name}</option>`;
     }
     citySelect.innerHTML = html;
 }
 
-// Bắt sự kiện khi khách chọn Tỉnh -> Mở ô Quận
-document.getElementById('citySelect').addEventListener('change', function() {
-    let cityCode = this.value; // Lấy mã Tỉnh khách vừa chọn
+//handlecitychange: xử lý khi chọn tỉnh thành
+function handleCityChange(select) {
+    let cityCode = select.value; 
     let districtSelect = document.getElementById('districtSelect');
     let wardSelect = document.getElementById('wardSelect');
     
-    // Tìm Tỉnh đó trong mảng dữ liệu gốc
     let selectedCity = dataTinhThanh.find(tinh => tinh.code == cityCode);
     
     let html = '<option value="" selected disabled>Chọn Quận / Huyện</option>';
@@ -43,20 +43,18 @@ document.getElementById('citySelect').addEventListener('change', function() {
     }
     
     districtSelect.innerHTML = html;
-    districtSelect.disabled = false; // Mở khóa ô Quận
+    districtSelect.disabled = false; 
     
-    // Reset lại ô Phường
     wardSelect.innerHTML = '<option value="" selected disabled>Chọn Phường / Xã</option>';
     wardSelect.disabled = true; 
-});
+}
 
-// Bắt sự kiện khi khách chọn Quận -> Mở ô Phường
-document.getElementById('districtSelect').addEventListener('change', function() {
-    let districtCode = this.value;
+//handledistrictchange: xử lý khi chọn quận huyện
+function handleDistrictChange(select) {
+    let districtCode = select.value;
     let cityCode = document.getElementById('citySelect').value;
     let wardSelect = document.getElementById('wardSelect');
     
-    // Tìm Quận đó nằm trong Tỉnh nào
     let selectedCity = dataTinhThanh.find(tinh => tinh.code == cityCode);
     let selectedDistrict = selectedCity.districts.find(quan => quan.code == districtCode);
     
@@ -66,31 +64,11 @@ document.getElementById('districtSelect').addEventListener('change', function() 
     }
     
     wardSelect.innerHTML = html;
-    wardSelect.disabled = false; // Mở khóa ô Phường
-});
+    wardSelect.disabled = false; 
+}
 
-// Chạy API ngay khi mở trang
-document.addEventListener('DOMContentLoaded', function() {
-    fetchProvinces();
-});
-
-emailjs.init("ZKkt1SbaCMqURDFyM"); 
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Đợi 100ms để đảm bảo trình duyệt đã sẵn sàng
-    setTimeout(loadCheckoutSummary, 100);
-
-    const form = document.getElementById('checkoutForm');
-    if (form) {
-        form.onsubmit = function(event) {
-            event.preventDefault();
-            processCheckout();
-        };
-    }
-});
-
+//loadcheckoutsummary: tải tóm tắt đơn hàng
 function loadCheckoutSummary() {
-    // Lấy dữ liệu từ localStorage
     let cartData = localStorage.getItem(getCheckoutCartKey());  
     let cart = cartData ? JSON.parse(cartData) : [];
     
@@ -125,7 +103,6 @@ function loadCheckoutSummary() {
         `;
     }
     
-    // Thêm dòng tổng cộng vào cuối danh sách
     html += `
         <div class="d-flex justify-content-between mt-3 pt-2">
             <span class="fw-bold fs-5">TỔNG CỘNG:</span>
@@ -136,7 +113,9 @@ function loadCheckoutSummary() {
     itemsContainer.innerHTML = html;
 }
 
-function processCheckout() {
+//processcheckout: xử lý thanh toán đơn hàng
+function processCheckout(event) {
+    if (event) event.preventDefault();
     let btnSubmit = document.getElementById('btnSubmitOrder');
     btnSubmit.innerText = "ĐANG XỬ LÝ...";
     btnSubmit.disabled = true;
@@ -162,7 +141,7 @@ function processCheckout() {
             Swal.fire('Giỏ hàng trống', 'Vui lòng chọn sản phẩm trước khi thanh toán!', 'warning');
             btnSubmit.innerText = "CHẤP NHẬN THANH TOÁN";
             btnSubmit.disabled = false;
-            return;
+            return false;
         }
 
         let tongTien = 0;
@@ -220,4 +199,13 @@ function processCheckout() {
         btnSubmit.innerText = "CHẤP NHẬN THANH TOÁN";
         btnSubmit.disabled = false;
     }
+    return false;
 }
+
+//initcheckout: khởi tạo trang thanh toán
+function initCheckout() {
+    fetchProvinces();
+    emailjs.init("ZKkt1SbaCMqURDFyM"); 
+    setTimeout(loadCheckoutSummary, 100);
+}
+document.addEventListener('DOMContentLoaded', initCheckout);

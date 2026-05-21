@@ -21,7 +21,7 @@
 
         <div class="row">
             <div class="col-md-7">
-                <form id="checkoutForm" class="p-4 border rounded shadow-sm bg-white">
+                <form id="checkoutForm" class="p-4 border rounded shadow-sm bg-white" onsubmit="return processCheckout(event)">
                     <div class="mb-3">
                         <label class="form-label fw-bold">Họ và tên người nhận</label>
                         <input type="text" class="form-control" id="cusName" required placeholder="VD: Nguyễn Văn A">
@@ -39,12 +39,12 @@
                         <div class="row g-2 mb-3">
                             <div class="col-12"><label class="form-label fw-bold">Địa chỉ giao hàng</label></div>
                             <div class="col-md-4">
-                                <select class="form-select" id="citySelect" required>
+                                <select class="form-select" id="citySelect" required onchange="handleCityChange(this)">
                                     <option value="" selected disabled>Chọn Tỉnh / Thành</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select" id="districtSelect" required disabled>
+                                <select class="form-select" id="districtSelect" required disabled onchange="handleDistrictChange(this)">
                                     <option value="" selected disabled>Chọn Quận / Huyện</option>
                                 </select>
                             </div>

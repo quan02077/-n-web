@@ -1,8 +1,4 @@
-// ============================================================
-//  SCRIPT DETAIL – Bản sửa lỗi chặn Đăng nhập
-// ============================================================
-
-// --- HÀM THÊM VÀO GIỎ HÀNG (CÓ CHỐT CHẶN) ---
+//addtocart: thêm sản phẩm vào giỏ hàng
 function addToCart() {
     let name = document.getElementById('productName').innerText;
     let priceText = document.getElementById('productPrice').innerText;
@@ -35,13 +31,12 @@ function addToCart() {
     }
 }
 
+//togglecurrentfavorite: thêm hoặc bỏ yêu thích sản phẩm hiện tại
 function toggleCurrentFavorite() {
-    // Lấy ID đôi giày từ trên thanh địa chỉ URL
     let urlParams = new URLSearchParams(window.location.search);
     let productId = parseInt(urlParams.get('id'));
     
     if (productId) {
-        // Gọi hàm thả tim từ file favourite.js
         if (typeof toggleFavorite === 'function') {
             toggleFavorite(productId);
         } else {
@@ -50,7 +45,7 @@ function toggleCurrentFavorite() {
     }
 }
 
-// --- HÀM RANDOM SẢN PHẨM GỢI Ý ---
+//renderrandomrelatedproducts: tải ngẫu nhiên các sản phẩm liên quan
 function renderRandomRelatedProducts(currentProductId) {
     let container = document.getElementById('relatedProducts');
     if (!container || typeof productsDatabase === 'undefined') return;
@@ -79,8 +74,15 @@ function renderRandomRelatedProducts(currentProductId) {
     container.innerHTML = htmlContent;
 }
 
-// --- KHỞI CHẠY KHI MỞ TRANG ---
-window.onload = function() {
+//selectsize: chọn size sản phẩm
+function selectSize(btn) {
+    let sizeButtons = document.querySelectorAll('.size-btn');
+    sizeButtons.forEach(b => b.classList.remove('active-size'));
+    btn.classList.add('active-size');
+}
+
+//initproductdetail: tải thông tin chi tiết sản phẩm
+function initProductDetail() {
     let urlParams = new URLSearchParams(window.location.search);
     let productId = parseInt(urlParams.get('id'));
 
@@ -96,20 +98,11 @@ window.onload = function() {
         }
     }
 
-    // Logic chọn size
-    let sizeButtons = document.querySelectorAll('.size-btn');
-    sizeButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            sizeButtons.forEach(b => b.classList.remove('active-size'));
-            this.classList.add('active-size');
-        });
-    });
-
-    // Hiện tên user trên header
     let currentUserData = localStorage.getItem('currentUser');
     if (currentUserData && currentUserData !== "null") {
         let user = JSON.parse(currentUserData);
         let userText = document.getElementById('userAccountText');
         if (userText) userText.innerText = user.username;
     }
-};
+}
+window.onload = initProductDetail;

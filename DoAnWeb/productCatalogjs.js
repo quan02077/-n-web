@@ -10,6 +10,7 @@ let currentPage = 1;
 let itemsPerPage = 6;
 let isSearchMode = false; 
 
+//selectbrand: chọn thương hiệu sản phẩm
 function selectBrand(element) {
     let tabs = document.querySelectorAll('.brand-tab');
     for (let i = 0; i < tabs.length; i++) {
@@ -18,7 +19,6 @@ function selectBrand(element) {
     element.classList.add('active');
     currentBrand = element.getAttribute('data-brand');
     
-    // Nếu đang tìm kiếm thì không đổi link URL, giữ nguyên cờ
     if(!isSearchMode) {
         window.history.replaceState(null, null, "?brand=" + currentBrand);
     }
@@ -26,6 +26,7 @@ function selectBrand(element) {
     applyFilters();
 }
 
+//applyfilters: áp dụng các bộ lọc sản phẩm
 function applyFilters() {
     let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     let filterGenders = [], filterCategories = [], filterBadges = [], filterPrices = [];
@@ -116,6 +117,7 @@ function applyFilters() {
     applySort();
 }
 
+//applysort: sắp xếp danh sách sản phẩm
 function applySort() {
     let sortValue = document.getElementById('sortSelect').value;
     if (sortValue === "price-asc") {
@@ -126,13 +128,13 @@ function applySort() {
     renderProducts();
 }
 
+//clearallfilters: xóa tất cả bộ lọc
 function clearAllFilters() {
     let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
     }
     
-    // Nếu bấm xóa tất cả -> Reset luôn cả tìm kiếm
     currentSearch = ""; 
     isSearchMode = false;
     
@@ -142,12 +144,12 @@ function clearAllFilters() {
     let pageTitle = document.getElementById('pageTitle');
     if(pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
     
-    // Bật lại tab Tất cả
     let allTab = document.querySelector('.brand-tab[data-brand="all"]');
     if(allTab) selectBrand(allTab);
     else applyFilters();
 }
 
+//renderproducts: hiển thị danh sách sản phẩm
 function renderProducts() {
     let grid = document.getElementById('productGrid');
     let noResults = document.getElementById('noResults');
@@ -167,7 +169,6 @@ function renderProducts() {
 
     let totalPages = Math.ceil(displayedProducts.length / itemsPerPage);
     
-    // Tự động lùi trang nếu kết quả mới ít hơn trang hiện tại
     if (currentPage > totalPages) currentPage = 1;
     
     let startIndex = (currentPage - 1) * itemsPerPage;
@@ -225,16 +226,48 @@ function renderProducts() {
     if (paginationContainer) paginationContainer.innerHTML = paginationHTML;
 }
 
+//changepage: chuyển trang danh sách sản phẩm
 function changePage(pageNumber) {
     currentPage = pageNumber; 
     renderProducts(); 
     window.scrollTo({ top: 0, behavior: 'smooth' }); 
 } 
 
-// ============================================================
-// KHỞI CHẠY (BẮT URL & THANH TÌM KIẾM TRỰC TIẾP)
-// ============================================================
-window.onload = function() {
+//handlecatalogsearch: xử lý sự kiện gõ phím tìm kiếm
+function handleCatalogSearch(e, input) {
+    if (e.key === 'Enter') {
+        e.preventDefault(); 
+        let keyword = input.value.trim();
+        let pageTitle = document.getElementById('pageTitle');
+        
+        if (keyword !== '') {
+            currentSearch = keyword;
+            isSearchMode = true;
+            if (pageTitle) pageTitle.innerText = "Kết quả: '" + currentSearch + "'";
+        } else {
+            currentSearch = "";
+            isSearchMode = false;
+            if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
+        }
+        
+        currentPage = 1; 
+        applyFilters();
+    }
+}
+
+//handlecatalogsearchclear: xử lý xóa ô tìm kiếm
+function handleCatalogSearchClear(input) {
+    if (input.value === '') {
+        currentSearch = "";
+        isSearchMode = false;
+        let pageTitle = document.getElementById('pageTitle');
+        if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
+        applyFilters();
+    }
+}
+
+//initcatalog: khởi tạo trang danh mục sản phẩm
+function initCatalog() {
     let allCheckboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     allCheckboxes.forEach(chk => chk.checked = false);
     
@@ -245,7 +278,6 @@ window.onload = function() {
     let categoryFromUrl = urlParams.get('category'); 
     let searchFromUrl = urlParams.get('search'); 
 
-    // Mặc định không search
     isSearchMode = false;
     currentSearch = "";
 
@@ -264,13 +296,11 @@ window.onload = function() {
 
     let pageTitle = document.getElementById('pageTitle');
 
-    // NẾU CÓ URL SEARCH (Từ trang khác đá qua)
     if (searchFromUrl) {
         currentSearch = searchFromUrl;
         isSearchMode = true;
         if (pageTitle) pageTitle.innerText = "Kết quả: '" + currentSearch + "'";
         
-        // Cập nhật lại cái thanh input search cho khách dễ nhìn
         let searchInputs = document.querySelectorAll('.custom-search');
         searchInputs.forEach(input => input.value = currentSearch);
     } 
@@ -288,40 +318,5 @@ window.onload = function() {
     } 
     
     if (!isBrandSelected) applyFilters();
-
-    // LẮNG NGHE SỰ KIỆN GÕ TÌM KIẾM TRỰC TIẾP TẠI TRANG
-    let searchInputs = document.querySelectorAll('.custom-search');
-    for (let i = 0; i < searchInputs.length; i++) {
-        // Gõ Enter thì lọc luôn (Hoặc xóa trống rồi Enter thì reset lại)
-        searchInputs[i].addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault(); 
-                let keyword = this.value.trim();
-                
-                if (keyword !== '') {
-                    currentSearch = keyword;
-                    isSearchMode = true;
-                    if (pageTitle) pageTitle.innerText = "Kết quả: '" + currentSearch + "'";
-                } else {
-                    // KHÁCH XÓA HẾT CHỮ VÀ NHẤN ENTER -> TRỞ LẠI NHƯ CŨ
-                    currentSearch = "";
-                    isSearchMode = false;
-                    if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
-                }
-                
-                currentPage = 1; // Reset trang về 1
-                applyFilters();
-            }
-        });
-        
-        // Bắt luôn trường hợp khách bấm nút Xóa (dấu X) trên thanh tìm kiếm
-        searchInputs[i].addEventListener('search', function() {
-            if (this.value === '') {
-                currentSearch = "";
-                isSearchMode = false;
-                if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
-                applyFilters();
-            }
-        });
-    }
-};
+}
+window.onload = initCatalog;

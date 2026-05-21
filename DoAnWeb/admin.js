@@ -1,3 +1,4 @@
+//getallproducts: lấy tất cả sản phẩm
 function getAllProducts() {
     let base = [];
     if (typeof productsDatabase !== 'undefined') {
@@ -5,16 +6,12 @@ function getAllProducts() {
             base.push(productsDatabase[i]);
         }
     }
-
     let addedData = localStorage.getItem('basau_addedProducts');
     let added = addedData ? JSON.parse(addedData) : [];
-
     let editedData = localStorage.getItem('basau_editedProducts');
     let edited = editedData ? JSON.parse(editedData) : {};
-
     let deletedData = localStorage.getItem('basau_deletedIds');
     let deleted = deletedData ? JSON.parse(deletedData) : [];
-
     let allItems = [];
     for (let i = added.length - 1; i >= 0; i--) {
         allItems.push(added[i]);
@@ -31,11 +28,9 @@ function getAllProducts() {
             allItems.push(base[i]);
         }
     }
-
     let finalResult = [];
     for (let i = 0; i < allItems.length; i++) {
-        let item = allItems[i]; 
-
+        let item = allItems[i];
         if (deleted.indexOf(item.id) === -1) {
             if (edited[item.id]) {
                 let e = edited[item.id];
@@ -56,6 +51,7 @@ function getAllProducts() {
     return finalResult;
 }
 
+//patchproductsdatabase: ghi đè lại dữ liệu tạm thời
 function patchProductsDatabase() {
     if (typeof productsDatabase === 'undefined') return;
     let patched = getAllProducts();
@@ -63,11 +59,9 @@ function patchProductsDatabase() {
     for (let i = 0; i < patched.length; i++) productsDatabase.push(patched[i]);
 }
 
-// ----------------------------------------------------
-// 2. CHUYỂN ĐỔI TAB GIAO DIỆN (Thêm, Sửa, Xóa)
-// ----------------------------------------------------
+//switchadmintab: chuyển đổi tab giao diện admin
 function switchAdminTab(tab) {
-    let tabs = ['add', 'edit', 'delete', 'orders']; 
+    let tabs = ['add', 'edit', 'delete', 'orders', 'stats'];
     for (let i = 0; i < tabs.length; i++) {
         let t = tabs[i];
         let panel = document.getElementById('adm-panel-' + t);
@@ -83,18 +77,17 @@ function switchAdminTab(tab) {
     }
     if (tab === 'edit') loadEditList();
     if (tab === 'delete') loadDeleteList();
-    if (tab === 'orders') loadOrdersList(); 
+    if (tab === 'orders') loadOrdersList();
+    if (tab === 'stats') loadStatsDashboard();
 }
 
-// ----------------------------------------------------
-// 3. QUẢN LÝ KÍCH CỠ (SIZE), NHÃN DÁN
-// ----------------------------------------------------
 let _addSizes = [];
 let _editSizes = [];
 let currentEditId = null;
 
 let ALL_SIZES = ['EU 35', 'EU 35.5', 'EU 36', 'EU 36.5', 'EU 37', 'EU 37.5', 'EU 38', 'EU 38.5', 'EU 39', 'EU 39.5', 'EU 40', 'EU 40.5', 'EU 41', 'EU 41.5', 'EU 42', 'EU 42.5', 'EU 43', 'EU 44', 'EU 44.5', 'EU 45', 'EU 46', 'EU 47'];
 
+//buildsizegrid: tạo danh sách nút chọn size
 function buildSizeGrid(mode) {
     let grid = document.getElementById(mode + 'SizeGrid');
     let htmlContent = "";
@@ -104,6 +97,7 @@ function buildSizeGrid(mode) {
     grid.innerHTML = htmlContent;
 }
 
+//togglesize: bật tắt chọn size riêng lẻ
 function toggleSize(mode, btn) {
     let arr = (mode === 'add') ? _addSizes : _editSizes;
     let sz = btn.getAttribute('data-size');
@@ -118,6 +112,7 @@ function toggleSize(mode, btn) {
     }
 }
 
+//quicksize: chọn nhanh nhóm size có sẵn
 function quickSize(mode, preset) {
     let arr = (mode === 'add') ? _addSizes : _editSizes;
     let men = ['EU 39', 'EU 39.5', 'EU 40', 'EU 40.5', 'EU 41', 'EU 41.5', 'EU 42', 'EU 42.5', 'EU 43', 'EU 44', 'EU 44.5', 'EU 45', 'EU 46'];
@@ -133,7 +128,6 @@ function quickSize(mode, preset) {
         for (let i = 0; i < target.length; i++) arr.push(target[i]);
     }
 
-    // Cập nhật giao diện
     let grid = document.getElementById(mode + 'SizeGrid');
     let buttons = grid.querySelectorAll('.adm-size-chip');
     for (let i = 0; i < buttons.length; i++) {
@@ -143,13 +137,15 @@ function quickSize(mode, preset) {
     }
 }
 
+//setsizegrid: đặt danh sách size có sẵn vào grid
 function setSizeGrid(mode, sizes) {
     let arr = (mode === 'add') ? _addSizes : _editSizes;
     arr.length = 0;
     for (let i = 0; i < sizes.length; i++) arr.push(sizes[i]);
-    quickSize(mode, 'custom'); // Tái sử dụng hàm trên để update UI
+    quickSize(mode, 'custom'); 
 }
 
+//selectbadge: chọn nhãn dán cho sản phẩm
 function selectBadge(mode, btn) {
     let buttons = document.getElementById(mode + 'BadgeRow').querySelectorAll('.adm-badge-opt');
     for (let i = 0; i < buttons.length; i++) buttons[i].classList.remove('selected');
@@ -157,6 +153,7 @@ function selectBadge(mode, btn) {
     document.getElementById(mode + '_badge').value = btn.getAttribute('data-v');
 }
 
+//setbadge: đặt nhãn dán cho sản phẩm theo giá trị
 function setBadge(mode, val) {
     if (!val) val = '';
     let buttons = document.getElementById(mode + 'BadgeRow').querySelectorAll('.adm-badge-opt');
@@ -167,9 +164,7 @@ function setBadge(mode, val) {
     document.getElementById(mode + '_badge').value = val;
 }
 
-// ----------------------------------------------------
-// 4. XỬ LÝ LƯU DỮ LIỆU (THÊM, SỬA, XÓA)
-// ----------------------------------------------------
+//submitaddproduct: thêm sản phẩm mới
 function submitAddProduct() {
     let name = document.getElementById('add_name').value.trim();
     let price = parseInt(document.getElementById('add_price').value) || 0;
@@ -186,10 +181,10 @@ function submitAddProduct() {
             if (productsDatabase[i].id > maxId) maxId = productsDatabase[i].id;
         }
     }
-    
+
     let addedData = localStorage.getItem('basau_addedProducts');
     let added = addedData ? JSON.parse(addedData) : [];
-    
+
     for (let i = 0; i < added.length; i++) {
         if (added[i].id > maxId) maxId = added[i].id;
     }
@@ -217,6 +212,7 @@ function submitAddProduct() {
     setTimeout(function () { location.reload(); }, 1400);
 }
 
+//selectproducttoedit: chọn sản phẩm để sửa
 function selectProductToEdit(id) {
     let products = getAllProducts();
     let p = null;
@@ -242,6 +238,7 @@ function selectProductToEdit(id) {
     document.getElementById('editFormWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+//submiteditproduct: xác nhận sửa sản phẩm
 function submitEditProduct() {
     if (currentEditId === null) return;
 
@@ -275,6 +272,7 @@ function submitEditProduct() {
     setTimeout(function () { location.reload(); }, 1400);
 }
 
+//deleteproduct: xóa sản phẩm
 function deleteProduct(id, btn) {
     if (!confirm('Bạn có chắc muốn xóa sản phẩm này không?')) return;
 
@@ -295,19 +293,19 @@ function deleteProduct(id, btn) {
     showAdminToast('🗑 Đã xóa sản phẩm thành công!', '#e74c3c');
 }
 
-// ----------------------------------------------------
-// 5. HIỂN THỊ DANH SÁCH & THÔNG BÁO
-// ----------------------------------------------------
+//loadeditlist: tải danh sách sản phẩm để sửa
 function loadEditList() {
     renderProductList('editList', getAllProducts(), 'edit');
     document.getElementById('editFormWrap').style.display = 'none';
     currentEditId = null;
-}   
+}
 
+//loaddeletelist: tải danh sách sản phẩm để xóa
 function loadDeleteList() {
     renderProductList('deleteList', getAllProducts(), 'delete');
 }
 
+//renderproductlist: render danh sách sản phẩm ra màn hình
 function renderProductList(containerId, products, mode) {
     let container = document.getElementById(containerId);
     let htmlContent = "";
@@ -342,9 +340,7 @@ function renderProductList(containerId, products, mode) {
     container.innerHTML = htmlContent;
 }
 
-// ----------------------------------------------------
-// HIỂN THỊ DANH SÁCH ĐƠN HÀNG (TRONG TAB ĐƠN HÀNG)
-// ----------------------------------------------------
+//loadorderslist: tải danh sách đơn hàng
 function loadOrdersList() {
     let container = document.getElementById('orderListContainer');
     if (!container) return;
@@ -356,7 +352,7 @@ function loadOrdersList() {
     }
 
     let htmlStr = '';
-    [...orders].reverse().forEach(o => { 
+    [...orders].reverse().forEach(o => {
         let badgeColor = o.status.includes('Đã thanh toán') ? '#27ae60' : '#f39c12';
         htmlStr += `
             <div style="border:1px solid #eee; padding:20px; margin-bottom:15px; border-radius:10px; background:#fafafa; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
@@ -377,10 +373,11 @@ function loadOrdersList() {
             </div>
         `;
     });
-    
+
     container.innerHTML = htmlStr;
 }
 
+//filteradminlist: tìm kiếm sản phẩm trong admin
 function filterAdminList(mode) {
     let searchId = (mode === 'edit') ? 'editSearch' : 'deleteSearch';
     let listId = (mode === 'edit') ? 'editList' : 'deleteList';
@@ -395,6 +392,7 @@ function filterAdminList(mode) {
     }
 }
 
+//showadmintoast: hiển thị thông báo admin
 function showAdminToast(msg, bg) {
     let t = document.createElement('div');
     t.className = 'adm-toast';
@@ -405,28 +403,24 @@ function showAdminToast(msg, bg) {
     setTimeout(function () { t.classList.remove('show'); setTimeout(function () { t.remove(); }, 400); }, 2600);
 }
 
-// ----------------------------------------------------
-// KHỞI ĐỘNG VÀ KIỂM TRA QUYỀN TRUY CẬP
-// ----------------------------------------------------
+//checkadminaccess: kiểm tra quyền truy cập admin
 function checkAdminAccess() {
     let qlBtn = document.getElementById('QL_btn');
-    if (!qlBtn) return; // Trang nào không có nút này thì bỏ qua
+    if (!qlBtn) return; 
 
     let userData = localStorage.getItem('currentUser');
     let user = userData ? JSON.parse(userData) : null;
 
-    // ĐIỀU KIỆN VÀNG: Chỉ khi có đăng nhập VÀ phải là "Nhân viên"
     if (user !== null && user.role === 'Nhân viên') {
         qlBtn.parentElement.style.setProperty('display', 'block', 'important');
     } else {
-        // Tất cả các trường hợp: Chưa đăng nhập, Khách hàng, v.v. -> ẨN HẾT
         qlBtn.parentElement.style.setProperty('display', 'none', 'important');
     }
 }
-
 checkAdminAccess();
 
-document.addEventListener('DOMContentLoaded', function () {
+//initadminpage: khởi tạo trang admin
+function initAdminPage() {
     if (typeof checkAdminAccess === 'function') {
         checkAdminAccess();
     }
@@ -446,20 +440,18 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = "login.html";
         }
     }
-});
+}
+initAdminPage();
 
 patchProductsDatabase();
 
+//viewmyorders: xem danh sách đơn hàng cá nhân
 function viewMyOrders() {
-    // 1. Lấy thông tin người đang đăng nhập
     let userData = localStorage.getItem('currentUser');
     if (!userData) return;
     let user = JSON.parse(userData);
 
-    // 2. Lấy toàn bộ kho đơn hàng chung
     let allOrders = JSON.parse(localStorage.getItem('basau_orders')) || [];
-
-    // 3. BỘ LỌC THẦN THÁNH: Chỉ lấy đơn nào có Email trùng với Email người dùng
     let myOrders = allOrders.filter(o => o.email === user.email);
 
     if (myOrders.length === 0) {
@@ -468,7 +460,7 @@ function viewMyOrders() {
     }
 
     let htmlStr = '<div style="text-align:left; max-height:450px; overflow-y:auto; padding-right:10px;">';
-    myOrders.slice().reverse().forEach(o => { 
+    myOrders.slice().reverse().forEach(o => {
         let badgeColor = o.status.includes('Đã thanh toán') ? '#27ae60' : '#f39c12';
         htmlStr += `
             <div style="border:1px solid #ddd; padding:15px; margin-bottom:12px; border-radius:10px; background:#fafafa; font-family: sans-serif;">
@@ -491,4 +483,88 @@ function viewMyOrders() {
         showCloseButton: true,
         showConfirmButton: false
     });
+}
+
+//loadstatsdashboard: tải biểu đồ và số liệu thống kê
+function loadStatsDashboard() {
+    let products = getAllProducts();
+    let orders = JSON.parse(localStorage.getItem('basau_orders')) || [];
+
+    let totalRevenue = 0;
+    let totalPaidOrders = 0;
+    orders.forEach(o => {
+        if (o.status && (o.status.includes('Đã thanh toán') || o.status.includes('🟢'))) {
+            totalRevenue += o.total;
+            totalPaidOrders++;
+        }
+    });
+
+    let revEl = document.getElementById('statsTotalRevenue');
+    let ordEl = document.getElementById('statsTotalOrders');
+    let prodEl = document.getElementById('statsTotalProducts');
+
+    if (revEl) revEl.textContent = totalRevenue.toLocaleString('vi-VN') + '₫';
+    if (ordEl) ordEl.textContent = orders.length + ' đơn';
+    if (prodEl) prodEl.textContent = products.length + ' mẫu';
+
+    let brandCounts = {};
+    products.forEach(p => {
+        let b = p.brand || 'Khác';
+        brandCounts[b] = (brandCounts[b] || 0) + 1;
+    });
+
+    let brandLabels = Object.keys(brandCounts);
+    let brandData = Object.values(brandCounts);
+
+    let ctxBrands = document.getElementById('chartBrands');
+    if (ctxBrands) {
+        if (window.myChartBrands) window.myChartBrands.destroy();
+        
+        window.myChartBrands = new Chart(ctxBrands, {
+            type: 'pie', 
+            data: {
+                labels: brandLabels, 
+                datasets: [{
+                    label: 'Số lượng mẫu',
+                    data: brandData, 
+                    backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', '#ffb3e6', '#c4e17f']
+                }]
+            }
+        });
+    }
+
+    let recentOrders = orders.slice(-7);
+    if (recentOrders.length === 0) {
+        recentOrders = [
+            { id: 'Đơn 1', total: 1200000 },
+            { id: 'Đơn 2', total: 2500000 },
+            { id: 'Đơn 3', total: 950000 }
+        ];
+    }
+
+    let orderLabels = [];
+    let orderData = [];
+
+    recentOrders.forEach(o => {
+        let shortId = o.id.length > 8 ? 'ORD...' + o.id.slice(-4) : o.id;
+        orderLabels.push(shortId);
+        orderData.push(o.total);
+    });
+
+    let ctxRevenue = document.getElementById('chartRevenue');
+    if (ctxRevenue) {
+        if (window.myChartRevenue) window.myChartRevenue.destroy();
+        
+        window.myChartRevenue = new Chart(ctxRevenue, {
+            type: 'bar', 
+            data: {
+                labels: orderLabels, 
+                datasets: [{
+                    label: 'Giá trị đơn hàng (VNĐ)',
+                    data: orderData, 
+                    backgroundColor: '#36a2eb' 
+                }]
+            }
+        });
+    }
 }

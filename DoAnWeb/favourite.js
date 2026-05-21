@@ -1,7 +1,4 @@
-// ============================================================
-// HỆ THỐNG YÊU THÍCH (BẢN TÁCH RỜI CSS)
-// ============================================================
-
+//injectfavhtml: khởi tạo html giao diện yêu thích
 function injectFavHTML() {
     if (document.getElementById('favPanel')) return;
 
@@ -27,6 +24,7 @@ function injectFavHTML() {
     document.body.appendChild(panel);
 }
 
+//openfavpanel: mở giao diện yêu thích
 function openFavPanel() {
     renderFavPanel();
     document.getElementById('favPanel').classList.add('open');
@@ -34,12 +32,14 @@ function openFavPanel() {
     document.body.style.overflow = 'hidden';
 }
 
+//closefavpanel: đóng giao diện yêu thích
 function closeFavPanel() {
     document.getElementById('favPanel').classList.remove('open');
     document.getElementById('favOverlay').classList.remove('open');
     document.body.style.overflow = '';
 }
 
+//togglefavorite: thêm hoặc xóa khỏi danh sách yêu thích
 function toggleFavorite(productId) {
     let favs = JSON.parse(localStorage.getItem('basau_fav')) || [];
     let index = favs.indexOf(productId);
@@ -55,6 +55,7 @@ function toggleFavorite(productId) {
     renderFavPanel();
 }
 
+//removefavorite: xóa khỏi danh sách yêu thích
 function removeFavorite(productId) {
     let favs = JSON.parse(localStorage.getItem('basau_fav')) || [];
     let index = favs.indexOf(productId);
@@ -65,6 +66,7 @@ function removeFavorite(productId) {
     }
 }
 
+//renderfavpanel: tải danh sách sản phẩm yêu thích ra màn hình
 function renderFavPanel() {
     let favIds = JSON.parse(localStorage.getItem('basau_fav')) || [];
     let container = document.getElementById('favItemsContainer');
@@ -111,6 +113,7 @@ function renderFavPanel() {
     container.innerHTML = htmlContent;
 }
 
+//showfavtoast: hiện thông báo thao tác yêu thích
 function showFavToast(msg, color) {
     let toast = document.createElement('div');
     toast.className = 'custom-toast';
@@ -125,16 +128,14 @@ function showFavToast(msg, color) {
     }, 2400);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+//initfavourite: khởi tạo hệ thống yêu thích
+function initFavourite() {
     injectFavHTML();
-    let links = document.querySelectorAll('.tienich a');
-    links.forEach(link => {
-        if (link.innerText.includes('Yêu thích')) {
-            link.href = '#';
-            link.onclick = function (e) {
-                e.preventDefault();
-                openFavPanel();
-            };
-        }
-    });
-});
+}
+initFavourite();
+
+//handlefavlinkclick: xử lý click vào link yêu thích
+function handleFavLinkClick(e) {
+    e.preventDefault();
+    openFavPanel();
+}

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <title>Quản lý hệ thống - Basau Sneakers</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Oswald:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
     <div class="adm-container">
         <div class="adm-card">
-            
+
             <div class="adm-header">
                 <div>
                     <h4 class="adm-header-title">⚙ QUẢN LÝ SẢN PHẨM</h4>
@@ -24,40 +28,65 @@
                 <button class="adm-tab" id="adm-tab-edit" onclick="switchAdminTab('edit')">Điều chỉnh</button>
                 <button class="adm-tab" id="adm-tab-delete" onclick="switchAdminTab('delete')">Xóa sản phẩm</button>
                 <button class="adm-tab" id="adm-tab-orders" onclick="switchAdminTab('orders')">Đơn hàng</button>
+                <button class="adm-tab" id="adm-tab-stats" onclick="switchAdminTab('stats')">Thống kê</button>
             </div>
 
             <div class="adm-panel active" id="adm-panel-add">
                 <p class="adm-section-title">THÔNG TIN CƠ BẢN</p>
                 <div class="adm-grid">
-                    <div class="adm-field"><label class="adm-label">Tên sản phẩm *</label><input id="add_name" class="adm-input" type="text" placeholder="Vd: Nike Air Max 90"></div>
-                    <div class="adm-field"><label class="adm-label">Thương hiệu *</label><select id="add_brand" class="adm-input">
-                        <option>Nike</option><option>Adidas</option><option>New Balance</option><option>Onitsuka Tiger</option><option>Puma</option><option>Birkenstock</option><option>Converse</option>
-                    </select></div>
-                    <div class="adm-field"><label class="adm-label">Loại giày *</label><select id="add_category" class="adm-input">
-                        <option value="Sneakers">Sneakers</option><option value="Running">Giày chạy bộ</option><option value="Classic">Giày cổ điển</option><option value="Dép">Dép</option>
-                    </select></div>
-                    <div class="adm-field"><label class="adm-label">Giới tính *</label><select id="add_gender" class="adm-input">
-                        <option value="Nam">Nam</option><option value="Nữ">Nữ</option>
-                    </select></div>
-                    <div class="adm-field"><label class="adm-label">Giá bán (₫) *</label><input id="add_price" class="adm-input" type="number" placeholder="Vd: 2500000"></div>
-                    <div class="adm-field"><label class="adm-label">Giá cũ (₫)</label><input id="add_oldPrice" class="adm-input" type="number" placeholder="0"></div>
-                    <div class="adm-field full"><label class="adm-label">Đường dẫn ảnh *</label><input id="add_img" class="adm-input" type="text" placeholder="hinhAnh/giayNam/anh.png"></div>
+                    <div class="adm-field"><label class="adm-label">Tên sản phẩm *</label><input id="add_name"
+                            class="adm-input" type="text" placeholder="Vd: Nike Air Max 90"></div>
+                    <div class="adm-field"><label class="adm-label">Thương hiệu *</label><select id="add_brand"
+                            class="adm-input">
+                            <option>Nike</option>
+                            <option>Adidas</option>
+                            <option>New Balance</option>
+                            <option>Onitsuka Tiger</option>
+                            <option>Puma</option>
+                            <option>Birkenstock</option>
+                            <option>Converse</option>
+                        </select></div>
+                    <div class="adm-field"><label class="adm-label">Loại giày *</label><select id="add_category"
+                            class="adm-input">
+                            <option value="Sneakers">Sneakers</option>
+                            <option value="Running">Giày chạy bộ</option>
+                            <option value="Classic">Giày cổ điển</option>
+                            <option value="Dép">Dép</option>
+                        </select></div>
+                    <div class="adm-field"><label class="adm-label">Giới tính *</label><select id="add_gender"
+                            class="adm-input">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select></div>
+                    <div class="adm-field"><label class="adm-label">Giá bán (₫) *</label><input id="add_price"
+                            class="adm-input" type="number" placeholder="Vd: 2500000"></div>
+                    <div class="adm-field"><label class="adm-label">Giá cũ (₫)</label><input id="add_oldPrice"
+                            class="adm-input" type="number" placeholder="0"></div>
+                    <div class="adm-field full"><label class="adm-label">Đường dẫn ảnh *</label><input id="add_img"
+                            class="adm-input" type="text" placeholder="hinhAnh/giayNam/anh.png"></div>
                 </div>
 
                 <p class="adm-section-title" style="margin-top:24px;">NHÃN SẢN PHẨM</p>
                 <input type="hidden" id="add_badge" value="">
                 <div class="adm-badge-row" id="addBadgeRow">
-                    <button type="button" class="adm-badge-opt selected" data-v="" onclick="selectBadge('add',this)">Không có</button>
-                    <button type="button" class="adm-badge-opt" data-v="new" onclick="selectBadge('add',this)">New Arrival</button>
-                    <button type="button" class="adm-badge-opt" data-v="bestseller" onclick="selectBadge('add',this)">Best Seller</button>
-                    <button type="button" class="adm-badge-opt" data-v="sale" onclick="selectBadge('add',this)">Sale Off</button>
+                    <button type="button" class="adm-badge-opt selected" data-v=""
+                        onclick="selectBadge('add',this)">Không có</button>
+                    <button type="button" class="adm-badge-opt" data-v="new" onclick="selectBadge('add',this)">New
+                        Arrival</button>
+                    <button type="button" class="adm-badge-opt" data-v="bestseller"
+                        onclick="selectBadge('add',this)">Best Seller</button>
+                    <button type="button" class="adm-badge-opt" data-v="sale" onclick="selectBadge('add',this)">Sale
+                        Off</button>
                 </div>
 
                 <p class="adm-section-title" style="margin-top:24px;">KÍCH CỠ (SIZE)</p>
                 <div class="adm-size-quick">
-                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','all')">Chọn tất cả</button>
-                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','men')">Nam (39–46)</button>
-                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','women')">Nữ (35–40)</button>
+                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','all')">Chọn tất
+                        cả</button>
+                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','men')">Nam
+                        (39–46)</button>
+                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','women')">Nữ
+                        (35–40)</button>
                     <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','clear')">Xóa hết</button>
                 </div>
                 <div class="adm-size-grid" id="addSizeGrid"></div>
@@ -67,65 +96,128 @@
 
             <div class="adm-panel" id="adm-panel-edit">
                 <p class="adm-section-title">CHỌN SẢN PHẨM</p>
-                <div class="adm-search-wrap"><input id="editSearch" type="text" placeholder="Tìm kiếm sản phẩm..." oninput="filterAdminList('edit')"></div>
+                <div class="adm-search-wrap"><input id="editSearch" type="text" placeholder="Tìm kiếm sản phẩm..."
+                        oninput="filterAdminList('edit')"></div>
                 <div class="adm-scroll-list" id="editList"></div>
                 <div id="editFormWrap" style="display:none;">
                     <hr class="adm-edit-divider">
                     <div class="adm-grid">
-                        <div class="adm-field"><label class="adm-label">Tên sản phẩm *</label><input id="edit_name" class="adm-input" type="text"></div>
-                        <div class="adm-field"><label class="adm-label">Thương hiệu *</label><select id="edit_brand" class="adm-input">
-                            <option>Nike</option><option>Adidas</option><option>New Balance</option><option>Onitsuka Tiger</option><option>Puma</option><option>Birkenstock</option><option>Converse</option>
-                        </select></div>
-                        <div class="adm-field"><label class="adm-label">Loại giày *</label><select id="edit_category" class="adm-input">
-                            <option value="Sneakers">Sneakers</option><option value="Running">Giày chạy bộ</option><option value="Classic">Giày cổ điển</option><option value="Dép">Dép</option>
-                        </select></div>
-                        <div class="adm-field"><label class="adm-label">Giới tính *</label><select id="edit_gender" class="adm-input">
-                            <option value="Nam">Nam</option><option value="Nữ">Nữ</option>
-                        </select></div>
-                        <div class="adm-field"><label class="adm-label">Giá bán (₫) *</label><input id="edit_price" class="adm-input" type="number"></div>
-                        <div class="adm-field"><label class="adm-label">Giá cũ (₫)</label><input id="edit_oldPrice" class="adm-input" type="number"></div>
-                        <div class="adm-field full"><label class="adm-label">Đường dẫn ảnh *</label><input id="edit_img" class="adm-input" type="text"></div>
+                        <div class="adm-field"><label class="adm-label">Tên sản phẩm *</label><input id="edit_name"
+                                class="adm-input" type="text"></div>
+                        <div class="adm-field"><label class="adm-label">Thương hiệu *</label><select id="edit_brand"
+                                class="adm-input">
+                                <option>Nike</option>
+                                <option>Adidas</option>
+                                <option>New Balance</option>
+                                <option>Onitsuka Tiger</option>
+                                <option>Puma</option>
+                                <option>Birkenstock</option>
+                                <option>Converse</option>
+                            </select></div>
+                        <div class="adm-field"><label class="adm-label">Loại giày *</label><select id="edit_category"
+                                class="adm-input">
+                                <option value="Sneakers">Sneakers</option>
+                                <option value="Running">Giày chạy bộ</option>
+                                <option value="Classic">Giày cổ điển</option>
+                                <option value="Dép">Dép</option>
+                            </select></div>
+                        <div class="adm-field"><label class="adm-label">Giới tính *</label><select id="edit_gender"
+                                class="adm-input">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select></div>
+                        <div class="adm-field"><label class="adm-label">Giá bán (₫) *</label><input id="edit_price"
+                                class="adm-input" type="number"></div>
+                        <div class="adm-field"><label class="adm-label">Giá cũ (₫)</label><input id="edit_oldPrice"
+                                class="adm-input" type="number"></div>
+                        <div class="adm-field full"><label class="adm-label">Đường dẫn ảnh *</label><input id="edit_img"
+                                class="adm-input" type="text"></div>
                     </div>
 
                     <p class="adm-section-title" style="margin-top:24px;">NHÃN SẢN PHẨM</p>
                     <input type="hidden" id="edit_badge" value="">
                     <div class="adm-badge-row" id="editBadgeRow">
-                        <button type="button" class="adm-badge-opt selected" data-v="" onclick="selectBadge('edit',this)">Không có</button>
-                        <button type="button" class="adm-badge-opt" data-v="new" onclick="selectBadge('edit',this)">New Arrival</button>
-                        <button type="button" class="adm-badge-opt" data-v="bestseller" onclick="selectBadge('edit',this)">Best Seller</button>
-                        <button type="button" class="adm-badge-opt" data-v="sale" onclick="selectBadge('edit',this)">Sale Off</button>
+                        <button type="button" class="adm-badge-opt selected" data-v=""
+                            onclick="selectBadge('edit',this)">Không có</button>
+                        <button type="button" class="adm-badge-opt" data-v="new" onclick="selectBadge('edit',this)">New
+                            Arrival</button>
+                        <button type="button" class="adm-badge-opt" data-v="bestseller"
+                            onclick="selectBadge('edit',this)">Best Seller</button>
+                        <button type="button" class="adm-badge-opt" data-v="sale"
+                            onclick="selectBadge('edit',this)">Sale Off</button>
                     </div>
 
                     <p class="adm-section-title" style="margin-top:24px;">KÍCH CỠ (SIZE)</p>
                     <div class="adm-size-quick">
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','all')">Chọn tất cả</button>
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','men')">Nam (39–46)</button>
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','women')">Nữ (35–40)</button>
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','clear')">Xóa hết</button>
+                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','all')">Chọn tất
+                            cả</button>
+                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','men')">Nam
+                            (39–46)</button>
+                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','women')">Nữ
+                            (35–40)</button>
+                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','clear')">Xóa
+                            hết</button>
                     </div>
                     <div class="adm-size-grid" id="editSizeGrid"></div>
 
-                    <button class="adm-submit-btn" style="background:#111;" onclick="submitEditProduct()">💾 LƯU THAY ĐỔI</button>
+                    <button class="adm-submit-btn" style="background:#111;" onclick="submitEditProduct()">💾 LƯU THAY
+                        ĐỔI</button>
                 </div>
             </div>
 
             <div class="adm-panel" id="adm-panel-delete">
                 <p class="adm-section-title">CHỌN SẢN PHẨM ĐỂ XÓA</p>
-                <div class="adm-search-wrap"><input id="deleteSearch" type="text" placeholder="Tìm kiếm sản phẩm..." oninput="filterAdminList('delete')"></div>
+                <div class="adm-search-wrap"><input id="deleteSearch" type="text" placeholder="Tìm kiếm sản phẩm..."
+                        oninput="filterAdminList('delete')"></div>
                 <div class="adm-scroll-list" id="deleteList"></div>
             </div>
-            
+
             <div class="adm-panel" id="adm-panel-orders">
                 <p class="adm-section-title">DANH SÁCH ĐƠN HÀNG TRÊN HỆ THỐNG</p>
                 <div class="adm-scroll-list" id="orderListContainer" style="max-height: 550px; background: #fff;">
+                </div>
+            </div>
+
+            <div class="adm-panel" id="adm-panel-stats">
+                <p class="adm-section-title">TỔNG QUAN HỆ THỐNG KINH DOANH</p>
+                <div class="stats-cards-grid">
+                    <div class="stats-card card-revenue">
+                        <div class="stats-card-val" id="statsTotalRevenue">0₫</div>
+                        <div class="stats-card-lbl">Tổng Doanh Thu (Đã thanh toán)</div>
                     </div>
+                    <div class="stats-card card-orders">
+                        <div class="stats-card-val" id="statsTotalOrders">0</div>
+                        <div class="stats-card-lbl">Tổng Đơn Hàng</div>
+                    </div>
+                    <div class="stats-card card-products">
+                        <div class="stats-card-val" id="statsTotalProducts">0</div>
+                        <div class="stats-card-lbl">Sản Phẩm Trong Kho</div>
+                    </div>
+                </div>
+
+                <div class="stats-charts-row">
+                    <div class="chart-container">
+                        <p class="chart-title">Tỷ lệ Sản phẩm theo Thương hiệu</p>
+                        <div class="chart-box">
+                            <canvas id="chartBrands"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <p class="chart-title">Thống kê Đơn hàng Gần đây (₫)</p>
+                        <div class="chart-box">
+                            <canvas id="chartRevenue"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
 
     <script src="data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
 </html>

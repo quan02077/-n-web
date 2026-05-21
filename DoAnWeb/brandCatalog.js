@@ -4,6 +4,7 @@ let displayedProducts = [];
 let currentPage = 1; 
 let itemsPerPage = 6;
 
+//selectbrand: chọn thương hiệu sản phẩm
 function selectBrand(element) {
     let tabs = document.querySelectorAll('.brand-tab');
     for (let i = 0; i < tabs.length; i++) {
@@ -25,6 +26,7 @@ function selectBrand(element) {
     applyFilters();
 }
 
+//applyfilters: áp dụng các bộ lọc sản phẩm
 function applyFilters() {
     let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     
@@ -53,7 +55,6 @@ function applyFilters() {
 
     displayedProducts = [];
 
-    // Dùng mảng productsDatabase từ file data.js
     for (let i = 0; i < productsDatabase.length; i++) {
         let product = productsDatabase[i];
         let isValid = true;
@@ -102,6 +103,7 @@ function applyFilters() {
     applySort();
 }
 
+//applysort: sắp xếp danh sách sản phẩm
 function applySort() {
     let sortValue = document.getElementById('sortSelect').value;
 
@@ -114,6 +116,7 @@ function applySort() {
     renderProducts();
 }
 
+//clearallfilters: xóa tất cả bộ lọc
 function clearAllFilters() {
     let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     for (let i = 0; i < checkboxes.length; i++) {
@@ -122,6 +125,7 @@ function clearAllFilters() {
     applyFilters();
 }
 
+//renderproducts: hiển thị danh sách sản phẩm
 function renderProducts() {
     let grid = document.getElementById('productGrid');
     let noResults = document.getElementById('noResults');
@@ -192,20 +196,18 @@ function renderProducts() {
     if (paginationContainer) paginationContainer.innerHTML = paginationHTML;
 }
 
-// Hàm này được gọi khi người dùng bấm vào các nút 1, 2, 3...
+//changepage: chuyển trang danh sách sản phẩm
 function changePage(pageNumber) {
-    currentPage = pageNumber; // Cập nhật lại số trang hiện tại
-    renderProducts(); // Gọi lại hàm vẽ để nó in ra 4 đôi giày mới
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Mượt mà trượt màn hình lên trên cùng
+    currentPage = pageNumber; 
+    renderProducts(); 
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
 }   
 
-// Chạy lần đầu tiên khi trang vừa tải xong
-window.onload = function() {
-    // 1. Lấy chữ trên thanh địa chỉ (Ví dụ: ?brand=Adidas)
+//initbrandcatalog: khởi tạo trang danh mục thương hiệu
+function initBrandCatalog() {
     let urlParams = new URLSearchParams(window.location.search);
     let brandFromUrl = urlParams.get('brand');
 
-    // 2. Nếu trên URL có tên hãng
     if (brandFromUrl !== null) {
         let tabs = document.querySelectorAll('.brand-tab');
         let found = false;
@@ -218,10 +220,9 @@ window.onload = function() {
             }
         }
         
-        // Nếu tìm thấy tab rồi thì thoát hàm
         if (found === true) return;
     }
 
-    // 3. Nếu không có URL hoặc không tìm thấy hãng thì cứ hiện "Tất cả" bình thường
     applyFilters();
-};
+}
+window.onload = initBrandCatalog;

@@ -1,7 +1,4 @@
-// ============================================================
-// HỆ THỐNG GIỎ HÀNG (ĐỒNG BỘ SIDEPANEL) - BẢN HOÀN CHỈNH 100%
-// ============================================================
-
+//injectcarthtml: khởi tạo giao diện giỏ hàng
 function injectCartHTML() {
     if (document.getElementById('cartPanel')) return;
 
@@ -27,6 +24,7 @@ function injectCartHTML() {
     document.body.appendChild(panel);
 }
 
+//opencartpanel: mở giao diện giỏ hàng
 function openCartPanel() {
     renderCartPanel();
     document.getElementById('cartPanel').classList.add('open');
@@ -34,12 +32,14 @@ function openCartPanel() {
     document.body.style.overflow = 'hidden';
 }
 
+//closecartpanel: đóng giao diện giỏ hàng
 function closeCartPanel() {
     document.getElementById('cartPanel').classList.remove('open');
     document.getElementById('cartOverlay').classList.remove('open');
     document.body.style.overflow = '';
 }
 
+//rendercartpanel: hiển thị danh sách sản phẩm trong giỏ hàng
 function renderCartPanel() {
     let cart = getCart();
     let container = document.getElementById('cartItemsContainer');
@@ -95,6 +95,7 @@ function renderCartPanel() {
     `;
 }
 
+//getcartkey: lấy key giỏ hàng của người dùng hiện tại
 function getCartKey() {
     let userData = localStorage.getItem('currentUser');
     let user = userData ? JSON.parse(userData) : null;
@@ -106,17 +107,20 @@ function getCartKey() {
     return 'basau_cart_guest'; 
 }
 
+//getcart: lấy danh sách sản phẩm trong giỏ hàng
 function getCart() {
     let key = getCartKey();
     return JSON.parse(localStorage.getItem(key)) || [];
 }
 
+//savecart: lưu danh sách sản phẩm vào giỏ hàng
 function saveCart(cart) {
     let key = getCartKey();
     localStorage.setItem(key, JSON.stringify(cart));
     updateCartCount();
 }
 
+//changecartqty: thay đổi số lượng sản phẩm
 function changeCartQty(index, amount) {
     let cart = getCart();
     cart[index].quantity += amount;
@@ -125,6 +129,7 @@ function changeCartQty(index, amount) {
     renderCartPanel();
 }
 
+//removecartitem: xóa sản phẩm khỏi giỏ hàng
 function removeCartItem(index) {
     let cart = getCart(); 
     cart.splice(index, 1);
@@ -132,6 +137,7 @@ function removeCartItem(index) {
     renderCartPanel();
 }
 
+//clearcart: xóa toàn bộ giỏ hàng
 function clearCart() {
     Swal.fire({
         title: 'Xóa giỏ hàng?',
@@ -151,6 +157,7 @@ function clearCart() {
     });
 }
 
+//updatecartcount: cập nhật số lượng sản phẩm trên icon giỏ hàng
 function updateCartCount() {
     let cart = getCart();
     let totalQuantity = 0;
@@ -164,38 +171,19 @@ function updateCartCount() {
     });
 }
 
-// 6. KHỞI CHẠY KHI MỞ TRANG (Quan trọng nhất: Cài đặt nút bấm)
-document.addEventListener('DOMContentLoaded', function () {
+//initcart: khởi tạo hệ thống giỏ hàng
+function initCart() {
     injectCartHTML();
     updateCartCount();
 
-    // 1. Kiểm tra xem có phải Admin không để hiện nút "Quản lý"
     if (typeof checkAdminAccess === 'function') {
         checkAdminAccess();
     }
+}
+window.addEventListener('load', initCart);
 
-    // 2. Gắn sự kiện MỞ BẢNG cho cái nút Giỏ hàng
-    let links = document.querySelectorAll('.tienich a');
-    links.forEach(link => {
-        if (link.innerHTML.includes('cartIcon')) {
-            link.onclick = function (e) {
-                e.preventDefault();
-                openCartPanel();
-            };
-        }
-    });
-
-    // 3. Gắn sự kiện Enter cho thanh tìm kiếm
-    let searchInputs = document.querySelectorAll('.custom-search');
-    for (let i = 0; i < searchInputs.length; i++) {
-        searchInputs[i].addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault(); 
-                let keyword = this.value.trim();
-                if (keyword !== '') {
-                    window.location.href = 'productCatalog.html?search=' + encodeURIComponent(keyword);
-                }
-            }
-        });
-    }
-});
+//handlecartlinkclick: xử lý click vào link giỏ hàng
+function handleCartLinkClick(e) {
+    e.preventDefault();
+    openCartPanel();
+}
