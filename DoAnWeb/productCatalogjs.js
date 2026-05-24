@@ -1,14 +1,10 @@
-// ============================================================
-// HỆ THỐNG QUẢN LÝ DANH MỤC SẢN PHẨM & TÌM KIẾM
-// ============================================================
-
 // Các biến toàn cục để ghi nhớ trạng thái
 let currentBrand = "all";
-let currentSearch = ""; 
+let currentSearch = "";
 let displayedProducts = [];
-let currentPage = 1; 
+let currentPage = 1;
 let itemsPerPage = 6;
-let isSearchMode = false; 
+let isSearchMode = false;
 
 //selectbrand: chọn thương hiệu sản phẩm
 function selectBrand(element) {
@@ -18,11 +14,11 @@ function selectBrand(element) {
     }
     element.classList.add('active');
     currentBrand = element.getAttribute('data-brand');
-    
-    if(!isSearchMode) {
+
+    if (!isSearchMode) {
         window.history.replaceState(null, null, "?brand=" + currentBrand);
     }
-    
+
     applyFilters();
 }
 
@@ -34,26 +30,26 @@ function applyFilters() {
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked === true) {
             let val = checkboxes[i].value;
-            if (val === "Nam" || val === "Nữ" || val === "Unisex") 
+            if (val === "Nam" || val === "Nữ" || val === "Unisex")
                 filterGenders.push(val);
-            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép") 
+            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép")
                 filterCategories.push(val);
-            else if (val === "New Arrival" || val === "Sale Off" || val === "Best Seller") 
+            else if (val === "New Arrival" || val === "Sale Off" || val === "Best Seller")
                 filterBadges.push(val);
-            else if (val === "under2m" || val === "2m-4m" || val === "over4m") 
+            else if (val === "under2m" || val === "2m-4m" || val === "over4m")
                 filterPrices.push(val);
         }
     }
 
     let pageTitle = document.getElementById('pageTitle');
     if (pageTitle && !isSearchMode) {
-        if (filterGenders.length === 1) 
+        if (filterGenders.length === 1)
             pageTitle.innerText = filterGenders[0];
-        else if (filterGenders.length > 1) 
+        else if (filterGenders.length > 1)
             pageTitle.innerText = "Nam & Nữ";
-        else if (currentBrand !== 'all') 
+        else if (currentBrand !== 'all')
             pageTitle.innerText = currentBrand;
-        else 
+        else
             pageTitle.innerText = "Tất cả sản phẩm";
     }
 
@@ -64,25 +60,25 @@ function applyFilters() {
         let product = allProducts[i];
         let isValid = true;
 
-        if (currentBrand !== "all" && product.brand !== currentBrand) 
+        if (currentBrand !== "all" && product.brand !== currentBrand)
             isValid = false;
-        if (filterGenders.length > 0 && !filterGenders.includes(product.gender)) 
+        if (filterGenders.length > 0 && !filterGenders.includes(product.gender))
             isValid = false;
-        if (filterCategories.length > 0 && !filterCategories.includes(product.category)) 
+        if (filterCategories.length > 0 && !filterCategories.includes(product.category))
             isValid = false;
 
         if (filterBadges.length > 0) {
             let pBadge = (product.badge || "").toLowerCase();
-            let standardBadge = product.badge; 
-            
-            if (pBadge.includes("new")) 
+            let standardBadge = product.badge;
+
+            if (pBadge.includes("new"))
                 standardBadge = "New Arrival";
-            else if (pBadge.includes("sale")) 
+            else if (pBadge.includes("sale"))
                 standardBadge = "Sale Off";
-            else if (pBadge.includes("best")) 
+            else if (pBadge.includes("best"))
                 standardBadge = "Best Seller";
 
-            if (!filterBadges.includes(standardBadge)) 
+            if (!filterBadges.includes(standardBadge))
                 isValid = false;
         }
 
@@ -90,14 +86,14 @@ function applyFilters() {
             let matchPrice = false;
             for (let j = 0; j < filterPrices.length; j++) {
                 let p = filterPrices[j];
-                if (p === "under2m" && product.price < 2000000) 
+                if (p === "under2m" && product.price < 2000000)
                     matchPrice = true;
-                if (p === "2m-4m" && product.price >= 2000000 && product.price <= 4000000) 
+                if (p === "2m-4m" && product.price >= 2000000 && product.price <= 4000000)
                     matchPrice = true;
-                if (p === "over4m" && product.price > 4000000) 
+                if (p === "over4m" && product.price > 4000000)
                     matchPrice = true;
             }
-            if (matchPrice === false) 
+            if (matchPrice === false)
                 isValid = false;
         }
 
@@ -121,9 +117,9 @@ function applyFilters() {
 function applySort() {
     let sortValue = document.getElementById('sortSelect').value;
     if (sortValue === "price-asc") {
-        displayedProducts.sort(function(a, b) { return a.price - b.price; });
+        displayedProducts.sort(function (a, b) { return a.price - b.price; });
     } else if (sortValue === "price-desc") {
-        displayedProducts.sort(function(a, b) { return b.price - a.price; });
+        displayedProducts.sort(function (a, b) { return b.price - a.price; });
     }
     renderProducts();
 }
@@ -134,18 +130,18 @@ function clearAllFilters() {
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
     }
-    
-    currentSearch = ""; 
+
+    currentSearch = "";
     isSearchMode = false;
-    
+
     let searchInputs = document.querySelectorAll('.custom-search');
     searchInputs.forEach(input => input.value = "");
-    
+
     let pageTitle = document.getElementById('pageTitle');
-    if(pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
-    
+    if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
+
     let allTab = document.querySelector('.brand-tab[data-brand="all"]');
-    if(allTab) selectBrand(allTab);
+    if (allTab) selectBrand(allTab);
     else applyFilters();
 }
 
@@ -160,7 +156,7 @@ function renderProducts() {
 
     if (displayedProducts.length === 0) {
         grid.innerHTML = "";
-        if (paginationContainer) paginationContainer.innerHTML = ""; 
+        if (paginationContainer) paginationContainer.innerHTML = "";
         noResults.classList.remove('d-none');
         return;
     } else {
@@ -168,9 +164,9 @@ function renderProducts() {
     }
 
     let totalPages = Math.ceil(displayedProducts.length / itemsPerPage);
-    
+
     if (currentPage > totalPages) currentPage = 1;
-    
+
     let startIndex = (currentPage - 1) * itemsPerPage;
     let endIndex = startIndex + itemsPerPage;
     if (endIndex > displayedProducts.length) endIndex = displayedProducts.length;
@@ -181,40 +177,40 @@ function renderProducts() {
         let priceFormat = p.price.toLocaleString('vi-VN') + "₫";
         let badgeHtml = "";
         if (p.badge && p.badge !== "") {
-            let badgeClass = "badge-default"; 
-            let badgeStr = p.badge.toLowerCase(); 
-            let displayBadge = p.badge; 
+            let badgeClass = "badge-default";
+            let badgeStr = p.badge.toLowerCase();
+            let displayBadge = p.badge;
 
             if (badgeStr.includes("new")) {
                 badgeClass = "badge-new";
-                displayBadge = "New Arrival"; 
-            } 
+                displayBadge = "New Arrival";
+            }
             else if (badgeStr.includes("sale")) {
                 badgeClass = "badge-sale";
-                displayBadge = "Sale Off";    
-            } 
+                displayBadge = "Sale Off";
+            }
             else if (badgeStr.includes("best")) {
                 badgeClass = "badge-bestseller";
-                displayBadge = "Best Seller";   
+                displayBadge = "Best Seller";
             }
-            
+
             badgeHtml = '<span class="product-badge ' + badgeClass + '">' + displayBadge + '</span>';
         }
 
         htmlContent += '<a href="productDetail.html?id=' + p.id + '" class="text-decoration-none text-dark">';
-        htmlContent += '  <div class="product-card-cat" style="position: relative;">'; 
-        htmlContent += badgeHtml; 
+        htmlContent += '  <div class="product-card-cat" style="position: relative;">';
+        htmlContent += badgeHtml;
         htmlContent += '      <div class="img-wrap"><img src="' + p.img + '" alt="Giày"></div>';
         htmlContent += '      <div class="card-info">';
         htmlContent += '          <h5 class="card-name">' + p.name + '</h5>';
-        htmlContent += '          <p class="card-cat-gender">' + p.category + ' - ' + p.gender + '</p>'; 
+        htmlContent += '          <p class="card-cat-gender">' + p.category + ' - ' + p.gender + '</p>';
         htmlContent += '          <p class="card-price">' + priceFormat + '</p>';
         htmlContent += '      </div></div></a>';
     }
     grid.innerHTML = htmlContent;
 
     let paginationHTML = "";
-    if (totalPages > 1) { 
+    if (totalPages > 1) {
         for (let i = 1; i <= totalPages; i++) {
             if (i === currentPage) {
                 paginationHTML += '<button class="btn btn-dark px-3 fw-bold" onclick="changePage(' + i + ')">' + i + '</button>';
@@ -228,18 +224,18 @@ function renderProducts() {
 
 //changepage: chuyển trang danh sách sản phẩm
 function changePage(pageNumber) {
-    currentPage = pageNumber; 
-    renderProducts(); 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-} 
+    currentPage = pageNumber;
+    renderProducts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 //handlecatalogsearch: xử lý sự kiện gõ phím tìm kiếm
 function handleCatalogSearch(e, input) {
     if (e.key === 'Enter') {
-        e.preventDefault(); 
+        e.preventDefault();
         let keyword = input.value.trim();
         let pageTitle = document.getElementById('pageTitle');
-        
+
         if (keyword !== '') {
             currentSearch = keyword;
             isSearchMode = true;
@@ -249,8 +245,8 @@ function handleCatalogSearch(e, input) {
             isSearchMode = false;
             if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
         }
-        
-        currentPage = 1; 
+
+        currentPage = 1;
         applyFilters();
     }
 }
@@ -270,26 +266,26 @@ function handleCatalogSearchClear(input) {
 function initCatalog() {
     let allCheckboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     allCheckboxes.forEach(chk => chk.checked = false);
-    
+
     let urlParams = new URLSearchParams(window.location.search);
     let genderFromUrl = urlParams.get('gender');
     let brandFromUrl = urlParams.get('brand');
     let badgeFromUrl = urlParams.get('badge');
-    let categoryFromUrl = urlParams.get('category'); 
-    let searchFromUrl = urlParams.get('search'); 
+    let categoryFromUrl = urlParams.get('category');
+    let searchFromUrl = urlParams.get('search');
 
     isSearchMode = false;
     currentSearch = "";
 
-    if (genderFromUrl) {    
+    if (genderFromUrl) {
         let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
         checkboxes.forEach(chk => { if (chk.value === genderFromUrl) chk.checked = true; });
-    } 
-    if (badgeFromUrl){
+    }
+    if (badgeFromUrl) {
         let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
         checkboxes.forEach(chk => { if (chk.value === badgeFromUrl) chk.checked = true; });
     }
-    if (categoryFromUrl){
+    if (categoryFromUrl) {
         let checkboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
         checkboxes.forEach(chk => { if (chk.value === categoryFromUrl) chk.checked = true; });
     }
@@ -300,10 +296,10 @@ function initCatalog() {
         currentSearch = searchFromUrl;
         isSearchMode = true;
         if (pageTitle) pageTitle.innerText = "Kết quả: '" + currentSearch + "'";
-        
+
         let searchInputs = document.querySelectorAll('.custom-search');
         searchInputs.forEach(input => input.value = currentSearch);
-    } 
+    }
 
     let isBrandSelected = false;
     if (brandFromUrl) {
@@ -315,8 +311,8 @@ function initCatalog() {
                 break;
             }
         }
-    } 
-    
+    }
+
     if (!isBrandSelected) applyFilters();
 }
 window.onload = initCatalog;

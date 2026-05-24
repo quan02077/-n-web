@@ -142,7 +142,7 @@ function setSizeGrid(mode, sizes) {
     let arr = (mode === 'add') ? _addSizes : _editSizes;
     arr.length = 0;
     for (let i = 0; i < sizes.length; i++) arr.push(sizes[i]);
-    quickSize(mode, 'custom'); 
+    quickSize(mode, 'custom');
 }
 
 //selectbadge: chọn nhãn dán cho sản phẩm
@@ -406,7 +406,7 @@ function showAdminToast(msg, bg) {
 //checkadminaccess: kiểm tra quyền truy cập admin
 function checkAdminAccess() {
     let qlBtn = document.getElementById('QL_btn');
-    if (!qlBtn) return; 
+    if (!qlBtn) return;
 
     let userData = localStorage.getItem('currentUser');
     let user = userData ? JSON.parse(userData) : null;
@@ -455,7 +455,7 @@ function viewMyOrders() {
     let myOrders = allOrders.filter(o => o.email === user.email);
 
     if (myOrders.length === 0) {
-        Swal.fire('Trống', 'Em chưa có đơn hàng nào cả. Đi mua sắm ngay thôi!', 'info');
+        Swal.fire('Trống', 'Chưa có đơn hàng nào cả. Đi mua sắm ngay thôi!', 'info');
         return;
     }
 
@@ -519,14 +519,14 @@ function loadStatsDashboard() {
     let ctxBrands = document.getElementById('chartBrands');
     if (ctxBrands) {
         if (window.myChartBrands) window.myChartBrands.destroy();
-        
+
         window.myChartBrands = new Chart(ctxBrands, {
-            type: 'pie', 
+            type: 'pie',
             data: {
-                labels: brandLabels, 
+                labels: brandLabels,
                 datasets: [{
                     label: 'Số lượng mẫu',
-                    data: brandData, 
+                    data: brandData,
                     backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', '#ffb3e6', '#c4e17f']
                 }]
             }
@@ -554,15 +554,15 @@ function loadStatsDashboard() {
     let ctxRevenue = document.getElementById('chartRevenue');
     if (ctxRevenue) {
         if (window.myChartRevenue) window.myChartRevenue.destroy();
-        
+
         window.myChartRevenue = new Chart(ctxRevenue, {
-            type: 'bar', 
+            type: 'bar',
             data: {
-                labels: orderLabels, 
+                labels: orderLabels,
                 datasets: [{
                     label: 'Giá trị đơn hàng (VNĐ)',
-                    data: orderData, 
-                    backgroundColor: '#36a2eb' 
+                    data: orderData,
+                    backgroundColor: '#36a2eb'
                 }]
             }
         });
