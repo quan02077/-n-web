@@ -88,7 +88,7 @@ function renderFavPanel() {
 
     let allProds = (typeof getAllProducts === 'function') ? getAllProducts() : (typeof productsDatabase !== 'undefined' ? productsDatabase : []);
     let htmlContent = "";
-    
+
     for (let i = 0; i < favIds.length; i++) {
         let p = allProds.find(item => item.id === favIds[i]);
         if (p) {
@@ -113,19 +113,17 @@ function renderFavPanel() {
     container.innerHTML = htmlContent;
 }
 
-//showfavtoast: hiện thông báo thao tác yêu thích
+//showfavtoast: hiện thông báo thao tác yêu thích bằng SweetAlert2
 function showFavToast(msg, color) {
-    let toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    toast.style.background = color;
-    toast.innerHTML = `<strong>${msg}</strong>`;
-
-    document.body.appendChild(toast);
-    setTimeout(() => { toast.classList.add('show'); }, 30);
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 350);
-    }, 2400);
+    Swal.fire({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        icon: color === '#e74c3c' ? 'success' : 'info',
+        title: msg
+    });
 }
 
 //initfavourite: khởi tạo hệ thống yêu thích

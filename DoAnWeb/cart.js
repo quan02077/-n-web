@@ -84,7 +84,7 @@ function renderCartPanel() {
             </div>`;
     });
     container.innerHTML = htmlContent;
-    
+
     footer.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;">
             <span style="color:#888;">Tổng cộng</span>
@@ -101,10 +101,10 @@ function getCartKey() {
     let user = userData ? JSON.parse(userData) : null;
 
     if (user && user.username) {
-        return 'basau_cart_' + user.username; 
+        return 'basau_cart_' + user.username;
     }
 
-    return 'basau_cart_guest'; 
+    return 'basau_cart_guest';
 }
 
 //getcart: lấy danh sách sản phẩm trong giỏ hàng
@@ -120,21 +120,43 @@ function saveCart(cart) {
     updateCartCount();
 }
 
+//showcarttoast: hiện thông báo giỏ hàng bằng SweetAlert2
+function showCartToast(msg, iconType) {
+    Swal.fire({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        icon: iconType || 'success',
+        title: msg
+    });
+}
+
 //changecartqty: thay đổi số lượng sản phẩm
 function changeCartQty(index, amount) {
     let cart = getCart();
     cart[index].quantity += amount;
-    if (cart[index].quantity <= 0) cart.splice(index, 1);
-    saveCart(cart); 
-    renderCartPanel();
+    if (cart[index].quantity <= 0) {
+        let itemName = cart[index].name;
+        cart.splice(index, 1);
+        saveCart(cart);
+        renderCartPanel();
+        showCartToast(`Đã xóa ${itemName} khỏi giỏ hàng.`, 'info');
+    } else {
+        saveCart(cart);
+        renderCartPanel();
+    }
 }
 
 //removecartitem: xóa sản phẩm khỏi giỏ hàng
 function removeCartItem(index) {
-    let cart = getCart(); 
+    let cart = getCart();
+    let itemName = cart[index] ? cart[index].name : "sản phẩm";
     cart.splice(index, 1);
-    saveCart(cart); 
+    saveCart(cart);
     renderCartPanel();
+    showCartToast(`Đã xóa ${itemName} khỏi giỏ hàng.`, 'info');
 }
 
 //clearcart: xóa toàn bộ giỏ hàng
@@ -150,8 +172,8 @@ function clearCart() {
         cancelButtonText: 'Hủy'
     }).then((result) => {
         if (result.isConfirmed) {
-            saveCart([]); 
-            renderCartPanel(); 
+            saveCart([]);
+            renderCartPanel();
             Swal.fire('Đã xóa!', 'Giỏ hàng của bạn hiện đang trống.', 'success');
         }
     });

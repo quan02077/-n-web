@@ -4,7 +4,7 @@ function addToCart() {
     let priceText = document.getElementById('productPrice').innerText;
     let price = parseInt(priceText.replace(/[^0-9]/g, '')) || 0;
     let img = document.getElementById('mainProductImg').src;
-    let activeSizeBtn = document.querySelector('.size-btn.active') || document.querySelector('.size-btn.btn-dark');
+    let activeSizeBtn = document.querySelector('.size-btn.active-size') || document.querySelector('.size-btn.active') || document.querySelector('.size-btn.btn-dark');
     let firstSizeBtn = document.querySelector('.size-btn');
     let size = activeSizeBtn ? activeSizeBtn.innerText.trim() : (firstSizeBtn ? firstSizeBtn.innerText.trim() : "Mặc định");
 
@@ -13,7 +13,7 @@ function addToCart() {
     let existingItem = cart.find(item => item.name === name && item.size === size);
 
     if (existingItem) {
-        existingItem.quantity += 1; 
+        existingItem.quantity += 1;
     } else {
         cart.push({
             name: name,
@@ -25,7 +25,11 @@ function addToCart() {
     }
 
     saveCart(cart);
-    
+
+    if (typeof showCartToast === 'function') {
+        showCartToast(`Đã thêm ${name} (Size: ${size}) vào giỏ hàng! 🛒`, 'success');
+    }
+
     if (typeof openCartPanel === 'function') {
         openCartPanel();
     }
@@ -35,12 +39,12 @@ function addToCart() {
 function toggleCurrentFavorite() {
     let urlParams = new URLSearchParams(window.location.search);
     let productId = parseInt(urlParams.get('id'));
-    
+
     if (productId) {
         if (typeof toggleFavorite === 'function') {
             toggleFavorite(productId);
         } else {
-            alert("Lỗi: Không tìm thấy hệ thống Yêu thích. Bạn đã nhúng favourite.js chưa?");
+            alert("Lỗi: Không tìm thấy hệ thống Yêu thích.");
         }
     }
 }
