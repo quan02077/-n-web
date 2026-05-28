@@ -1,4 +1,4 @@
-// Các biến toàn cục để ghi nhớ trạng thái
+//các biến toàn cục để ghi nhớ trạng thái
 let currentBrand = "all";
 let currentSearch = "";
 let displayedProducts = [];
@@ -32,7 +32,7 @@ function applyFilters() {
             let val = checkboxes[i].value;
             if (val === "Nam" || val === "Nữ" || val === "Unisex")
                 filterGenders.push(val);
-            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép")
+            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép" || val === "Lifestyle")
                 filterCategories.push(val);
             else if (val === "New Arrival" || val === "Sale Off" || val === "Best Seller")
                 filterBadges.push(val);
@@ -54,7 +54,7 @@ function applyFilters() {
     }
 
     displayedProducts = [];
-    let allProducts = (typeof getAllProducts === 'function') ? getAllProducts() : productsDatabase;
+    let allProducts = (typeof getAllProducts === 'function') ? getAllProducts() : (typeof productsDatabase !== 'undefined' ? productsDatabase : []);
 
     for (let i = 0; i < allProducts.length; i++) {
         let product = allProducts[i];
@@ -62,8 +62,10 @@ function applyFilters() {
 
         if (currentBrand !== "all" && product.brand !== currentBrand)
             isValid = false;
+
         if (filterGenders.length > 0 && !filterGenders.includes(product.gender))
             isValid = false;
+
         if (filterCategories.length > 0 && !filterCategories.includes(product.category))
             isValid = false;
 
@@ -115,7 +117,13 @@ function applyFilters() {
 
 //applysort: sắp xếp danh sách sản phẩm
 function applySort() {
-    let sortValue = document.getElementById('sortSelect').value;
+    let sortSelect = document.getElementById('sortSelect');
+    if (!sortSelect) {
+        renderProducts();
+        return;
+    }
+
+    let sortValue = sortSelect.value;
     if (sortValue === "price-asc") {
         displayedProducts.sort(function (a, b) { return a.price - b.price; });
     } else if (sortValue === "price-desc") {
@@ -141,8 +149,11 @@ function clearAllFilters() {
     if (pageTitle) pageTitle.innerText = "Tất cả sản phẩm";
 
     let allTab = document.querySelector('.brand-tab[data-brand="all"]');
-    if (allTab) selectBrand(allTab);
-    else applyFilters();
+    if (allTab) {
+        selectBrand(allTab);
+    } else {
+        applyFilters();
+    }
 }
 
 //renderproducts: hiển thị danh sách sản phẩm
@@ -152,15 +163,19 @@ function renderProducts() {
     let resultCount = document.getElementById('resultCount');
     let paginationContainer = document.getElementById('phantrang');
 
-    resultCount.innerText = "(" + displayedProducts.length + " sản phẩm)";
+    if (!grid) return; // Bảo vệ nếu gọi ở trang không có grid
+
+    if (resultCount) {
+        resultCount.innerText = "(" + displayedProducts.length + " sản phẩm)";
+    }
 
     if (displayedProducts.length === 0) {
         grid.innerHTML = "";
         if (paginationContainer) paginationContainer.innerHTML = "";
-        noResults.classList.remove('d-none');
+        if (noResults) noResults.classList.remove('d-none');
         return;
     } else {
-        noResults.classList.add('d-none');
+        if (noResults) noResults.classList.add('d-none');
     }
 
     let totalPages = Math.ceil(displayedProducts.length / itemsPerPage);
@@ -262,7 +277,7 @@ function handleCatalogSearchClear(input) {
     }
 }
 
-//initcatalog: khởi tạo trang danh mục sản phẩm
+//initcatalog: khởi tạo trang danh mục sản phẩm và thương hiệu
 function initCatalog() {
     let allCheckboxes = document.querySelectorAll('.filter-check input[type="checkbox"]');
     allCheckboxes.forEach(chk => chk.checked = false);
@@ -315,4 +330,5 @@ function initCatalog() {
 
     if (!isBrandSelected) applyFilters();
 }
+
 window.onload = initCatalog;
