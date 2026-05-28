@@ -32,7 +32,7 @@ function applyFilters() {
             let val = checkboxes[i].value;
             if (val === "Nam" || val === "Nữ" || val === "Unisex")
                 filterGenders.push(val);
-            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép" || val === "Lifestyle")
+            else if (val === "Sneakers" || val === "Running" || val === "Classic" || val === "Dép")
                 filterCategories.push(val);
             else if (val === "New Arrival" || val === "Sale Off" || val === "Best Seller")
                 filterBadges.push(val);
@@ -124,7 +124,10 @@ function applySort() {
     }
 
     let sortValue = sortSelect.value;
-    if (sortValue === "price-asc") {
+    if (sortValue === "featured") {
+        displayedProducts.sort(function (a, b) { return a.id - b.id; });
+    }
+    else if (sortValue === "price-asc") {
         displayedProducts.sort(function (a, b) { return a.price - b.price; });
     } else if (sortValue === "price-desc") {
         displayedProducts.sort(function (a, b) { return b.price - a.price; });
@@ -163,7 +166,7 @@ function renderProducts() {
     let resultCount = document.getElementById('resultCount');
     let paginationContainer = document.getElementById('phantrang');
 
-    if (!grid) return; // Bảo vệ nếu gọi ở trang không có grid
+    if (!grid) return;
 
     if (resultCount) {
         resultCount.innerText = "(" + displayedProducts.length + " sản phẩm)";

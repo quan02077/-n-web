@@ -403,7 +403,7 @@ function handleGeneralSearch(e, input) {
         e.preventDefault();
         let keyword = input.value.trim();
         if (keyword !== "") {
-            window.location.href = "productCatalog.html?search=" + encodeURIComponent(keyword);
+            window.location.href = "catalog.html?search=" + encodeURIComponent(keyword);
         }
     }
 }

@@ -1,10 +1,3 @@
-//getcheckoutcartkey: lấy key giỏ hàng của người dùng hiện tại
-function getCheckoutCartKey() {
-    let userData = localStorage.getItem('currentUser');
-    let user = userData ? JSON.parse(userData) : null;
-    return (user && user.username) ? 'basau_cart_' + user.username : 'basau_cart_guest';
-}
-
 let dataTinhThanh = [];
 
 //fetchprovinces: tải dữ liệu tỉnh thành từ api
@@ -12,8 +5,8 @@ function fetchProvinces() {
     fetch('https://provinces.open-api.vn/api/?depth=3')
         .then(response => response.json())
         .then(data => {
-            dataTinhThanh = data; 
-            renderCities();       
+            dataTinhThanh = data;
+            renderCities();
         })
         .catch(error => console.error("Lỗi tải Tỉnh thành:", error));
 }
@@ -22,7 +15,7 @@ function fetchProvinces() {
 function renderCities() {
     let citySelect = document.getElementById('citySelect');
     let html = '<option value="" selected disabled>Chọn Tỉnh / Thành</option>';
-    
+
     for (let i = 0; i < dataTinhThanh.length; i++) {
         html += `<option value="${dataTinhThanh[i].code}">${dataTinhThanh[i].name}</option>`;
     }
@@ -31,22 +24,22 @@ function renderCities() {
 
 //handlecitychange: xử lý khi chọn tỉnh thành
 function handleCityChange(select) {
-    let cityCode = select.value; 
+    let cityCode = select.value;
     let districtSelect = document.getElementById('districtSelect');
     let wardSelect = document.getElementById('wardSelect');
-    
+
     let selectedCity = dataTinhThanh.find(tinh => tinh.code == cityCode);
-    
+
     let html = '<option value="" selected disabled>Chọn Quận / Huyện</option>';
     for (let i = 0; i < selectedCity.districts.length; i++) {
         html += `<option value="${selectedCity.districts[i].code}">${selectedCity.districts[i].name}</option>`;
     }
-    
+
     districtSelect.innerHTML = html;
-    districtSelect.disabled = false; 
-    
+    districtSelect.disabled = false;
+
     wardSelect.innerHTML = '<option value="" selected disabled>Chọn Phường / Xã</option>';
-    wardSelect.disabled = true; 
+    wardSelect.disabled = true;
 }
 
 //handledistrictchange: xử lý khi chọn quận huyện
@@ -54,24 +47,23 @@ function handleDistrictChange(select) {
     let districtCode = select.value;
     let cityCode = document.getElementById('citySelect').value;
     let wardSelect = document.getElementById('wardSelect');
-    
+
     let selectedCity = dataTinhThanh.find(tinh => tinh.code == cityCode);
     let selectedDistrict = selectedCity.districts.find(quan => quan.code == districtCode);
-    
+
     let html = '<option value="" selected disabled>Chọn Phường / Xã</option>';
     for (let i = 0; i < selectedDistrict.wards.length; i++) {
         html += `<option value="${selectedDistrict.wards[i].code}">${selectedDistrict.wards[i].name}</option>`;
     }
-    
+
     wardSelect.innerHTML = html;
-    wardSelect.disabled = false; 
+    wardSelect.disabled = false;
 }
 
 //loadcheckoutsummary: tải tóm tắt đơn hàng
 function loadCheckoutSummary() {
-    let cartData = localStorage.getItem(getCheckoutCartKey());  
-    let cart = cartData ? JSON.parse(cartData) : [];
-    
+    let cart = getCart();
+
     let itemsContainer = document.getElementById('checkoutItems');
     let totalContainer = document.getElementById('checkoutTotal');
     let btnSubmit = document.getElementById('btnSubmitOrder');
@@ -102,14 +94,14 @@ function loadCheckoutSummary() {
             </div>
         `;
     }
-    
+
     html += `
         <div class="d-flex justify-content-between mt-3 pt-2">
             <span class="fw-bold fs-5">TỔNG CỘNG:</span>
             <span class="fw-bold fs-4 text-danger">${tongTien.toLocaleString('vi-VN')}₫</span>
         </div>
     `;
-    
+
     itemsContainer.innerHTML = html;
 }
 
@@ -123,8 +115,8 @@ function processCheckout(event) {
     try {
         let customerName = document.getElementById('cusName').value;
         let customerEmail = document.getElementById('cusEmail').value;
-        let sdtKhach = document.getElementById('cusPhone').value; 
-        
+        let sdtKhach = document.getElementById('cusPhone').value;
+
         let citySelect = document.getElementById('citySelect');
         let districtSelect = document.getElementById('districtSelect');
         let wardSelect = document.getElementById('wardSelect');
@@ -135,8 +127,8 @@ function processCheckout(event) {
         let wardName = wardSelect.options[wardSelect.selectedIndex].text;
 
         let diaChiHoanChinh = `${homeInput}, ${wardName}, ${districtName}, ${cityName}`;
-        
-        let cart = JSON.parse(localStorage.getItem(getCheckoutCartKey())) || [];
+
+        let cart = getCart();
         if (cart.length === 0) {
             Swal.fire('Giỏ hàng trống', 'Vui lòng chọn sản phẩm trước khi thanh toán!', 'warning');
             btnSubmit.innerText = "CHẤP NHẬN THANH TOÁN";
@@ -150,7 +142,7 @@ function processCheckout(event) {
             tongTien += (cart[i].price * cart[i].quantity);
             orderDetails += `- ${cart[i].name} (Size: ${cart[i].size}) x ${cart[i].quantity}\n`;
         }
-        let orderId = "ORD" + new Date().getTime(); 
+        let orderId = "ORD" + new Date().getTime();
         let baseUrl = window.location.origin + window.location.pathname.replace('checkout.html', 'homePage.html');
         let paymentLink = baseUrl + "?payment_success=true&order_id=" + orderId;
 
@@ -159,13 +151,13 @@ function processCheckout(event) {
             to_email: customerEmail,
             order_list: orderDetails,
             total_price: tongTien.toLocaleString('vi-VN') + " VND",
-            phone: sdtKhach,   
+            phone: sdtKhach,
             address: diaChiHoanChinh,
             payment_link: paymentLink
         };
 
         emailjs.send('service_ai9ja1y', 'template_qt0fk2b', templateParams)
-            .then(function() {
+            .then(function () {
                 let orders = JSON.parse(localStorage.getItem('basau_orders')) || [];
                 orders.push({
                     id: orderId,
@@ -185,10 +177,10 @@ function processCheckout(event) {
                     icon: 'success',
                     confirmButtonColor: '#111'
                 }).then(() => {
-                    localStorage.setItem(getCheckoutCartKey(), JSON.stringify([]));
-                    window.location.href = "homePage.html"; 
+                    saveCart([]);
+                    window.location.href = "homePage.html";
                 });
-            }, function(error) {
+            }, function (error) {
                 Swal.fire('Lỗi hệ thống', 'Không gửi được email. Vui lòng thử lại!', 'error');
                 btnSubmit.innerText = "CHẤP NHẬN THANH TOÁN";
                 btnSubmit.disabled = false;
@@ -205,7 +197,7 @@ function processCheckout(event) {
 //initcheckout: khởi tạo trang thanh toán
 function initCheckout() {
     fetchProvinces();
-    emailjs.init("ZKkt1SbaCMqURDFyM"); 
+    emailjs.init("ZKkt1SbaCMqURDFyM");
     setTimeout(loadCheckoutSummary, 100);
 }
 document.addEventListener('DOMContentLoaded', initCheckout);
