@@ -1,6 +1,4 @@
-/* =========================================
-   GIAO DIỆN ƯU ĐÃI (VOUCHER)
-   ========================================= */
+/* dùng để chỉnh giao diện ưu đãi */
 .voucher-card {
     background: linear-gradient(135deg, #111, #333);
     color: white;
@@ -30,9 +28,7 @@
 .voucher-card::before { left: -15px; }
 .voucher-card::after { right: -15px; }
 
-/* =========================================
-   THẺ SẢN PHẨM FLASH SALE
-   ========================================= */
+/* dùng để chỉnh thẻ sản phẩm flash sale */
 .flash-sale-card {
     position: relative;
     background-color: #fff;
@@ -48,12 +44,11 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Nhãn phần trăm giảm giá */
 .sale-badge {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #dc3545; /* Màu đỏ nổi bật */
+    background-color: #dc3545;
     color: #fff;
     font-weight: bold;
     padding: 5px 12px;
@@ -93,7 +88,6 @@
     margin-bottom: 10px;
 }
 
-/* Khu vực giá tiền */
 .price-container {
     display: flex;
     justify-content: center;
@@ -114,7 +108,6 @@
     font-weight: 800;
 }
 
-/* Thanh tiến trình báo số lượng đã bán (FOMO) */
 .stock-bar-container {
     background-color: #ffeaea;
     border-radius: 50px;
@@ -153,10 +146,8 @@
     cursor: pointer;
 }
 
-/* Khi di chuột vào: Đổi màu, tạo hiệu ứng đổ bóng phát sáng và phóng to */
 .footer-logo-link:hover .footer-logo-text {
     color: #ff416c;
-    /* Màu đỏ nổi bật giống phong cách Flash Sale */
     text-shadow: 0 0 20px rgba(255, 65, 108, 0.8), 0 0 40px rgba(255, 65, 108, 0.4);
     transform: scale(1.08);
 }

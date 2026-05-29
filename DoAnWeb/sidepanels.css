@@ -1,4 +1,4 @@
-/* 1. Nền đen mờ phủ ngoài (Dùng chung cho cả 3) */
+/* dùng để chỉnh nền đen mờ phủ ngoài */
 #cartOverlay,
 #favOverlay,
 #accOverlay {
@@ -14,7 +14,6 @@
     transition: all 0.3s ease;
 }
 
-/* Khi mở bảng nào thì hiện nền mờ tương ứng */
 #cartOverlay.open,
 #favOverlay.open,
 #accOverlay.open {
@@ -22,7 +21,7 @@
     visibility: visible;
 }
 
-/* 2. Khung Bảng trượt (Dùng chung cho cả 3) */
+/* dùng để chỉnh khung bảng trượt */
 #cartPanel,
 #favPanel,
 #accPanel {
@@ -48,7 +47,7 @@
     transform: translateX(0);
 }
 
-/* 3. Cấu trúc Header & Button (Dùng chung) */
+/* dùng để chỉnh cấu trúc header */
 .panel-header {
     background: #111;
     color: #fff;
@@ -86,7 +85,7 @@
     justify-content: center;
 }
 
-/* 4. Cấu trúc Body (Dùng chung) */
+/* dùng để chỉnh cấu trúc body */
 .panel-body {
     flex: 1;
     overflow-y: auto;
@@ -99,7 +98,7 @@
     flex-shrink: 0;
 }
 
-/* 5. Style riêng cho các món trong Giỏ hàng */
+/* dùng để chỉnh các món trong giỏ hàng */
 .cart-item {
     display: flex;
     gap: 16px;

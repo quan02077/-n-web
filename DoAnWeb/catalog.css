@@ -1,14 +1,10 @@
-/* =========================================
-   1. CÀI ĐẶT CHUNG TRANG DANH MỤC
-   ========================================= */
+/* dùng để chỉnh cài đặt chung trang danh mục */
 body {
     font-family: 'Josefin Sans', sans-serif;
     background-color: #fcfcfc;
 }
 
-/* =========================================
-   2. TIÊU ĐỀ VÀ BREADCRUMB
-   ========================================= */
+/* dùng để chỉnh tiêu đề và breadcrumb */
 .breadcrumb-bar {
     font-size: 16px;
     color: #888;
@@ -35,9 +31,7 @@ body {
     color: #888;
 }
 
-/* =========================================
-   3. CÁC NÚT BẤM CHỌN HÃNG (TABS)
-   ========================================= */
+/* dùng để chỉnh các nút chọn hãng */
 .brand-tabs {
     display: flex;
     flex-wrap: wrap;
@@ -55,7 +49,6 @@ body {
     cursor: pointer;
 }
 
-/* Khi đang chọn hoặc rê chuột vào thì thành màu đen */
 .brand-tab.active,
 .brand-tab:hover {
     background-color: #000;
@@ -63,9 +56,7 @@ body {
     border-color: #000;
 }
 
-/* =========================================
-   4. CỘT BỘ LỌC BÊN TRÁI (SIDEBAR)
-   ========================================= */
+/* dùng để chỉnh cột bộ lọc bên trái */
 .filter-sidebar {
     background-color: #fff;
     padding: 20px;
@@ -92,7 +83,6 @@ body {
     cursor: pointer;
 }
 
-/* Phóng to ô checkbox cho dễ bấm */
 .filter-check input {
     width: 20px;
     height: 20px;
@@ -112,9 +102,7 @@ body {
     cursor: pointer;
 }
 
-/* =========================================
-   5. NÚT SẮP XẾP VÀ LƯỚI SẢN PHẨM
-   ========================================= */
+/* dùng để chỉnh nút sắp xếp và lưới sản phẩm */
 .sort-select {
     padding: 10px 15px;
     font-size: 16px;
@@ -123,16 +111,13 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-/* Chia lưới 3 cột cho sản phẩm */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
 
-/* =========================================
-   6. THIẾT KẾ 1 THẺ SẢN PHẨM (CARD) - GIỐNG ẢNH MẪU
-   ========================================= */
+/* dùng để chỉnh thiết kế thẻ sản phẩm */
 .product-card-cat {
     position: relative;
     background-color: #fff;
@@ -148,7 +133,6 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Khung chứa ảnh */
 .img-wrap {
     height: 220px;
     display: flex;
@@ -211,7 +195,6 @@ body {
     z-index: 2;
 }
 
-/* Định màu đặc cho từng loại nhãn */
 .badge-sale {
     background-color: #dc3545 !important;
 }
@@ -228,7 +211,6 @@ body {
     background-color: #6c757d !important;
 }
 
-/* Tên giày */
 .card-name {
     font-size: 25px;
     font-weight: bold;
@@ -258,7 +240,6 @@ body {
     cursor: pointer;
 }
 
-/* Khi di chuột vào: Đổi màu, tạo hiệu ứng đổ bóng phát sáng và phóng to */
 .footer-logo-link:hover .footer-logo-text {
     color: #ff416c;
     /* Màu đỏ nổi bật giống phong cách Flash Sale */
@@ -266,9 +247,7 @@ body {
     transform: scale(1.08);
 }
 
-/* =========================================
-   GIAO DIỆN GIỎ HÀNG (BẢN TÂN THỦ CƠ BẢN)
-   ========================================= */
+/* dùng để chỉnh giao diện giỏ hàng */
 
 /* 1. Nền đen mờ phủ ngoài trang web */
 #cartOverlay {
@@ -380,9 +359,7 @@ body {
 }
 
 
-/* =========================================
-   GIAO DIỆN QUẢN TRỊ ADMIN (BẢN TÂN THỦ)
-   ========================================= */
+/* dùng để chỉnh giao diện admin */
 
 /* 1. Nền đen của Modal Admin */
 #adminModal {

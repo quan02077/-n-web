@@ -1,13 +1,9 @@
-/* =========================================
-   1. CÀI ĐẶT CHUNG
-   ========================================= */
+/* dùng để chỉnh cài đặt chung */
 body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-/* =========================================
-   2. TÙY CHỈNH HEADER & BANNER
-   ========================================= */
+/* dùng để chỉnh header và banner */
 .logo-img { width: 180px; height: auto; }
 .header-title { font-family: "Oswald", sans-serif; font-size: 50px; color: black; }
 
@@ -21,13 +17,10 @@ body {
     -webkit-text-stroke: 2px black;
 }
 
-/* =========================================
-   3. TÙY CHỈNH FORM & SWITCH CƠ BẢN
-   ========================================= */
+/* dùng để chỉnh form và switch */
 .input-group-text { border-right: none; background-color: transparent; }
 .form-control, .form-select { border-left: none; box-shadow: none !important; }
 
-/* Hiệu ứng focus cơ bản, dễ hiểu */
 .input_group:hover .input-group-text, .input_group:hover .form-control, .input_group:hover .form-select {
     border-color: #000 !important;
 }
@@ -35,9 +28,7 @@ body {
 .form-check-input.custom-switch:checked { background-color: #000; border-color: #000; }
 .form-check-input.custom-switch:focus { box-shadow: none; border-color: #000; }
 
-/* =========================================
-   4. RESPONSIVE
-   ========================================= */
+/* dùng để chỉnh responsive */
 @media (max-width: 768px) {
     .banner-text { font-size: 40px; }
     .header-title { font-size: 30px; }

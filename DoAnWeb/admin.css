@@ -1,7 +1,6 @@
 body {
     font-family: 'Josefin Sans', sans-serif;
     background-color: #f4f6f8;
-    /* Nền xám nhạt cho trang admin */
     margin: 0;
     padding: 40px 15px;
 }
@@ -158,7 +157,7 @@ body {
     cursor: pointer;
 }
 
-/* CSS Màu Sắc */
+/* dùng để chỉnh màu sắc */
 .adm-color-input-wrap {
     display: flex;
     align-items: center;
@@ -217,7 +216,7 @@ body {
     font-size: 12px;
 }
 
-/* Scroll list */
+/* dùng để chỉnh danh sách cuộn */
 .adm-search-wrap {
     margin-bottom: 15px;
 }
@@ -321,7 +320,7 @@ body {
     opacity: 1;
 }
 
-/* Định dạng giao diện Thống kê - Dashboard trong Admin */
+/* dùng để chỉnh thống kê dashboard */
 .stats-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
