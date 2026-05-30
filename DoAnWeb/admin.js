@@ -172,7 +172,7 @@ function submitAddProduct() {
     let img = document.getElementById('add_img').value.trim();
 
     if (name === "" || price === 0 || img === "") {
-        showAdminToast('⚠ Vui lòng điền đầy đủ Tên, Giá và Ảnh!', '#e74c3c');
+        Swal.fire('Lỗi', 'Vui lòng điền đầy đủ Tên, Giá và Ảnh!', 'warning');
         return;
     }
     let maxId = 0;
@@ -208,8 +208,15 @@ function submitAddProduct() {
     added.push(newProduct);
     localStorage.setItem('basau_addedProducts', JSON.stringify(added));
 
-    showAdminToast('✅ Đã thêm "' + name + '" thành công!', '#27ae60');
-    setTimeout(function () { location.reload(); }, 1400);
+    Swal.fire({
+        icon: 'success',
+        title: 'Thành công!',
+        text: 'Đã thêm "' + name + '" thành công!',
+        showConfirmButton: false,
+        timer: 1400
+    }).then(function () {
+        location.reload();
+    });
 }
 
 //selectproducttoedit: chọn sản phẩm để sửa
@@ -247,7 +254,7 @@ function submitEditProduct() {
     let img = document.getElementById('edit_img').value.trim();
 
     if (name === "" || price === 0 || img === "") {
-        showAdminToast('⚠ Vui lòng điền đầy đủ Tên, Giá và Ảnh!', '#e74c3c');
+        Swal.fire('Lỗi', 'Vui lòng điền đầy đủ Tên, Giá và Ảnh!', 'warning');
         return;
     }
 
@@ -268,29 +275,54 @@ function submitEditProduct() {
     };
 
     localStorage.setItem('basau_editedProducts', JSON.stringify(edited));
-    showAdminToast('✅ Đã cập nhật sản phẩm thành công!', '#27ae60');
-    setTimeout(function () { location.reload(); }, 1400);
+    Swal.fire({
+        icon: 'success',
+        title: 'Thành công!',
+        text: 'Đã cập nhật sản phẩm thành công!',
+        showConfirmButton: false,
+        timer: 1400
+    }).then(function () {
+        location.reload();
+    });
 }
 
 //deleteproduct: xóa sản phẩm
 function deleteProduct(id, btn) {
-    if (!confirm('Bạn có chắc muốn xóa sản phẩm này không?')) return;
+    Swal.fire({
+        title: 'Xóa sản phẩm?',
+        text: 'Bạn có chắc chắn muốn xóa sản phẩm này không?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e74c3c',
+        cancelButtonColor: '#95a5a6',
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+    }).then(function (result) {
+        if (result.isConfirmed) {
+            let deletedData = localStorage.getItem('basau_deletedIds');
+            let deletedIds = deletedData ? JSON.parse(deletedData) : [];
 
-    let deletedData = localStorage.getItem('basau_deletedIds');
-    let deletedIds = deletedData ? JSON.parse(deletedData) : [];
+            if (deletedIds.indexOf(id) === -1) {
+                deletedIds.push(id);
+                localStorage.setItem('basau_deletedIds', JSON.stringify(deletedIds));
+            }
 
-    if (deletedIds.indexOf(id) === -1) {
-        deletedIds.push(id);
-        localStorage.setItem('basau_deletedIds', JSON.stringify(deletedIds));
-    }
+            let row = btn.closest('.adm-product-row');
+            row.style.opacity = '.35';
+            row.style.pointerEvents = 'none';
+            btn.textContent = '✓ Đã xóa';
 
-    let row = btn.closest('.adm-product-row');
-    row.style.opacity = '.35';
-    row.style.pointerEvents = 'none';
-    btn.textContent = '✓ Đã xóa';
+            patchProductsDatabase();
 
-    patchProductsDatabase();
-    showAdminToast('🗑 Đã xóa sản phẩm thành công!', '#e74c3c');
+            Swal.fire({
+                icon: 'success',
+                title: 'Đã xóa!',
+                text: 'Sản phẩm đã được xóa thành công.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
 }
 
 //loadeditlist: tải danh sách sản phẩm để sửa
@@ -392,17 +424,6 @@ function filterAdminList(mode) {
     }
 }
 
-//showadmintoast: hiển thị thông báo admin
-function showAdminToast(msg, bg) {
-    let t = document.createElement('div');
-    t.className = 'adm-toast';
-    t.style.background = bg || '#111';
-    t.innerHTML = msg;
-    document.body.appendChild(t);
-    setTimeout(function () { t.classList.add('show'); }, 30);
-    setTimeout(function () { t.classList.remove('show'); setTimeout(function () { t.remove(); }, 400); }, 2600);
-}
-
 //checkadminaccess: kiểm tra quyền truy cập admin
 function checkAdminAccess() {
     let qlBtn = document.getElementById('QL_btn');
@@ -459,10 +480,10 @@ function viewMyOrders() {
         return;
     }
 
-    let htmlStr = '<div style="text-align:left; max-height:450px; overflow-y:auto; padding-right:10px;">';
+    let html = '<div style="text-align:left; max-height:450px; overflow-y:auto; padding-right:10px;">';
     myOrders.slice().reverse().forEach(o => {
         let badgeColor = o.status.includes('Đã thanh toán') ? '#27ae60' : '#f39c12';
-        htmlStr += `
+        html += `
             <div style="border:1px solid #ddd; padding:15px; margin-bottom:12px; border-radius:10px; background:#fafafa; font-family: sans-serif;">
                 <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
                     <strong style="color:#333;">Mã: ${o.id}</strong>
@@ -474,16 +495,19 @@ function viewMyOrders() {
                 </div>
             </div>`;
     });
-    htmlStr += '</div>';
+    html += '</div>';
 
     Swal.fire({
         title: 'LỊCH SỬ MUA HÀNG',
-        html: htmlStr,
+        html: html,
         width: '550px',
         showCloseButton: true,
         showConfirmButton: false
     });
 }
+
+let _myChartBrands = null;
+let _myChartRevenue = null;
 
 //loadstatsdashboard: tải biểu đồ và số liệu thống kê
 function loadStatsDashboard() {
@@ -518,9 +542,9 @@ function loadStatsDashboard() {
 
     let ctxBrands = document.getElementById('chartBrands');
     if (ctxBrands) {
-        if (window.myChartBrands) window.myChartBrands.destroy();
+        if (_myChartBrands) _myChartBrands.destroy();
 
-        window.myChartBrands = new Chart(ctxBrands, {
+        _myChartBrands = new Chart(ctxBrands, {
             type: 'pie',
             data: {
                 labels: brandLabels,
@@ -553,9 +577,9 @@ function loadStatsDashboard() {
 
     let ctxRevenue = document.getElementById('chartRevenue');
     if (ctxRevenue) {
-        if (window.myChartRevenue) window.myChartRevenue.destroy();
+        if (_myChartRevenue) _myChartRevenue.destroy();
 
-        window.myChartRevenue = new Chart(ctxRevenue, {
+        _myChartRevenue = new Chart(ctxRevenue, {
             type: 'bar',
             data: {
                 labels: orderLabels,
