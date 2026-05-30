@@ -1,32 +1,4 @@
-/* dùng để chỉnh giao diện ưu đãi */
-.voucher-card {
-    background: linear-gradient(135deg, #111, #333);
-    color: white;
-    border-radius: 12px;
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-    border: 2px dashed #ffc107;
-    transition: transform 0.3s;
-}
-
-.voucher-card:hover {
-    transform: translateY(-5px);
-}
-
-.voucher-card::before, .voucher-card::after {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: #fcfcfc;
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.voucher-card::before { left: -15px; }
-.voucher-card::after { right: -15px; }
+/* CSS thẻ Voucher đã được gỡ bỏ theo yêu cầu */
 
 /* dùng để chỉnh thẻ sản phẩm flash sale */
 .flash-sale-card {

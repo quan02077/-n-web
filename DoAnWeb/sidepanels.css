@@ -1,4 +1,4 @@
-/* dùng để chỉnh nền đen mờ phủ ngoài */
+
 #cartOverlay,
 #favOverlay,
 #accOverlay {
@@ -21,7 +21,6 @@
     visibility: visible;
 }
 
-/* dùng để chỉnh khung bảng trượt */
 #cartPanel,
 #favPanel,
 #accPanel {
@@ -47,7 +46,6 @@
     transform: translateX(0);
 }
 
-/* dùng để chỉnh cấu trúc header */
 .panel-header {
     background: #111;
     color: #fff;
@@ -85,7 +83,6 @@
     justify-content: center;
 }
 
-/* dùng để chỉnh cấu trúc body */
 .panel-body {
     flex: 1;
     overflow-y: auto;
@@ -98,7 +95,6 @@
     flex-shrink: 0;
 }
 
-/* dùng để chỉnh các món trong giỏ hàng */
 .cart-item {
     display: flex;
     gap: 16px;
@@ -156,13 +152,3 @@
 }
 .panel-subtitle.green { color: #4ade80; }
 
-.custom-toast {
-    position: fixed; bottom: 28px; right: 28px; color: #fff;
-    padding: 16px 24px; border-radius: 14px; font-family: "Josefin Sans", sans-serif;
-    font-size: 14px; z-index: 99999; box-shadow: 0 10px 40px rgba(0,0,0,.35);
-    opacity: 0; transform: translateY(12px); transition: all 0.3s ease; max-width: 320px;
-}
-.custom-toast.show { 
-    opacity: 1; 
-    transform: translateY(0); 
-}

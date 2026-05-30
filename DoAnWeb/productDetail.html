@@ -23,18 +23,20 @@
         <div class="rowHeader bg-light py-1 border-bottom">
             <div class="container-fluid px-4 d-flex justify-content-end align-items-center gap-4">
                 <div class="tienich">
-                    <a href="admin.html" class="text-secondary text-decoration-none" id="QL_btn"><img src="hinhAnh/quanlyIcon.png"
-                            width="16" class="me-1 opacity-75">Quản lý sản phẩm</a>
+                    <a href="admin.html" class="text-secondary text-decoration-none" id="QL_btn"><img
+                            src="hinhAnh/quanlyIcon.png" width="16" class="me-1 opacity-75">Quản lý sản phẩm</a>
                 </div>
                 <div class="tienich">
-                    <a href="#" class="text-secondary text-decoration-none" onclick="handleCartLinkClick(event)"><img src="hinhAnh/cartIcon.png" width="16"
-                            class="me-1 opacity-75">Giỏ hàng (0)</a>
+                    <a href="#" class="text-secondary text-decoration-none" onclick="handleCartLinkClick(event)"><img
+                            src="hinhAnh/cartIcon.png" width="16" class="me-1 opacity-75">Giỏ hàng (0)</a>
                 </div>
                 <div class="tienich">
-                    <a href="#" class="text-secondary text-decoration-none" onclick="handleFavLinkClick(event)">♡ Yêu thích</a>
+                    <a href="#" class="text-secondary text-decoration-none" onclick="handleFavLinkClick(event)">♡ Yêu
+                        thích</a>
                 </div>
                 <div class="tienich">
-                    <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink" onclick="handleAccountLinkClick(event)">
+                    <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink"
+                        onclick="handleAccountLinkClick(event)">
                         <img src="hinhAnh/userHomeIcon.png" id="userIconImg" width="16" class="me-1 opacity-75">
                         <span id="userAccountText">Đăng nhập</span>
                     </a>
@@ -61,7 +63,7 @@
                         <a href="#" class="text-dark text-decoration-none menu-link">SẢN PHẨM <small>▾</small></a>
                         <div class="mega-menu p-5">
                             <div class="container image-grid text-center">
-                                 <a href="catalog.html?gender=Nam" class="text-decoration-none text-white">
+                                <a href="catalog.html?gender=Nam" class="text-decoration-none text-white">
                                     <div class="mega-item"><img src="hinhAnh/forMen.png" class="img-fluid mb-2">
                                         <p>CHO NAM</p>
                                     </div>
@@ -123,8 +125,8 @@
                 </nav>
 
                 <div class="searchBar d-none d-lg-flex mt-4" style="flex: 1; justify-content: flex-end;">
-                    <input type="text" class="form-control rounded-pill custom-search" onkeyup="handleGeneralSearch(event, this)"
-                        placeholder="Tìm kiếm sản phẩm...">
+                    <input type="text" class="form-control rounded-pill custom-search"
+                        onkeyup="handleGeneralSearch(event, this)" placeholder="Tìm kiếm sản phẩm...">
                 </div>
 
             </div>
@@ -146,23 +148,29 @@
                         <h2 class="fw-bold oswald-font" id="productName">Product Name</h2>
                         <h4 class="fw-bold my-3" id="productPrice">Price</h4>
 
-                        <div class="d-flex justify-content-between mt-4"> 
+                        <div class="d-flex justify-content-between mt-4">
                             <p class="fw-bold">Chọn Size</p>
-                            <a href="#" class="text-secondary text-decoration-none small">Hướng dẫn chọn size</a>
                         </div>
                         <div class="row g-2" id="sizeGrid">
-                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn" onclick="selectSize(this)">EU 35.5</button></div>
-                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn" onclick="selectSize(this)">EU 36</button></div>
-                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn" onclick="selectSize(this)">EU 36.5</button></div>
-                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn" onclick="selectSize(this)">EU 37.5</button></div>
-                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn" onclick="selectSize(this)">EU 38</button></div>
-                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn" onclick="selectSize(this)">EU 38.5</button></div>
+                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn"
+                                    onclick="selectSize(this)">EU 35.5</button></div>
+                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn"
+                                    onclick="selectSize(this)">EU 36</button></div>
+                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn"
+                                    onclick="selectSize(this)">EU 36.5</button></div>
+                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn"
+                                    onclick="selectSize(this)">EU 37.5</button></div>
+                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn"
+                                    onclick="selectSize(this)">EU 38</button></div>
+                            <div class="col-4"><button class="btn btn-outline-dark w-100 py-3 size-btn"
+                                    onclick="selectSize(this)">EU 38.5</button></div>
                         </div>
 
                         <div class="mt-5 d-grid gap-2">
                             <button class="btn btn-dark btn-lg rounded-pill py-3 fw-bold" onclick="addToCart()">Thêm vào
                                 giỏ hàng</button>
-                            <button class="btn btn-outline-dark rounded-pill py-3 fw-bold" onclick="toggleCurrentFavorite()">Yêu thích ♡</button>
+                            <button class="btn btn-outline-dark rounded-pill py-3 fw-bold"
+                                onclick="toggleCurrentFavorite()">Yêu thích ♡</button>
                         </div>
                     </div>
                 </div>
@@ -174,7 +182,7 @@
                 </div>
 
                 <div class="col-12 d-flex flex-nowrap overflow-auto hide-scrollbar gap-3" id="relatedProducts">
-                    </div>
+                </div>
             </div>
         </div>
         <div class="footer container-fluid bg-secondary text-white py-5 mt-5 text-center">
