@@ -25,11 +25,6 @@ function addToCart() {
     }
 
     saveCart(cart);
-
-    if (typeof showCartToast === 'function') {
-        showCartToast(`Đã thêm ${name} (Size: ${size}) vào giỏ hàng! 🛒`, 'success');
-    }
-
     if (typeof openCartPanel === 'function') {
         openCartPanel();
     }

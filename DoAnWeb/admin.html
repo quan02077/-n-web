@@ -11,105 +11,63 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Oswald:wght@200..700&display=swap"
         rel="stylesheet">
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--css-->
     <link rel="stylesheet" href="admin.css">
 </head>
 
-<body>
-    <div class="adm-container">
-        <div class="adm-card">
-
-            <div class="adm-header">
+<body class="bg-light" style="font-family: 'Josefin Sans', sans-serif;">
+    <div class="container my-5">
+        <div class="card shadow border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center p-4">
                 <div>
-                    <h4 class="adm-header-title">⚙ QUẢN LÝ SẢN PHẨM</h4>
-                    <p class="adm-header-sub" id="adminUserLabel">Đang tải...</p>
+                    <h4 class="mb-1" style="font-family: 'Oswald', sans-serif; letter-spacing: 1px;">QUẢN LÝ SẢN PHẨM
+                    </h4>
+                    <p class="mb-0 text-white-50 small" id="adminUserLabel">Đang tải...</p>
                 </div>
-                <a href="homePage.html" class="adm-home-btn">🏠 Về trang chủ</a>
+                <a href="homePage.html" class="btn btn-outline-light fw-bold">Về trang chủ</a>
             </div>
 
-            <div class="adm-tabs">
-                <button class="adm-tab active" id="adm-tab-add" onclick="switchAdminTab('add')">Thêm mới</button>
-                <button class="adm-tab" id="adm-tab-edit" onclick="switchAdminTab('edit')">Điều chỉnh</button>
-                <button class="adm-tab" id="adm-tab-delete" onclick="switchAdminTab('delete')">Xóa sản phẩm</button>
-                <button class="adm-tab" id="adm-tab-orders" onclick="switchAdminTab('orders')">Đơn hàng</button>
-                <button class="adm-tab" id="adm-tab-stats" onclick="switchAdminTab('stats')">Thống kê</button>
+            <div class="bg-white border-bottom px-3 pt-3">
+                <ul class="nav nav-tabs border-0" id="adm-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link text-secondary fw-bold active adm-tab border-0 border-bottom border-3 border-dark rounded-0 px-4 py-3"
+                            id="adm-tab-add" onclick="switchAdminTab('add')">Thêm mới</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-secondary fw-bold adm-tab border-0 rounded-0 px-4 py-3"
+                            id="adm-tab-edit" onclick="switchAdminTab('edit')">Điều chỉnh</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-secondary fw-bold adm-tab border-0 rounded-0 px-4 py-3"
+                            id="adm-tab-delete" onclick="switchAdminTab('delete')">Xóa sản phẩm</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-secondary fw-bold adm-tab border-0 rounded-0 px-4 py-3"
+                            id="adm-tab-orders" onclick="switchAdminTab('orders')">Đơn hàng</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-secondary fw-bold adm-tab border-0 rounded-0 px-4 py-3"
+                            id="adm-tab-stats" onclick="switchAdminTab('stats')">Thống kê</button>
+                    </li>
+                </ul>
             </div>
 
-            <div class="adm-panel active" id="adm-panel-add">
-                <p class="adm-section-title">THÔNG TIN CƠ BẢN</p>
-                <div class="adm-grid">
-                    <div class="adm-field"><label class="adm-label">Tên sản phẩm *</label><input id="add_name"
-                            class="adm-input" type="text" placeholder="Vd: Nike Air Max 90"></div>
-                    <div class="adm-field"><label class="adm-label">Thương hiệu *</label><select id="add_brand"
-                            class="adm-input">
-                            <option>Nike</option>
-                            <option>Adidas</option>
-                            <option>New Balance</option>
-                            <option>Onitsuka Tiger</option>
-                            <option>Puma</option>
-                            <option>Birkenstock</option>
-                            <option>Converse</option>
-                        </select></div>
-                    <div class="adm-field"><label class="adm-label">Loại giày *</label><select id="add_category"
-                            class="adm-input">
-                            <option value="Sneakers">Sneakers</option>
-                            <option value="Running">Giày chạy bộ</option>
-                            <option value="Classic">Giày cổ điển</option>
-                            <option value="Dép">Dép</option>
-                        </select></div>
-                    <div class="adm-field"><label class="adm-label">Giới tính *</label><select id="add_gender"
-                            class="adm-input">
-                            <option value="Nam">Nam</option>
-                            <option value="Nữ">Nữ</option>
-                        </select></div>
-                    <div class="adm-field"><label class="adm-label">Giá bán (₫) *</label><input id="add_price"
-                            class="adm-input" type="number" placeholder="Vd: 2500000"></div>
-                    <div class="adm-field"><label class="adm-label">Giá cũ (₫)</label><input id="add_oldPrice"
-                            class="adm-input" type="number" placeholder="0"></div>
-                    <div class="adm-field full"><label class="adm-label">Đường dẫn ảnh *</label><input id="add_img"
-                            class="adm-input" type="text" placeholder="hinhAnh/giayNam/anh.png"></div>
-                </div>
+            <div class="card-body p-4 p-md-5">
 
-                <p class="adm-section-title" style="margin-top:24px;">NHÃN SẢN PHẨM</p>
-                <input type="hidden" id="add_badge" value="">
-                <div class="adm-badge-row" id="addBadgeRow">
-                    <button type="button" class="adm-badge-opt selected" data-v=""
-                        onclick="selectBadge('add',this)">Không có</button>
-                    <button type="button" class="adm-badge-opt" data-v="new" onclick="selectBadge('add',this)">New
-                        Arrival</button>
-                    <button type="button" class="adm-badge-opt" data-v="bestseller"
-                        onclick="selectBadge('add',this)">Best Seller</button>
-                    <button type="button" class="adm-badge-opt" data-v="sale" onclick="selectBadge('add',this)">Sale
-                        Off</button>
-                </div>
-
-                <p class="adm-section-title" style="margin-top:24px;">KÍCH CỠ (SIZE)</p>
-                <div class="adm-size-quick">
-                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','all')">Chọn tất
-                        cả</button>
-                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','men')">Nam
-                        (39–46)</button>
-                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','women')">Nữ
-                        (35–40)</button>
-                    <button type="button" class="adm-size-quick-btn" onclick="quickSize('add','clear')">Xóa hết</button>
-                </div>
-                <div class="adm-size-grid" id="addSizeGrid"></div>
-
-                <button class="adm-submit-btn" onclick="submitAddProduct()">＋ THÊM SẢN PHẨM</button>
-            </div>
-
-            <div class="adm-panel" id="adm-panel-edit">
-                <p class="adm-section-title">CHỌN SẢN PHẨM</p>
-                <div class="adm-search-wrap"><input id="editSearch" type="text" placeholder="Tìm kiếm sản phẩm..."
-                        oninput="filterAdminList('edit')"></div>
-                <div class="adm-scroll-list" id="editList"></div>
-                <div id="editFormWrap" style="display:none;">
-                    <hr class="adm-edit-divider">
-                    <div class="adm-grid">
-                        <div class="adm-field"><label class="adm-label">Tên sản phẩm *</label><input id="edit_name"
-                                class="adm-input" type="text"></div>
-                        <div class="adm-field"><label class="adm-label">Thương hiệu *</label><select id="edit_brand"
-                                class="adm-input">
+                <div class="adm-panel active" id="adm-panel-add">
+                    <h5 class="fw-bold border-bottom pb-2 mb-4">THÔNG TIN CƠ BẢN</h5>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Tên sản phẩm *</label>
+                            <input id="add_name" class="form-control form-control-lg bg-light border-0" type="text"
+                                placeholder="Vd: Nike Air Max 90">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Thương hiệu *</label>
+                            <select id="add_brand" class="form-select form-select-lg bg-light border-0">
                                 <option>Nike</option>
                                 <option>Adidas</option>
                                 <option>New Balance</option>
@@ -117,107 +75,256 @@
                                 <option>Puma</option>
                                 <option>Birkenstock</option>
                                 <option>Converse</option>
-                            </select></div>
-                        <div class="adm-field"><label class="adm-label">Loại giày *</label><select id="edit_category"
-                                class="adm-input">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Loại giày *</label>
+                            <select id="add_category" class="form-select form-select-lg bg-light border-0">
                                 <option value="Sneakers">Sneakers</option>
                                 <option value="Running">Giày chạy bộ</option>
                                 <option value="Classic">Giày cổ điển</option>
                                 <option value="Dép">Dép</option>
-                            </select></div>
-                        <div class="adm-field"><label class="adm-label">Giới tính *</label><select id="edit_gender"
-                                class="adm-input">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Giới tính *</label>
+                            <select id="add_gender" class="form-select form-select-lg bg-light border-0">
                                 <option value="Nam">Nam</option>
                                 <option value="Nữ">Nữ</option>
-                            </select></div>
-                        <div class="adm-field"><label class="adm-label">Giá bán (₫) *</label><input id="edit_price"
-                                class="adm-input" type="number"></div>
-                        <div class="adm-field"><label class="adm-label">Giá cũ (₫)</label><input id="edit_oldPrice"
-                                class="adm-input" type="number"></div>
-                        <div class="adm-field full"><label class="adm-label">Đường dẫn ảnh *</label><input id="edit_img"
-                                class="adm-input" type="text"></div>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Giá bán (₫) *</label>
+                            <input id="add_price" class="form-control form-control-lg bg-light border-0" type="number"
+                                placeholder="Vd: 2500000">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Giá cũ (₫)</label>
+                            <input id="add_oldPrice" class="form-control form-control-lg bg-light border-0"
+                                type="number" placeholder="0">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Đường dẫn ảnh
+                                *</label>
+                            <input id="add_img" class="form-control form-control-lg bg-light border-0" type="text"
+                                placeholder="hinhAnh/giayNam/anh.png">
+                        </div>
                     </div>
 
-                    <p class="adm-section-title" style="margin-top:24px;">NHÃN SẢN PHẨM</p>
-                    <input type="hidden" id="edit_badge" value="">
-                    <div class="adm-badge-row" id="editBadgeRow">
-                        <button type="button" class="adm-badge-opt selected" data-v=""
-                            onclick="selectBadge('edit',this)">Không có</button>
-                        <button type="button" class="adm-badge-opt" data-v="new" onclick="selectBadge('edit',this)">New
-                            Arrival</button>
-                        <button type="button" class="adm-badge-opt" data-v="bestseller"
-                            onclick="selectBadge('edit',this)">Best Seller</button>
-                        <button type="button" class="adm-badge-opt" data-v="sale"
-                            onclick="selectBadge('edit',this)">Sale Off</button>
+                    <h5 class="fw-bold border-bottom pb-2 mt-5 mb-4">NHÃN SẢN PHẨM</h5>
+                    <input type="hidden" id="add_badge" value="">
+                    <div class="d-flex flex-wrap gap-2" id="addBadgeRow">
+                        <button type="button" class="btn btn-outline-dark adm-badge-opt selected" data-v=""
+                            onclick="selectBadge('add',this)">Không có</button>
+                        <button type="button" class="btn btn-outline-dark adm-badge-opt" data-v="new"
+                            onclick="selectBadge('add',this)">New Arrival</button>
+                        <button type="button" class="btn btn-outline-dark adm-badge-opt" data-v="bestseller"
+                            onclick="selectBadge('add',this)">Best Seller</button>
+                        <button type="button" class="btn btn-outline-dark adm-badge-opt" data-v="sale"
+                            onclick="selectBadge('add',this)">Sale Off</button>
                     </div>
 
-                    <p class="adm-section-title" style="margin-top:24px;">KÍCH CỠ (SIZE)</p>
-                    <div class="adm-size-quick">
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','all')">Chọn tất
+                    <h5 class="fw-bold border-bottom pb-2 mt-5 mb-4">KÍCH CỠ (SIZE)</h5>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <button type="button" class="btn btn-sm btn-secondary" onclick="quickSize('add','all')">Chọn tất
                             cả</button>
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','men')">Nam
+                        <button type="button" class="btn btn-sm btn-secondary" onclick="quickSize('add','men')">Nam
                             (39–46)</button>
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','women')">Nữ
+                        <button type="button" class="btn btn-sm btn-secondary" onclick="quickSize('add','women')">Nữ
                             (35–40)</button>
-                        <button type="button" class="adm-size-quick-btn" onclick="quickSize('edit','clear')">Xóa
+                        <button type="button" class="btn btn-sm btn-danger" onclick="quickSize('add','clear')">Xóa
                             hết</button>
                     </div>
-                    <div class="adm-size-grid" id="editSizeGrid"></div>
+                    <div class="d-flex flex-wrap gap-2" id="addSizeGrid"></div>
 
-                    <button class="adm-submit-btn" style="background:#111;" onclick="submitEditProduct()">💾 LƯU THAY
-                        ĐỔI</button>
-                </div>
-            </div>
-
-            <div class="adm-panel" id="adm-panel-delete">
-                <p class="adm-section-title">CHỌN SẢN PHẨM ĐỂ XÓA</p>
-                <div class="adm-search-wrap"><input id="deleteSearch" type="text" placeholder="Tìm kiếm sản phẩm..."
-                        oninput="filterAdminList('delete')"></div>
-                <div class="adm-scroll-list" id="deleteList"></div>
-            </div>
-
-            <div class="adm-panel" id="adm-panel-orders">
-                <p class="adm-section-title">DANH SÁCH ĐƠN HÀNG TRÊN HỆ THỐNG</p>
-                <div class="adm-scroll-list" id="orderListContainer" style="max-height: 550px; background: #fff;">
-                </div>
-            </div>
-
-            <div class="adm-panel" id="adm-panel-stats">
-                <p class="adm-section-title">TỔNG QUAN HỆ THỐNG KINH DOANH</p>
-                <div class="stats-cards-grid">
-                    <div class="stats-card card-revenue">
-                        <div class="stats-card-val" id="statsTotalRevenue">0₫</div>
-                        <div class="stats-card-lbl">Tổng Doanh Thu (Đã thanh toán)</div>
-                    </div>
-                    <div class="stats-card card-orders">
-                        <div class="stats-card-val" id="statsTotalOrders">0</div>
-                        <div class="stats-card-lbl">Tổng Đơn Hàng</div>
-                    </div>
-                    <div class="stats-card card-products">
-                        <div class="stats-card-val" id="statsTotalProducts">0</div>
-                        <div class="stats-card-lbl">Sản Phẩm Trong Kho</div>
-                    </div>
+                    <button class="btn btn-dark w-100 py-3 mt-5 fw-bold fs-5 shadow" onclick="submitAddProduct()">＋ THÊM
+                        SẢN PHẨM</button>
                 </div>
 
-                <div class="stats-charts-row">
-                    <div class="chart-container">
-                        <p class="chart-title">Tỷ lệ Sản phẩm theo Thương hiệu</p>
-                        <div class="chart-box">
-                            <canvas id="chartBrands"></canvas>
+                <div class="adm-panel" id="adm-panel-edit">
+                    <h5 class="fw-bold border-bottom pb-2 mb-4">CHỌN SẢN PHẨM</h5>
+                    <div class="mb-4">
+                        <input id="editSearch" type="text"
+                            class="form-control form-control-lg bg-light border-0 shadow-sm"
+                            placeholder="Tìm kiếm sản phẩm..." oninput="filterAdminList('edit')">
+                    </div>
+                    <div class="adm-scroll-list overflow-auto border-0 shadow-sm rounded-4 p-3 bg-light mb-4"
+                        id="editList" style="max-height: 400px;"></div>
+
+                    <div id="editFormWrap" style="display:none;"
+                        class="p-4 p-md-5 border-0 rounded-4 bg-white shadow-sm mt-4">
+                        <h5 class="fw-bold mb-4 text-primary border-bottom pb-2">ĐIỀU CHỈNH THÔNG TIN</h5>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-secondary small text-uppercase">Tên sản phẩm
+                                    *</label>
+                                <input id="edit_name" class="form-control form-control-lg bg-light border-0"
+                                    type="text">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-secondary small text-uppercase">Thương hiệu
+                                    *</label>
+                                <select id="edit_brand" class="form-select form-select-lg bg-light border-0">
+                                    <option>Nike</option>
+                                    <option>Adidas</option>
+                                    <option>New Balance</option>
+                                    <option>Onitsuka Tiger</option>
+                                    <option>Puma</option>
+                                    <option>Birkenstock</option>
+                                    <option>Converse</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-secondary small text-uppercase">Loại giày
+                                    *</label>
+                                <select id="edit_category" class="form-select form-select-lg bg-light border-0">
+                                    <option value="Sneakers">Sneakers</option>
+                                    <option value="Running">Giày chạy bộ</option>
+                                    <option value="Classic">Giày cổ điển</option>
+                                    <option value="Dép">Dép</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-secondary small text-uppercase">Giới tính
+                                    *</label>
+                                <select id="edit_gender" class="form-select form-select-lg bg-light border-0">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-secondary small text-uppercase">Giá bán (₫)
+                                    *</label>
+                                <input id="edit_price" class="form-control form-control-lg bg-light border-0"
+                                    type="number">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-secondary small text-uppercase">Giá cũ (₫)</label>
+                                <input id="edit_oldPrice" class="form-control form-control-lg bg-light border-0"
+                                    type="number">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold text-secondary small text-uppercase">Đường dẫn ảnh
+                                    *</label>
+                                <input id="edit_img" class="form-control form-control-lg bg-light border-0" type="text">
+                            </div>
+                        </div>
+
+                        <h6 class="fw-bold border-bottom pb-2 mt-5 mb-3">NHÃN SẢN PHẨM</h6>
+                        <input type="hidden" id="edit_badge" value="">
+                        <div class="d-flex flex-wrap gap-2" id="editBadgeRow">
+                            <button type="button" class="btn btn-outline-dark adm-badge-opt selected" data-v=""
+                                onclick="selectBadge('edit',this)">Không có</button>
+                            <button type="button" class="btn btn-outline-dark adm-badge-opt" data-v="new"
+                                onclick="selectBadge('edit',this)">New Arrival</button>
+                            <button type="button" class="btn btn-outline-dark adm-badge-opt" data-v="bestseller"
+                                onclick="selectBadge('edit',this)">Best Seller</button>
+                            <button type="button" class="btn btn-outline-dark adm-badge-opt" data-v="sale"
+                                onclick="selectBadge('edit',this)">Sale Off</button>
+                        </div>
+
+                        <h6 class="fw-bold border-bottom pb-2 mt-5 mb-3">KÍCH CỠ (SIZE)</h6>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <button type="button" class="btn btn-sm btn-secondary"
+                                onclick="quickSize('edit','all')">Chọn tất cả</button>
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="quickSize('edit','men')">Nam
+                                (39–46)</button>
+                            <button type="button" class="btn btn-sm btn-secondary"
+                                onclick="quickSize('edit','women')">Nữ (35–40)</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="quickSize('edit','clear')">Xóa
+                                hết</button>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2" id="editSizeGrid"></div>
+
+                        <button class="btn btn-primary w-100 py-3 mt-5 fw-bold fs-5 shadow"
+                            onclick="submitEditProduct()">LƯU THAY ĐỔI</button>
+                    </div>
+                </div>
+
+                <div class="adm-panel" id="adm-panel-delete">
+                    <h5 class="fw-bold border-bottom pb-2 mb-4 text-danger">CHỌN SẢN PHẨM ĐỂ XÓA</h5>
+                    <div class="mb-4">
+                        <input id="deleteSearch" type="text"
+                            class="form-control form-control-lg bg-light border-0 shadow-sm"
+                            placeholder="Tìm kiếm sản phẩm..." oninput="filterAdminList('delete')">
+                    </div>
+                    <div class="adm-scroll-list overflow-auto border-0 shadow-sm rounded-4 p-3 bg-light" id="deleteList"
+                        style="max-height: 500px;"></div>
+                </div>
+
+                <div class="adm-panel" id="adm-panel-orders">
+                    <h5 class="fw-bold border-bottom pb-2 mb-4">DANH SÁCH ĐƠN HÀNG TRÊN HỆ THỐNG</h5>
+                    <div class="overflow-auto border-0 shadow-sm rounded-4 p-3 bg-light" id="orderListContainer"
+                        style="max-height: 600px;"></div>
+                </div>
+
+                <div class="adm-panel" id="adm-panel-stats">
+                    <h5 class="fw-bold border-bottom pb-2 mb-4">TỔNG QUAN HỆ THỐNG KINH DOANH</h5>
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-4">
+                            <div class="card text-white border-0 shadow h-100 rounded-4"
+                                style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+                                <div class="card-body p-4 d-flex flex-column justify-content-center">
+                                    <h2 class="display-6 fw-bold mb-1" id="statsTotalRevenue"
+                                        style="font-family: 'Oswald', sans-serif;">0₫</h2>
+                                    <p class="text-white-50 mb-0 text-uppercase fw-bold small">Tổng Doanh Thu</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white border-0 shadow h-100 rounded-4"
+                                style="background: linear-gradient(135deg, #ff9966, #ff5e62);">
+                                <div class="card-body p-4 d-flex flex-column justify-content-center">
+                                    <h2 class="display-6 fw-bold mb-1" id="statsTotalOrders"
+                                        style="font-family: 'Oswald', sans-serif;">0</h2>
+                                    <p class="text-white-50 mb-0 text-uppercase fw-bold small">Tổng Đơn Hàng</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white border-0 shadow h-100 rounded-4"
+                                style="background: linear-gradient(135deg, #2193b0, #6dd5ed);">
+                                <div class="card-body p-4 d-flex flex-column justify-content-center">
+                                    <h2 class="display-6 fw-bold mb-1" id="statsTotalProducts"
+                                        style="font-family: 'Oswald', sans-serif;">0</h2>
+                                    <p class="text-white-50 mb-0 text-uppercase fw-bold small">Sản Phẩm Trong Kho</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="chart-container">
-                        <p class="chart-title">Thống kê Đơn hàng Gần đây (₫)</p>
-                        <div class="chart-box">
-                            <canvas id="chartRevenue"></canvas>
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow rounded-4 h-100">
+                                <div class="card-header bg-white border-bottom border-light p-4">
+                                    <h6 class="mb-0 fw-bold text-uppercase" style="font-family: 'Oswald', sans-serif;">
+                                        Tỷ lệ Sản phẩm theo Thương hiệu</h6>
+                                </div>
+                                <div class="card-body d-flex justify-content-center align-items-center p-4">
+                                    <canvas id="chartBrands"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow rounded-4 h-100">
+                                <div class="card-header bg-white border-bottom border-light p-4">
+                                    <h6 class="mb-0 fw-bold text-uppercase" style="font-family: 'Oswald', sans-serif;">
+                                        Thống kê Đơn hàng Gần đây</h6>
+                                </div>
+                                <div class="card-body d-flex justify-content-center align-items-center p-4">
+                                    <canvas id="chartRevenue"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="data.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="admin.js"></script>
