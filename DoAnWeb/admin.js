@@ -168,7 +168,6 @@ function setBadge(mode, val) {
 function submitAddProduct() {
     let name = document.getElementById('add_name').value.trim();
     let price = parseInt(document.getElementById('add_price').value) || 0;
-    let oldPrice = parseInt(document.getElementById('add_oldPrice').value) || 0;
     let img = document.getElementById('add_img').value.trim();
 
     if (name === "" || price === 0 || img === "") {
@@ -198,7 +197,7 @@ function submitAddProduct() {
         category: document.getElementById('add_category').value,
         gender: document.getElementById('add_gender').value,
         price: price,
-        oldPrice: oldPrice,
+        oldPrice: 0,
         badge: badgeInput ? badgeInput.value : "",
         img: img,
         thumbnails: [img],
@@ -235,7 +234,6 @@ function selectProductToEdit(id) {
     document.getElementById('edit_category').value = p.category;
     document.getElementById('edit_gender').value = p.gender;
     document.getElementById('edit_price').value = p.price;
-    document.getElementById('edit_oldPrice').value = p.oldPrice || 0;
     document.getElementById('edit_img').value = p.img;
 
     setBadge('edit', p.badge || '');
@@ -267,7 +265,7 @@ function submitEditProduct() {
         category: document.getElementById('edit_category').value,
         gender: document.getElementById('edit_gender').value,
         price: price,
-        oldPrice: parseInt(document.getElementById('edit_oldPrice').value) || 0,
+        oldPrice: 0,
         badge: document.getElementById('edit_badge').value,
         img: img,
         thumbnails: [img],
