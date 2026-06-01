@@ -1,6 +1,6 @@
 <div align="center">
 
-# 👟 Website Cửa Hàng Bán Giày Thể Thao
+# 👟 Website Cửa Hàng Bán Giày Dép
 
 **Dự án Đồ án cuối kỳ - Môn Thiết kế Web**
 
