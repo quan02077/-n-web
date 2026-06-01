@@ -1,72 +1,60 @@
+# 👟 Đồ Án Web: Cửa Hàng Bán Giày Thể Thao (Sneaker Store)
 
+Đây là đồ án cuối kỳ môn học Thiết kế Web. Website được xây dựng hoàn toàn bằng **HTML5, CSS3, JavaScript thuần (Vanilla JS)** và kết hợp với hệ thống lưới của **Bootstrap 5** để tối ưu hóa hiển thị trên mọi thiết bị (Responsive). 
 
-# 👟 Basau Sneakers - Website Cửa Hàng Giày Trực Tuyến
-
-**Basau Sneakers** là một dự án website thương mại điện tử giao diện Front-end hiện đại, được tối ưu hóa cho trải nghiệm mua sắm sneaker chuyên nghiệp. Dự án mô phỏng luồng trải nghiệm thực tế từ việc xem danh sách sản phẩm, đăng nhập phân quyền cho đến xem chi tiết sản phẩm động.
-
----
-
-## ✨ Tính Năng Nổi Bật
-
-### 🔐 Hệ Thống Xác Thực (Authentication)
-* **Đăng nhập/Đăng ký**: Hỗ trợ phân quyền người dùng (**Nhân viên** và **Khách hàng**).
-* **Quên mật khẩu**: Quy trình khôi phục mật khẩu qua 2 bước bảo mật.
-* **Lưu trữ LocalStorage**: Dữ liệu tài khoản và trạng thái đăng nhập được duy trì cục bộ trên trình duyệt.
-
-### 🛍️ Trải Nghiệm Mua Sắm Động (Dynamic UX)
-* **Trang Chi Tiết Động**: Sử dụng URL Parameters (`?id=...`) để hiển thị thông tin chính xác cho từng loại giày từ một file dữ liệu tập trung.
-* **Chuyển Đổi Hình Ảnh**: Tính năng xem ảnh chi tiết (Thumbnails) và chọn màu sắc tương tác.
-* **Gợi Ý Sản Phẩm**: Mục "You Might Also Like" với hiệu ứng hover và trượt ngang mượt mà trên mobile.
-
-### 🎨 Giao Diện (UI/UX)
-* **Phong cách Nike/Adidas**: Sử dụng phông chữ *Oswald* và *Josefin Sans* tạo cảm giác thể thao, cao cấp.
-* **Thiết kế Responsive**: Tương thích hoàn toàn với Mobile/Tablet thông qua hệ thống Grid của Bootstrap 5 và Menu Hamburger.
+Đặc biệt, hệ thống sử dụng **Local Storage** để lưu trữ cơ sở dữ liệu (tài khoản, sản phẩm, giỏ hàng...), giúp website hoạt động mượt mà với đầy đủ các tính năng như một website động (Dynamic Web) mà không cần đến Backend (Server-side).
 
 ---
 
-## 🛠 Công Nghệ Sử Dụng
+## 🚀 Các Tính Năng Nổi Bật
 
-* **Ngôn ngữ**: HTML5, CSS3, JavaScript (Vanilla JS).
-* **Framework**: Bootstrap 5.
-* **Lưu trữ**: LocalStorage API.
+### 1. Giao Diện (UI/UX)
+- Thiết kế trẻ trung, năng động, bám sát các website thương mại điện tử hiện đại.
+- **Responsive 100%:** Hiển thị hoàn hảo trên cả máy tính (Desktop) và điện thoại (Mobile). Tự động chuyển đổi sang Hamburger Menu ở màn hình nhỏ.
+- Áp dụng các hiệu ứng Hover, Transition, Modal/Side-panel, Overlay chuyên nghiệp.
+- Code được tổ chức dạng Module (tách riêng `header.js`, `header.css` dùng chung cho toàn dự án) giúp hạn chế tối đa lặp code và dễ dàng bảo trì.
 
----
+### 2. Phía Khách Hàng (User)
+- **Đăng ký / Đăng nhập:** Hệ thống xác thực tài khoản cơ bản lưu ở Local Storage.
+- **Duyệt sản phẩm (Catalog):** 
+  - Lọc sản phẩm theo Phân loại (Sneakers, Chạy bộ, Cổ điển, Dép).
+  - Lọc theo Giới tính (Nam, Nữ) và Nhãn (Best Seller, New Arrival, Sale Off).
+  - Thuật toán **Phân trang (Pagination)** xử lý mảng Javascript.
+- **Tìm kiếm:** Thanh tìm kiếm đa năng trên Navbar.
+- **Giỏ hàng (Cart):** Side panel trượt mượt mà. Hỗ trợ thêm sản phẩm, thay đổi số lượng, tự động tính tổng tiền và xóa sản phẩm khỏi giỏ. 
+- **Yêu thích (Wishlist):** Thêm/xóa sản phẩm vào danh sách yêu thích (lưu theo từng user độc lập).
+- **Quản lý Tài khoản:** Cập nhật thông tin cá nhân, đổi mật khẩu và xem lại lịch sử mua hàng.
+- **Thanh toán (Checkout):** Chức năng điền thông tin và thanh toán.
 
-## 📂 Cấu Trúc Thư Mục
-
-```text
-├── hinhAnh/           # Hình ảnh sản phẩm, banner và icons
-├── data.js            # "Cơ sở dữ liệu" giả lập chứa thông tin 8 sản phẩm chính
-├── script.js          # Xử lý logic đăng nhập và trang chủ
-├── scriptDetail.js    # Xử lý logic hiển thị động cho trang chi tiết
-├── stylesMain.css     # CSS tổng quát cho toàn bộ website
-├── stylesDetail.css   # CSS chuyên biệt cho trang chi tiết sản phẩm
-├── homePage.html      # Trang chủ hiển thị danh sách sản phẩm
-└── productDetail.html # Trang chi tiết sản phẩm (Dùng chung cho tất cả ID)
-```
-
----
-
-## 🚀 Hướng Dẫn Cài Đặt
-
-1.  **Tải dự án**:
-    ```bash
-    git clone [https://github.com/your-username/basau-sneakers.git](https://github.com/your-username/basau-sneakers.git)
-    ```
-2.  **Khởi chạy**: Mở tệp `homePage.html` bằng trình duyệt web. Khuyến khích sử dụng extension **Live Server** trên VS Code để có trải nghiệm tốt nhất.
+### 3. Phía Quản Trị (Admin)
+- Giao diện Admin quản lý trực quan (`admin.html`).
+- **CRUD Sản Phẩm:** Cho phép admin Thêm mới, Chỉnh sửa, Xóa và Tìm kiếm sản phẩm trong kho.
+- Các thay đổi của admin sẽ được lưu vào `localStorage`, ngay lập tức đồng bộ hiển thị lên các trang Khách hàng (như Homepage và Catalog).
 
 ---
 
-## 📝 Tài Khoản Mẫu
+## 📁 Cấu Trúc Thư Mục Chú Ý
 
-Hệ thống tự động khởi tạo dữ liệu mẫu khi bạn truy cập lần đầu:
-
-| Email | Mật khẩu | Quyền hạn |
-| :--- | :--- | :--- |
-| `quan02077@gmail.com` | `123456` | Nhân viên |
-| `A123@gmail.com` | `123456` | Khách hàng |
+- `index.html` / `homePage.html`: Trang chủ của website.
+- `catalog.html`: Trang danh sách sản phẩm.
+- `productDetail.html`: Trang chi tiết sản phẩm.
+- `login.html`: Cổng đăng nhập / đăng ký.
+- `admin.html`: Bảng điều khiển quản trị viên.
+- `checkout.html`: Trang thanh toán.
+- `flashSale.html`: Landing page chương trình ưu đãi đếm ngược.
+- **Thư mục CSS:** Các file CSS (như `stylesMain.css`, `header.css`, `sidepanels.css`...)
+- **Thư mục JS:** Chứa logic xử lý nghiệp vụ (`data.js` lưu mock-data, `script.js` xử lý hiển thị, `cart.js`, `account.js`, `admin.js`...).
 
 ---
 
-**© 2026 BASAU SNEAKERS. Thiết kế và phát triển bởi Nhóm 6.**
-```
+## 💻 Cách Cài Đặt Và Chạy Thử
+Vì website sử dụng hoàn toàn mã tĩnh (Front-end), bạn không cần cài đặt môi trường server phức tạp.
+
+1. Tải toàn bộ mã nguồn về máy tính.
+2. Giải nén (nếu ở định dạng zip).
+3. Sử dụng extension **Live Server** trên VSCode, hoặc nhấp đúp trực tiếp vào file `homePage.html` (hoặc `login.html`) để mở trên trình duyệt (Chrome, Cốc Cốc, Edge...).
+4. Đăng ký một tài khoản mới để trải nghiệm đầy đủ tính năng Giỏ hàng và Mua hàng.
+5. Để vào giao diện Quản trị viên, bạn có thể tự tạo tài khoản admin (sửa role trong Code hoặc Local Storage) và truy cập vào `admin.html`.
+
+---
+*Đồ án được thực hiện nhằm mục đích học tập và báo cáo môn học.*
