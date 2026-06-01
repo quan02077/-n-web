@@ -15,123 +15,14 @@
     <link href="bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
     <!--css-->
     <link rel="stylesheet" href="stylesMain.css">
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="flashSale.css">
     <link rel="stylesheet" href="sidepanels.css">
 </head>
 
 <body>
     <div class="container-fluid p-0">
-        <div class="rowHeader bg-light py-1 border-bottom">
-            <div class="container-fluid px-4 d-flex justify-content-end align-items-center gap-4">
-                <div class="tienich">
-                    <a href="admin.html" class="text-secondary text-decoration-none" id="QL_btn"><img
-                            src="hinhAnh/quanlyIcon.png" width="16" class="me-1 opacity-75">Quản lý sản phẩm</a>
-                </div>
-                <div class="tienich">
-                    <a href="#" class="text-secondary text-decoration-none" onclick="handleCartLinkClick(event)"><img
-                            src="hinhAnh/cartIcon.png" width="16" class="me-1 opacity-75">Giỏ hàng (0)</a>
-                </div>
-                <div class="tienich">
-                    <a href="#" class="text-secondary text-decoration-none" onclick="handleFavLinkClick(event)">♡ Yêu
-                        thích</a>
-                </div>
-                <div class="tienich">
-                    <a href="login.html" class="text-secondary text-decoration-none" id="userAccountLink"
-                        onclick="handleAccountLinkClick(event)">
-                        <img src="hinhAnh/userHomeIcon.png" id="userIconImg" width="16" class="me-1 opacity-75">
-                        <span id="userAccountText">Đăng nhập</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid rowMenu bg-white sticky-top shadow-sm py-3">
-            <div class="container d-flex align-items-center justify-content-between">
-
-                <div class="logo d-flex justify-content-start" style="flex: 1;">
-                    <a href="homePage.html"><img src="hinhAnh/logo.jpg" alt="Logo" id="logoHome"
-                            style="height: 100px; width: 200px;"></a>
-                </div>
-
-                <div class="menu-toggle d-lg-none" style="cursor: pointer;" onclick="toggleMenu()">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-                <nav class="menu d-none d-lg-flex justify-content-center mt-4" id="nav-menu" style="flex: 2;">
-
-                    <div class="dropdown">
-                        <a href="#" class="text-dark text-decoration-none menu-link">SẢN PHẨM <small>▾</small></a>
-                        <div class="mega-menu p-5">
-                            <div class="container image-grid text-center">
-                                <a href="catalog.html?gender=Nam" class="text-decoration-none text-white">
-                                    <div class="mega-item"><img src="hinhAnh/forMen.png" class="img-fluid mb-2">
-                                        <p>CHO NAM</p>
-                                    </div>
-                                </a>
-                                <a href="catalog.html?gender=Nữ" class="text-decoration-none text-white">
-                                    <div class="mega-item"><img src="hinhAnh/forWoman.png" class="img-fluid mb-2">
-                                        <p>CHO NỮ</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown">
-                        <a href="#" class="text-dark text-decoration-none menu-link">NAM <small>▾</small></a>
-                        <div class="mega-menu p-5 text-start">
-                            <div class="container text-columns">
-                                <div class="column">
-                                    <h3>NỔI BẬT</h3>
-                                    <a href="catalog.html?gender=Nam&badge=Best Seller">Best Seller</a>
-                                    <a href="catalog.html?gender=Nam&badge=New Arrival">New Arrival</a>
-                                    <a href="catalog.html?gender=Nam&badge=Sale Off">Sale off</a>
-                                </div>
-                                <div class="column dashed-border">
-                                    <h3>GIÀY NAM</h3>
-                                    <p class="sub-heading">Dòng sản phẩm</p>
-                                    <a href="catalog.html?gender=Nam&category=Sneakers">Sneakers</a>
-                                    <a href="catalog.html?gender=Nam&category=Running">Giày chạy bộ</a>
-                                    <a href="catalog.html?gender=Nam&category=Classic">Giày cổ điển</a>
-                                    <a href="catalog.html?gender=Nam&category=Dép">Dép</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown">
-                        <a href="#" class="text-dark text-decoration-none menu-link">NỮ <small>▾</small></a>
-                        <div class="mega-menu p-5 text-start">
-                            <div class="container text-columns">
-                                <div class="column">
-                                    <h3>NỔI BẬT</h3>
-                                    <a href="catalog.html?gender=Nữ&badge=Best Seller">Best Seller</a>
-                                    <a href="catalog.html?gender=Nữ&badge=New Arrival">New Arrival</a>
-                                    <a href="catalog.html?gender=Nữ&badge=Sale Off">Sale off</a>
-                                </div>
-                                <div class="column dashed-border">
-                                    <h3>GIÀY NỮ</h3>
-                                    <p class="sub-heading">Dòng sản phẩm</p>
-                                    <a href="catalog.html?gender=Nữ&category=Sneakers">Sneakers</a>
-                                    <a href="catalog.html?gender=Nữ&category=Running">Giày chạy bộ</a>
-                                    <a href="catalog.html?gender=Nữ&category=Classic">Giày cổ điển</a>
-                                    <a href="catalog.html?gender=Nữ&category=Dép">Dép</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="catalog.html?badge=Sale Off" class="text-dark text-decoration-none menu-link">SALE
-                        OFF</a>
-                </nav>
-
-                <div class="searchBar d-none d-lg-flex mt-4" style="flex: 1; justify-content: flex-end;">
-                    <input type="text" class="form-control rounded-pill custom-search"
-                        onkeyup="handleGeneralSearch(event, this)" placeholder="Tìm kiếm sản phẩm...">
-                </div>
-
-            </div>
-        </div>
+        <div id="main-header"></div>
 
         <div class="container-fluid bg-dark text-white py-4 text-center">
             <h1 class="oswald-font text-warning display-5 fw-bold mb-2">⚡ FLASH SALE ĐANG DIỄN RA ⚡</h1>
@@ -316,7 +207,8 @@
 
     <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
     <script src="admin.js"></script>
-    <script src="cart.js"></script>
+    <script src="header.js"></script>
+    <script src="data.js"></script>
     <script src="favourite.js"></script>
     <script src="account.js"></script>
     <script src="script.js"></script>

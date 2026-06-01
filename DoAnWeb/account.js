@@ -55,12 +55,12 @@ function openAccountPanel() {
     }
 
     let user = JSON.parse(userData);
-    
+
     document.getElementById('accEditName').value = user.username || "";
-    document.getElementById('accEditEmail').value = user.email || ""; 
+    document.getElementById('accEditEmail').value = user.email || "";
     document.getElementById('accEditRole').value = user.role || "Khách hàng";
     document.getElementById('accHeaderRole').innerText = user.role || "Khách hàng";
-    document.getElementById('accNewPass').value = ""; 
+    document.getElementById('accNewPass').value = "";
 
     document.getElementById('accPanel').classList.add('open');
     document.getElementById('accOverlay').classList.add('open');
@@ -80,21 +80,21 @@ function saveAccountInfo() {
     let newEmail = document.getElementById('accEditEmail').value.trim();
 
     if (newName === "" || newEmail === "") {
-        Swal.fire('Khoan đã', 'Vui lòng không để trống Tên và Email nhé!', 'warning'); 
+        Swal.fire('Khoan đã', 'Vui lòng không để trống Tên và Email nhé!', 'warning');
         return;
     }
     if (!newEmail.includes("@")) {
-        Swal.fire('Lỗi định dạng', 'Email không hợp lệ!', 'error'); 
+        Swal.fire('Lỗi định dạng', 'Email không hợp lệ!', 'error');
         return;
     }
 
     let user = JSON.parse(localStorage.getItem('currentUser'));
     user.username = newName;
-    user.email = newEmail; 
+    user.email = newEmail;
     localStorage.setItem('currentUser', JSON.stringify(user));
-    
+
     let accText = document.getElementById('userAccountText');
-    if(accText) accText.innerText = newName;
+    if (accText) accText.innerText = newName;
 
     Swal.fire('Tuyệt vời', 'Đã cập nhật Tên và Email thành công!', 'success');
 }
@@ -103,14 +103,14 @@ function saveAccountInfo() {
 function changeAccountPassword() {
     let newPass = document.getElementById('accNewPass').value.trim();
     if (newPass.length < 3) {
-        Swal.fire('Lưu ý', 'Mật khẩu mới phải từ 3 ký tự trở lên nha.', 'info'); 
+        Swal.fire('Lưu ý', 'Mật khẩu mới phải từ 3 ký tự trở lên nha.', 'info');
         return;
     }
     let user = JSON.parse(localStorage.getItem('currentUser'));
     user.password = newPass;
     localStorage.setItem('currentUser', JSON.stringify(user));
     document.getElementById('accNewPass').value = "";
-    
+
     Swal.fire('Thành công', 'Đã đổi mật khẩu mới!', 'success');
 }
 
@@ -136,7 +136,7 @@ function logoutUser() {
 //initaccount: khởi tạo và nạp thông tin user
 function initAccount() {
     injectAccountHTML();
-    
+
     let accText = document.getElementById('userAccountText');
     let userData = localStorage.getItem('currentUser');
 
@@ -153,7 +153,7 @@ initAccount();
 function handleAccountLinkClick(e) {
     let checkData = localStorage.getItem('currentUser');
     if (checkData && checkData !== "null" && checkData !== "undefined") {
-        e.preventDefault(); 
+        e.preventDefault();
         openAccountPanel();
     }
 }
