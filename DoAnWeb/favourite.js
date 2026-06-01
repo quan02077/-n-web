@@ -95,18 +95,16 @@ function renderFavPanel() {
             let priceFormat = p.price.toLocaleString('vi-VN') + '₫';
 
             htmlContent += `
-                <div class="cart-item">
-                    <a href="productDetail.html?id=${p.id}" style="flex-shrink:0;">
-                        <img src="${p.img}" class="cart-item-img" alt="Giày">
-                    </a>
+                <div class="cart-item" style="cursor:pointer; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f9f9f9'" onmouseout="this.style.backgroundColor='transparent'" onclick="window.location.href='productDetail.html?id=${p.id}'">
+                    <img src="${p.img}" class="cart-item-img" alt="Giày" style="flex-shrink:0;">
                     <div style="flex:1; min-width:0;">
-                        <div style="font-weight:700; font-size:20px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                            <a href="productDetail.html?id=${p.id}" style="color:#111; text-decoration:none;">${p.name}</a>
+                        <div style="font-weight:700; font-size:20px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#111;">
+                            ${p.name}
                         </div>
                         <div style="color:#888; font-size:16px; margin:4px 0;">${p.category} · ${p.gender}</div>
                         <div style="color:#dc3545; font-weight:700; font-size:16px;">${priceFormat}</div>
                     </div>
-                    <button onclick="removeFavorite(${p.id})" class="cart-remove-btn" title="Xóa khỏi yêu thích">✕</button>
+                    <button onclick="event.stopPropagation(); removeFavorite(${p.id})" class="cart-remove-btn" title="Xóa khỏi yêu thích">✕</button>
                 </div>`;
         }
     }
